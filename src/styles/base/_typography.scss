@@ -27,6 +27,14 @@
 }
 
 @font-face {
+  font-family: "Sofia Pro";
+  src: url("../fonts/SofiaProLight.woff2") format("woff2"),
+    url("../fonts/SofiaProLight.woff") format("woff"),
+    url("../fonts/SofiaProLight.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
   font-family: "Source Serif Pro";
   src: url("../fonts/SourceSerifPro-Regular.woff2") format("woff2"),
     url("../fonts/SourceSerifPro-Regular.woff") format("woff"),
@@ -35,6 +43,7 @@
   font-display: swap;
 }
 
+// Set backup font faces
 $SofiaPro: "Sofia Pro", Frutiger, "Frutiger Linotype", Univers, Calibri,
   "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed",
   "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue",
@@ -44,3 +53,113 @@ $SourceSerifPro: "Source Serif Pro", Cambria, "Hoefler Text", Utopia,
   serif;
 
 // Overrides all default text styles
+
+h1 {
+  font-family: $SofiaPro;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.3em;
+}
+
+h2 {
+  font-family: $SofiaPro;
+  font-weight: 700;
+  font-size: 2.625rem;
+  line-height: 1.3em;
+}
+
+h3 {
+  font-family: $SofiaPro;
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.3em;
+}
+
+.text-body1 {
+  font-family: $SourceSerifPro;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.2em;
+  margin-bottom: 1rem;
+}
+
+.text-label {
+  font-family: $SofiaPro;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.3em;
+  text-transform: uppercase;
+}
+
+.text-backed {
+  font-family: $SofiaPro;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1.3em;
+}
+
+.text-button1 {
+  font-family: $SofiaPro;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1em;
+}
+
+.text-button2 {
+  font-family: $SofiaPro;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1em;
+}
+
+.text-scroll {
+  font-family: $SofiaPro;
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.4em;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+.text-white20 {
+  color: var(--color-white20);
+}
+
+.text-white30 {
+  color: var(--color-white30);
+}
+
+.text-white40 {
+  color: var(--color-white40);
+}
+
+.text-white50 {
+  color: var(--color-white50);
+}
+
+.text-white75 {
+  color: var(--color-white75);
+}
+
+.text-gradient {
+  /* stylelint-disable-next-line */
+  background: -webkit-linear-gradient(
+    0deg,
+    var(--color-primary) 0%,
+    var(--color-secondar) 100%
+  );
+  background: -o-gradient(transparent, transparent);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--color-primary);
+}

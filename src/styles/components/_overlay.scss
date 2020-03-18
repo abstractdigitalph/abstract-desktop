@@ -1,0 +1,24 @@
+.overlay {
+  height: 0;
+  width: 0;
+
+  &__sides {
+    margin: 3.125rem 0;
+    position: absolute;
+    top: 0;
+    height: calc(100vh - 6.25rem);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &--left {
+      left: 3.125rem;
+    }
+
+    &--right {
+      right: 3.125rem;
+    }
+  }
+}

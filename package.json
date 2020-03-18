@@ -83,6 +83,7 @@
     "clear": "^0.1.0",
     "enquirer": "^2.3.1",
     "figlet": "^1.2.3",
+    "flexboxgrid2": "^7.2.1",
     "ftp-deploy": "^2.3.3",
     "reset-css": "^4.0.1",
     "sanitize.css": "^11.0.0",
