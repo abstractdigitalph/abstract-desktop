@@ -3,15 +3,24 @@
   @extend .text-primary;
   text-decoration: none;
   border: 0;
+  padding: 0;
+  transition: color 0.1s ease-in-out;
 
   &__image {
     margin-left: 1rem;
     transition: transform 0.1s ease-in-out;
+
+    path {
+      transition: stroke 0.1s ease-in-out;
+      stroke: currentColor;
+    }
   }
 
   &:hover,
   &:focus {
     outline: none;
+
+    color: var(--color-brand, var(--color-secondary));
 
     .button__image {
       transform: translateX(0.5rem);
@@ -23,6 +32,23 @@
 
     .button__image {
       transform: translateX(1rem);
+    }
+  }
+
+  &--white40 {
+    @extend .text-button2;
+    @extend .text-white40;
+
+    &:hover,
+    &:focus {
+      color: var(--color-brand, var(--color-primary));
+    }
+  }
+
+  &--secondary {
+    &:hover,
+    &:focus {
+      color: var(--color-secondary);
     }
   }
 }

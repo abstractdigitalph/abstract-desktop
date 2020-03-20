@@ -11,6 +11,7 @@
   --color-white30: #616163;
   --color-white40: #52525b;
   --color-white50: #818188;
+  --color-white60: #a5a5a6;
   --color-white75: #b2b2b7;
 
   // Grays
@@ -18,6 +19,7 @@
   --color-bg: #1e1e20;
   --color-bgDark: #141416;
   --color-black: #000;
+  --color-border: #2e2e30;
 
   // Spenmo
   --color-spenmo: #f28045;
@@ -30,4 +32,21 @@
   // Diab
   --color-diab: #3cc823;
   --color-diabLight: #3be47f;
+
+  --color-gradient: linear-gradient(90deg, #c45af4 0%, #7163de 100%);
+}
+
+.brand-spenmo {
+  --color-brand: var(--color-spenmo);
+  --color-brandLight: var(--color-spenmoLight);
+}
+
+.brand-tightrope {
+  --color-brand: var(--color-tightrope);
+  --color-brandLight: var(--color-tightropeLight);
+}
+
+.brand-diab {
+  --color-brand: var(--color-diab);
+  --color-brandLight: var(--color-diabLight);
 }

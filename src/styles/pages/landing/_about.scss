@@ -1,0 +1,71 @@
+#landingAbout {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .about {
+    &__holder {
+      border: solid 0.0625rem var(--color-border);
+      padding: 0;
+
+      display: flex;
+    }
+
+    &__half {
+      width: 50%;
+
+      &--left {
+        border-right: solid 0.0625rem var(--color-border);
+      }
+
+      &--right {
+        padding: 2.5rem;
+      }
+    }
+
+    &__top {
+      padding: 2.5rem;
+    }
+
+    &__link {
+      @extend .text-white;
+      text-decoration: none;
+      transition: color 0.1s ease-in-out;
+
+      &:hover,
+      &:focus {
+        outline: none;
+        color: var(--color-primary);
+      }
+
+      &:active {
+        color: var(--color-secondary);
+      }
+    }
+
+    &__h1 {
+      @extend .text-white;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+    }
+
+    &__h3 {
+      @extend .text-gradient;
+      margin: 0 0 2.5rem;
+    }
+
+    &__image {
+      width: 100%;
+    }
+
+    &__contactInfo {
+      margin-bottom: 2.5rem;
+    }
+
+    &__contact {
+      margin-bottom: 0.625rem;
+    }
+  }
+}

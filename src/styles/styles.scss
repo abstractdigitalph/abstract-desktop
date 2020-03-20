@@ -13,6 +13,13 @@
 @import "components/button";
 @import "components/overlay";
 @import "components/hamburger";
+@import "components/filledButton";
+@import "components/nextStop";
 
 // -- Pages -- //
+@import "pages/landing/base";
 @import "pages/landing/hero";
+@import "pages/landing/features";
+@import "pages/landing/projects";
+@import "pages/landing/packages";
+@import "pages/landing/about";
