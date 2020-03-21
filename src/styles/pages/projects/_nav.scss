@@ -1,0 +1,23 @@
+#projectsNav {
+  background-color: var(--color-bgDark);
+  padding: 8.75rem 0 10rem;
+  margin-top: 15.3125rem; //FIXME
+
+  .nav {
+    width: calc(50% - 4.0625rem);
+    background-image: url("../images/projects/tightrope/next.png");
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 50%;
+
+    &__holder {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__h2 {
+      @extend .text-white;
+      margin: 0.8125rem 0 1.125rem;
+    }
+  }
+}

@@ -19,6 +19,7 @@
   --color-bg: #1e1e20;
   --color-bgDark: #141416;
   --color-black: #000;
+  --color-black20: rgba(0, 0, 0, 0.2);
   --color-border: #2e2e30;
 
   // Spenmo
@@ -49,4 +50,9 @@
 .brand-diab {
   --color-brand: var(--color-diab);
   --color-brandLight: var(--color-diabLight);
+}
+
+.brand-abstract {
+  --color-brand: var(--color-primary);
+  --color-brandLight: var(--color-secondary);
 }

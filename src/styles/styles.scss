@@ -15,6 +15,8 @@
 @import "components/hamburger";
 @import "components/filledButton";
 @import "components/nextStop";
+@import "components/break";
+@import "components/footer";
 
 // -- Pages -- //
 @import "pages/landing/base";
@@ -22,4 +24,9 @@
 @import "pages/landing/features";
 @import "pages/landing/projects";
 @import "pages/landing/packages";
-@import "pages/landing/about";
+@import "pages/landing/footer";
+
+@import "pages/projects/hero";
+@import "pages/projects/challenges";
+@import "pages/projects/process";
+@import "pages/projects/nav";
