@@ -1,0 +1,58 @@
+#ourWorkWorks {
+  width: 100%;
+  margin-bottom: 9.375rem;
+  display: flex;
+  justify-content: center;
+
+  .work {
+    height: 28.75rem;
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    text-decoration: none;
+    background-color: var(--color-brandLight);
+    position: relative;
+
+    &:hover,
+    &:focus {
+      .button {
+        opacity: 1;
+        transform: translateY(calc(100% + 1.25rem));
+      }
+    }
+
+    &:active {
+      .button {
+        color: var(--color-brandLight);
+      }
+    }
+
+    &__half {
+      width: 21.25rem;
+
+      &--right {
+        @extend .work__half;
+        margin: 10rem 0 0 3.125rem;
+      }
+    }
+
+    &__imageHolder {
+      max-height: 70%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    &__image {
+      height: 100%;
+    }
+
+    &__h4 {
+      @extend .text-white;
+      padding: 1.875rem;
+      margin: 0;
+    }
+  }
+}

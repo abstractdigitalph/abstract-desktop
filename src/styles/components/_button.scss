@@ -64,4 +64,14 @@
       color: var(--color-secondary);
     }
   }
+
+  &--work {
+    position: absolute;
+    bottom: 0.3125rem;
+    right: 0;
+    z-index: -1;
+    @extend .text-button3;
+    @extend .text-white;
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+  }
 }

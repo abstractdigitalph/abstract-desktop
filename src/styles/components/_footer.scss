@@ -10,16 +10,36 @@
     width: 50%;
 
     &--left {
+      @extend .footer__half;
       border-right: solid 0.0625rem var(--color-border);
     }
 
     &--right {
+      @extend .footer__half;
+      padding: 2.5rem;
+    }
+
+    &--leftFull {
+      @extend .footer__half--left;
       padding: 2.5rem;
     }
   }
 
   &__top {
     padding: 2.5rem;
+  }
+
+  &__rightTop {
+    padding: 2.5rem;
+  }
+
+  &__rightBottom {
+    border-top: solid 0.0625rem var(--color-border);
+    padding: 2.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__link {
@@ -49,6 +69,10 @@
     margin: 0 0 2.5rem;
   }
 
+  &__h4 {
+    @extend .text-white;
+    margin: 0 0 1.5rem;
+  }
   &__image {
     width: 100%;
   }
@@ -59,5 +83,82 @@
 
   &__contact {
     margin-bottom: 0.625rem;
+    &--sub {
+      margin: 0;
+    }
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-block;
+    margin-right: 1.875rem;
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+
+    path {
+      transition: fill 0.1s ease-in-out;
+    }
+
+    &:active {
+      outline: none;
+
+      path {
+        fill: var(--color-secondary);
+      }
+    }
+
+    &--dribbble {
+      @extend .footer__icon;
+      &:hover,
+      &:focus {
+        path {
+          fill: #ea4c89;
+        }
+      }
+    }
+
+    &--insta {
+      @extend .footer__icon;
+      &:hover,
+      &:focus {
+        path {
+          fill: #f10176;
+        }
+      }
+    }
+
+    &--fb {
+      @extend .footer__icon;
+      &:hover,
+      &:focus {
+        path {
+          fill: #4267b2;
+        }
+      }
+    }
+
+    &--github {
+      @extend .footer__icon;
+      &:hover,
+      &:focus {
+        path {
+          fill: var(--color-white75);
+        }
+      }
+    }
+
+    &--medium {
+      @extend .footer__icon;
+      &:hover,
+      &:focus {
+        path {
+          fill: #e8f3ec;
+        }
+      }
+    }
   }
 }

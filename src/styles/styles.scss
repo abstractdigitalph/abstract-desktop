@@ -17,6 +17,7 @@
 @import "components/nextStop";
 @import "components/break";
 @import "components/footer";
+@import "components/blurb";
 
 // -- Pages -- //
 @import "pages/landing/base";
@@ -30,3 +31,16 @@
 @import "pages/projects/challenges";
 @import "pages/projects/process";
 @import "pages/projects/nav";
+
+@import "pages/ourWork/hero";
+@import "pages/ourWork/work";
+
+@import "pages/ourProcess/hero";
+@import "pages/ourProcess/sprints";
+@import "pages/ourProcess/process";
+@import "pages/ourProcess/post";
+
+@import "pages/aboutUs/hero";
+@import "pages/aboutUs/team";
+@import "pages/aboutUs/skills";
+@import "pages/aboutUs/crew";

@@ -52,63 +52,88 @@ $SourceSerifPro: "Source Serif Pro", Cambria, "Hoefler Text", Utopia,
   "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman",
   serif;
 
+// Helper classes to extend from
+%sofiaBold {
+  font-family: $SofiaPro;
+  font-weight: 700;
+}
+
+%sofiaSemiBold {
+  font-family: $SofiaPro;
+  font-weight: 600;
+}
+
+%sofiaRegular {
+  font-family: $SofiaPro;
+  font-weight: 400;
+}
+
+%sofiaLight {
+  font-family: $SofiaPro;
+  font-weight: 300;
+}
+
+%sourceSerifRegular {
+  font-family: $SourceSerifPro;
+  font-weight: 400;
+}
+
 // Overrides all default text styles
 
 h1 {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 3rem;
   line-height: 1.3em;
 }
 
 h2 {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 2.625rem;
   line-height: 1.3em;
 }
 
 h3 {
-  font-family: $SofiaPro;
+  @extend %sofiaBold;
   font-weight: 700;
   font-size: 2.25rem;
   line-height: 1.3em;
 }
 
 h4 {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 1.5rem;
   line-height: 1.5em;
   letter-spacing: -0.02em;
 }
 
 h5 {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 1.3125rem;
   line-height: 1em;
   letter-spacing: -0.02em;
 }
 
+h6 {
+  @extend %sofiaSemiBold;
+  font-size: 0.875rem;
+  line-height: 1.3em;
+}
+
 .text-body1 {
-  font-family: $SourceSerifPro;
-  font-weight: 400;
+  @extend %sourceSerifRegular;
   font-size: 1.125rem;
   line-height: 1.8em;
   margin-bottom: 1rem;
 }
 
 .text-body2 {
-  font-family: $SourceSerifPro;
-  font-weight: 400;
+  @extend %sourceSerifRegular;
   font-size: 1.3125rem;
   line-height: 1.7em;
 }
 
 .text-label {
-  font-family: $SofiaPro;
-  font-weight: 600;
+  @extend %sofiaSemiBold;
   font-size: 0.8125rem;
   line-height: 1.3em;
   letter-spacing: 0.08em;
@@ -120,8 +145,7 @@ h5 {
   letter-spacing: 0.08em;
 }
 .text-backed {
-  font-family: $SofiaPro;
-  font-weight: 600;
+  @extend %sofiaSemiBold;
   font-size: 0.6875rem;
   line-height: 1.3em;
   letter-spacing: 0.08em;
@@ -129,59 +153,77 @@ h5 {
 }
 
 .text-button1 {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 1.125rem;
   line-height: 1em;
 }
 
 .text-button2 {
-  font-family: $SofiaPro;
-  font-weight: 400;
+  @extend %sofiaRegular;
   font-size: 1rem;
   line-height: 1em;
 }
 
+.text-button3 {
+  @extend %sofiaBold;
+  font-size: 0.875rem;
+}
+
 .text-scroll {
-  font-family: $SofiaPro;
-  font-weight: 300;
+  @extend %sofiaLight;
   font-size: 0.875rem;
   line-height: 1.4em;
 }
 
 .text-start {
-  @extend .text-scroll;
-  font-weight: 400;
+  @extend %sofiaRegular;
+  font-size: 0.875rem;
+  line-height: 1.4em;
 }
 
 .text-contact {
-  font-family: $SofiaPro;
-  font-weight: 400;
+  @extend %sofiaRegular;
   font-size: 0.875rem;
   line-height: 1.7em;
 }
 
 .text-nextStop {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 4.5rem;
   line-height: 1em;
   letter-spacing: -0.02em;
 }
 
 .text-portfolio {
-  font-family: $SofiaPro;
-  font-weight: 700;
+  @extend %sofiaBold;
   font-size: 4rem;
   line-height: 1em;
   letter-spacing: -0.02em;
 }
 
 .text-clientInfo {
-  font-family: $SofiaPro;
-  font-weight: 400;
+  @extend %sofiaRegular;
   font-size: 1rem;
   line-height: 1.7em;
+}
+
+.text-position {
+  @extend %sofiaRegular;
+  font-size: 0.75rem;
+  line-height: 1.7em;
+}
+
+.text-portfolioHead {
+  @extend %sourceSerifRegular;
+  font-size: 1.5rem;
+  line-height: 1.7em;
+}
+
+.text-step {
+  @extend %sofiaBold;
+  font-size: 1.125rem;
+  line-height: 1.5em;
+  letter-spacing: -0.02em;
 }
 
 .text-lineBefore {
