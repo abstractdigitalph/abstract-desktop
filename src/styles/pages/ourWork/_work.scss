@@ -43,10 +43,13 @@
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
+      overflow: hidden;
+      border-radius: 0 0 0 0.75rem;
     }
 
     &__image {
       height: 100%;
+      width: auto;
     }
 
     &__h4 {
