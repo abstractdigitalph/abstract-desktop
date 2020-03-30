@@ -6,6 +6,7 @@
     margin: 3.125rem 0;
     position: fixed;
     top: 0;
+    z-index: 10;
     height: calc(100vh - 6.25rem);
 
     display: flex;
