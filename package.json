@@ -85,8 +85,11 @@
     "figlet": "^1.2.3",
     "flexboxgrid2": "^7.2.1",
     "ftp-deploy": "^2.3.3",
+    "gsap": "^3.2.6",
     "reset-css": "^4.0.1",
     "sanitize.css": "^11.0.0",
+    "scrollmagic": "^2.0.7",
+    "scrollscene": "0.0.15",
     "stylelint-config-recommended-scss": "^4.2.0",
     "webpack-dev-server": "^3.8.0"
   }

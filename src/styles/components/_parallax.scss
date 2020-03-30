@@ -1,38 +1,16 @@
 .parallax {
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: -3000px;
   left: 0;
   right: 0;
   overflow: hidden;
 
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-
+  background-image: url("../images/parallax-background.svg");
+  background-size: 100%;
   pointer-events: none;
 
-  &__image {
-    position: relative;
-    width: 25vw;
-    opacity: 0.2;
-    filter: blur(4px);
-    margin-top: 15vh;
-
-    &:first-child {
-      top: -10vh;
-      margin-top: 0;
-    }
-
-    &--left {
-      @extend .parallax__image;
-      left: -10%;
-    }
-
-    &--right {
-      @extend .parallax__image;
-      left: 90%;
-    }
+  &__trigger {
+    overflow: hidden;
   }
 }
