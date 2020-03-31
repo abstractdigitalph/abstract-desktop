@@ -27,5 +27,98 @@
     &__backed {
       margin-bottom: 3rem;
     }
+
+    &__images {
+      position: relative;
+    }
+    &__image {
+      &--spenmo {
+        // Card
+        &1 {
+          position: absolute;
+          right: 15%;
+          bottom: 3%;
+          width: 36%;
+          z-index: -5;
+        }
+
+        // Triangle
+        &2 {
+          position: absolute;
+          bottom: -8%;
+          left: 12%;
+          width: 8%;
+        }
+
+        // Circle
+        &3 {
+          position: absolute;
+          top: 14%;
+          left: -7%;
+          width: 10%;
+        }
+
+        // Phone
+        &4 {
+          position: absolute;
+          bottom: -0.5%;
+          right: 0;
+          width: 94%;
+        }
+
+        // S
+        &5 {
+          position: absolute;
+          bottom: 26%;
+          left: 10%;
+          width: 50%;
+          z-index: -4;
+        }
+      }
+
+      &--tightrope {
+        // Card
+        &1 {
+          position: absolute;
+          right: 15%;
+          bottom: 3%;
+          width: 36%;
+          z-index: -5;
+        }
+
+        // Triangle
+        &2 {
+          position: absolute;
+          bottom: -8%;
+          left: 12%;
+          width: 8%;
+        }
+
+        // Circle
+        &3 {
+          position: absolute;
+          top: 14%;
+          left: -7%;
+          width: 10%;
+        }
+
+        // Phone
+        &4 {
+          position: absolute;
+          bottom: -0.5%;
+          right: 0;
+          width: 94%;
+        }
+
+        // S
+        &5 {
+          position: absolute;
+          bottom: 26%;
+          left: 10%;
+          width: 50%;
+          z-index: -4;
+        }
+      }
+    }
   }
 }
