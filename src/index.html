@@ -62,14 +62,14 @@
 
     <!-- Shapes -->
 
-    <main id="landing" class="parallax__trigger">
-      <div class="parallax"></div>
+    <main id="landing" class="animate__parallax--trigger">
+      <div class="animate__parallax"></div>
       <div>
         <!-- Hero -->
         <section id="landingHero">
           <div class="container">
             <div class="row">
-              <div class="col-xs-offset-1 col-xs-10 hero__holder">
+              <div class="col-xs-offset-1 col-xs-10 hero__holder animate__show">
                 <h1 class="hero__h1">
                   We help startups & businesses ship digital products using
                   design sprints
@@ -114,7 +114,7 @@
         <section id="landingFeatures">
           <div class="container">
             <div class="row">
-              <div class="col-xs-offset-2 col-xs-8">
+              <div class="col-xs-offset-2 col-xs-8 animate__show">
                 <span class="text-label text-primary">
                   A Digital Product Design Agency Like No Other
                 </span>
@@ -132,7 +132,7 @@
                   wants to ship a web or mobile app idea, using design sprints
                   and innovation workshops.
                 </p>
-                <div class="feature__logos">
+                <div class="feature__logos animate__show">
                   <img
                     src="images/landing/logos/1.svg"
                     class="feature__logo"
@@ -190,7 +190,7 @@
         <section class="landingProjects brand-spenmo">
           <div class="container">
             <div class="row">
-              <div class="col-xs-offset-1 col-xs-5">
+              <div class="col-xs-offset-1 col-xs-5 animate__show">
                 <span class="projects__company">Spenmo</span>
                 <span class="text-label text-white20">Fintech</span>
                 <h2 class="projects__h2">
@@ -232,7 +232,18 @@
                   </svg>
                 </a>
               </div>
-              <div class="col-xs-offset-1 col-xs-5 projects__images">
+              <div
+                class="col-xs-offset-1 col-xs-5 projects__images animate__show"
+                data-opacity="1"
+              >
+                <img
+                  src="images/landing/spenmo/5.png"
+                  class="projects__image--spenmo5"
+                />
+                <img
+                  src="images/landing/spenmo/3.png"
+                  class="projects__image--spenmo3"
+                />
                 <img
                   src="images/landing/spenmo/1.png"
                   class="projects__image--spenmo1"
@@ -242,16 +253,8 @@
                   class="projects__image--spenmo2"
                 />
                 <img
-                  src="images/landing/spenmo/3.png"
-                  class="projects__image--spenmo3"
-                />
-                <img
                   src="images/landing/spenmo/4.png"
                   class="projects__image--spenmo4"
-                />
-                <img
-                  src="images/landing/spenmo/5.png"
-                  class="projects__image--spenmo5"
                 />
               </div>
             </div>
@@ -261,7 +264,7 @@
         <section class="landingProjects brand-tightrope">
           <div class="container">
             <div class="row">
-              <div class="col-xs-offset-1 col-xs-5">
+              <div class="col-xs-offset-1 col-xs-5 animate__show">
                 <span class="projects__company">Tightrope Coffee</span>
                 <span class="text-label text-white20">Food & Beverage</span>
                 <h2 class="projects__h2">
@@ -298,18 +301,13 @@
                 </a>
               </div>
 
-              <div class="col-xs-offset-1 col-xs-5 projects__images">
+              <div
+                class="col-xs-offset-1 col-xs-5 projects__images animate__show"
+                data-opacity="1"
+              >
                 <img
                   src="images/landing/tightrope/1.png"
                   class="projects__image--tightrope1"
-                />
-                <img
-                  src="images/landing/tightrope/2.png"
-                  class="projects__image--tightrope2"
-                />
-                <img
-                  src="images/landing/tightrope/3.png"
-                  class="projects__image--tightrope3"
                 />
                 <img
                   src="images/landing/tightrope/4.png"
@@ -319,6 +317,14 @@
                   src="images/landing/tightrope/5.png"
                   class="projects__image--tightrope5"
                 />
+                <img
+                  src="images/landing/tightrope/2.png"
+                  class="projects__image--tightrope2"
+                />
+                <img
+                  src="images/landing/tightrope/3.png"
+                  class="projects__image--tightrope3"
+                />
               </div>
             </div>
           </div>
@@ -327,7 +333,7 @@
         <section class="landingProjects brand-diab">
           <div class="container">
             <div class="row">
-              <div class="col-xs-offset-1 col-xs-5">
+              <div class="col-xs-offset-1 col-xs-5 animate__show">
                 <span class="projects__company">Diet In A Box</span>
                 <span class="text-label text-white20">Health</span>
                 <h2 class="projects__h2">
@@ -364,7 +370,10 @@
                 </a>
               </div>
 
-              <div class="col-xs-offset-1 col-xs-5 projects__images">
+              <div
+                class="col-xs-offset-1 col-xs-5 projects__images animate__show"
+                data-opacity="0"
+              >
                 <img
                   src="images/landing/diab/1.png"
                   class="projects__image--diab1"
@@ -393,7 +402,7 @@
         <section id="landingPackages">
           <div class="container">
             <div class="row">
-              <div class="col-xs-offset-1 col-xs-4">
+              <div class="col-xs-offset-1 col-xs-4 animate__show">
                 <span class="text-label text-primary"
                   >For Startups & Businesses</span
                 >
@@ -432,7 +441,7 @@
                 </a>
               </div>
 
-              <div class="col-xs-offset-2 col-xs-4">
+              <div class="col-xs-offset-2 col-xs-4 animate__show">
                 <span class="text-label text-secondary"
                   >For Tech Teams & Agencies</span
                 >
@@ -496,7 +505,7 @@
         <footer>
           <section id="landingFooter">
             <div class="container">
-              <div class="row">
+              <div class="row animate__show">
                 <div class="col-xs-offset-1 col-xs-10 footer__holder">
                   <div class="footer__half--left">
                     <div class="footer__top">
@@ -567,7 +576,7 @@
               </div>
             </div>
           </section>
-          <section class="nextStop">
+          <section class="nextStop animate__show" data-triggerhook="0.30">
             <a href="our-work.html" class="nextStop__link">
               <span class="nextStop__label">Next Stop</span>
               <h1 class="nextStop__h1">Our Work</h1>

@@ -99,6 +99,7 @@
           bottom: -19%;
           left: 38%;
           width: 32%;
+          z-index: 1;
         }
 
         // Zigzag
@@ -115,7 +116,6 @@
           top: 11%;
           right: 0;
           width: 47%;
-          z-index: -4;
         }
       }
 

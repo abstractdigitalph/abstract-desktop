@@ -1,0 +1,20 @@
+.animate {
+  &__parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    background-image: url("../images/parallax-background.svg");
+    background-size: 100%;
+    pointer-events: none;
+
+    &--trigger {
+      overflow: hidden;
+    }
+  }
+}
+span {
+  display: inline-block;
+}
