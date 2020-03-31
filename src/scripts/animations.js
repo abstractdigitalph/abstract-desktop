@@ -22,6 +22,11 @@ const parallax = () => {
     triggerElement: triggerNode,
     gsap: { timeline: parallaxTimeline },
     duration: triggerNode.scrollHeight,
+    /*
+    controller: {
+      addIndicators: true,
+    },
+    */
   });
 };
 
@@ -30,28 +35,33 @@ const show = () => {
 
   showNodes.forEach((item) => {
     const showTimeline = gsap.timeline({ paused: true });
-    const opacity = item.dataset.opacity ? item.dataset.opacity : 0.5;
-    console.log(item);
-    showTimeline.from(item.children, {
-      y: 200,
-      opacity,
-      stagger: 0.05,
-      duration: 1,
-    });
+    const layer = item.dataset.layer ? item.dataset.layer * 100 : 100;
+    showTimeline.fromTo(
+      item,
+      {
+        y: layer,
+        ease: 'linear',
+      },
+      {
+        y: -layer,
+        ease: 'linear',
+      },
+    );
 
     const triggerHook = item.dataset.triggerhook
       ? item.dataset.triggerhook
       : 0.75;
 
+    const triggerElement = item.dataset.parent ? item.parentNode : item;
+
     // eslint-disable-next-line
     const scrollScene = new ScrollScene({
-      triggerElement: item,
+      triggerElement,
       gsap: { timeline: showTimeline, reverse: false },
       triggerHook,
       reverse: false,
+      duration: '100%',
     });
-
-    console.log(scrollScene);
   });
 };
 

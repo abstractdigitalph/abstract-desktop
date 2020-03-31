@@ -7,6 +7,12 @@
   align-items: center;
 
   .hero {
+    &__background {
+      background: url("../images/landing/hero.png");
+      background-repeat: no-repeat;
+      background-size: 40%;
+      background-position: center center;
+    }
     &__holder {
       display: flex;
       flex-direction: column;
@@ -14,11 +20,6 @@
       justify-content: center;
       text-align: center;
       padding-top: 6.65rem;
-
-      background: url("../images/landing/hero.png");
-      background-repeat: no-repeat;
-      background-size: 40%;
-      background-position: center center;
     }
 
     &__h1 {
