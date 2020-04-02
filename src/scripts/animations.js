@@ -36,17 +36,30 @@ const show = () => {
   showNodes.forEach((item) => {
     const showTimeline = gsap.timeline({ paused: true });
     const layer = item.dataset.layer ? item.dataset.layer * 100 : 100;
-    showTimeline.fromTo(
-      item,
-      {
+    const { direction } = item.dataset;
+    if (direction === 'up') {
+      showTimeline.from(item, {
         y: layer,
         ease: 'linear',
-      },
-      {
+      });
+    } else if (direction === 'down') {
+      showTimeline.to(item, {
         y: -layer,
         ease: 'linear',
-      },
-    );
+      });
+    } else {
+      showTimeline.fromTo(
+        item,
+        {
+          y: layer,
+          ease: 'linear',
+        },
+        {
+          y: -layer,
+          ease: 'linear',
+        },
+      );
+    }
 
     const triggerHook = item.dataset.triggerhook
       ? item.dataset.triggerhook
@@ -57,7 +70,7 @@ const show = () => {
     // eslint-disable-next-line
     const scrollScene = new ScrollScene({
       triggerElement,
-      gsap: { timeline: showTimeline, reverse: false },
+      gsap: { timeline: showTimeline },
       triggerHook,
       duration: '100%',
     });
@@ -71,12 +84,16 @@ const reveal = () => {
     const revealTimeline = gsap.timeline({ paused: true });
     revealTimeline.from(item, { y: '200px', opacity: 0, ease: 'sine' });
 
+    const triggerElement = item.dataset.self ? item : item.parentNode;
+    const triggerHook = item.dataset.self ? 0.75 : 0.5;
     // eslint-disable-next-line
     const revealScene = new ScrollScene({
-      triggerElement: item.parentNode,
-      gsap: { timeline: revealTimeline, reverse: false },
-      triggerHook: 0.5,
-      reverse: false,
+      triggerElement,
+      triggerHook,
+      gsap: { timeline: revealTimeline },
+      scene: {
+        reverse: false,
+      },
     });
   });
 };

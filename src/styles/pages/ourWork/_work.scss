@@ -7,6 +7,7 @@
   .work {
     text-decoration: none;
     position: relative;
+    display: block;
     &:hover,
     &:focus {
       .button {
@@ -22,13 +23,14 @@
     }
 
     &__content {
-      height: 28.75rem;
       border-radius: 0.75rem;
+      height: 28.75rem;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
       margin-bottom: 5rem;
       background-color: var(--color-brandLight);
+      overflow: hidden;
     }
 
     &__half {
