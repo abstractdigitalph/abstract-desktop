@@ -59,8 +59,24 @@ const show = () => {
       triggerElement,
       gsap: { timeline: showTimeline, reverse: false },
       triggerHook,
-      reverse: false,
       duration: '100%',
+    });
+  });
+};
+
+const reveal = () => {
+  const revealNodes = document.querySelectorAll('.animate__reveal');
+
+  revealNodes.forEach((item) => {
+    const revealTimeline = gsap.timeline({ paused: true });
+    revealTimeline.from(item, { y: '200px', opacity: 0, ease: 'sine' });
+
+    // eslint-disable-next-line
+    const revealScene = new ScrollScene({
+      triggerElement: item.parentNode,
+      gsap: { timeline: revealTimeline, reverse: false },
+      triggerHook: 0.5,
+      reverse: false,
     });
   });
 };
@@ -69,4 +85,5 @@ const show = () => {
 document.addEventListener('DOMContentLoaded', () => {
   parallax();
   show();
+  reveal();
 });
