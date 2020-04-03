@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollScene } from 'scrollscene';
+import fullpage from 'fullpage.js';
 
 const parallax = () => {
   const parallaxTimeline = gsap.timeline({ paused: true });
@@ -98,9 +99,23 @@ const reveal = () => {
   });
 };
 
-// Global Animations
-document.addEventListener('DOMContentLoaded', () => {
+const loadAnimations = () => {
+  const fullpageNode = document.querySelector('.animate__fullpage');
+
+  // eslint-disable-next-line
+  const fullpageInstance = new fullpage(fullpageNode, {
+    licenseKey: 'test',
+    verticalCentered: false,
+    scrollBar: true,
+    scrollingSpeed: 1500,
+  });
+
   parallax();
   show();
   reveal();
+};
+
+// Global Animations
+document.addEventListener('DOMContentLoaded', () => {
+  loadAnimations();
 });
