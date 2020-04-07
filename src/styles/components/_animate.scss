@@ -1,20 +1,12 @@
-.animate {
-  &__parallax {
-    z-index: 90;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
+.shapes {
+  z-index: 90;
+  position: absolute;
+  height: 200%;
+  width: 100%;
 
-    background-image: url("../images/parallax-background.svg");
-    background-size: 100%;
-    pointer-events: none;
-
-    &--trigger {
-      overflow: hidden;
-    }
-  }
+  background-image: url("../images/parallax-background.svg");
+  background-size: 100%;
+  pointer-events: none;
 }
 
 .smoothScroll {
