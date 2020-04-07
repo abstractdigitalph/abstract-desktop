@@ -9,8 +9,8 @@ export default (target, ease, maxOffset) => {
   let _halfViewHeight = 0;
   let _maxDistance = 0;
   let _currentScroll = 0;
-  let _resizeRequest = 1;
-  let _scrollRequest = 0;
+  let _resizeRequest = true;
+  let _scrollRequest = false;
   let _scrollItems = [];
   let _lastTime = -1;
   const _maxElapsedMS = 100;
@@ -28,14 +28,14 @@ export default (target, ease, maxOffset) => {
     const dt = 1 - (1 - _ease) ** (elapsedMS * _targetFPMS);
 
     // Handle if resized
-    const resized = _resizeRequest > 0;
+    const resized = _resizeRequest;
     if (resized) {
       const height = _target.clientHeight;
       document.body.style.height = `${height}px`;
       _viewHeight = window.innerHeight;
       _halfViewHeight = _viewHeight / 2;
       _maxDistance = _viewHeight * 2;
-      _resizeRequest = 0;
+      _resizeRequest = false;
     }
 
     // Get current y position
@@ -43,7 +43,7 @@ export default (target, ease, maxOffset) => {
     _currentScroll += (scrollY - _currentScroll) * dt;
     if (Math.abs(scrollY - _currentScroll) < _endThreshold || resized) {
       _currentScroll = scrollY;
-      _scrollRequest = 0;
+      _scrollRequest = false;
     }
     const scrollOrigin = _currentScroll + _halfViewHeight;
     _target.style.transform = `translate3d(0, -${_currentScroll}px,0)`;
@@ -62,13 +62,12 @@ export default (target, ease, maxOffset) => {
         * -1}px,0px)`;
     }
     _lastTime = currentTime;
-    _requestId = _scrollRequest > 0 ? requestAnimationFrame(_update) : null;
+    _requestId = _scrollRequest ? requestAnimationFrame(_update) : null;
   };
 
   const _onResize = () => {
     // Indicate that a resize was done
-    _resizeRequest += 1;
-    console.log(_resizeRequest);
+    _resizeRequest = true;
 
     // If no animation frames are playing
     if (!_requestId) {
@@ -81,8 +80,7 @@ export default (target, ease, maxOffset) => {
 
   const _onScroll = () => {
     // Indicate that a scroll was done
-    _scrollRequest += 1;
-    console.log(_resizeRequest);
+    _scrollRequest = true;
 
     // If no animation frames are playing
     if (!_requestId) {
