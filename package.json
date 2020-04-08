@@ -85,6 +85,7 @@
     "figlet": "^1.2.3",
     "flexboxgrid2": "^7.2.1",
     "ftp-deploy": "^2.3.3",
+    "fullpage.js": "^3.0.8",
     "gsap": "^3.2.6",
     "reset-css": "^4.0.1",
     "sanitize.css": "^11.0.0",

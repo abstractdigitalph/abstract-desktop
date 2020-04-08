@@ -1,5 +1,4 @@
-export default (target, ease, maxOffset) => {
-  const _target = target;
+export default (currentValues, ease, maxOffset) => {
   const _ease = ease !== undefined ? ease : 0.1;
   const _maxOffset = maxOffset !== undefined ? maxOffset : 500;
   const _endThreshold = 0.05;
@@ -30,7 +29,7 @@ export default (target, ease, maxOffset) => {
     // Handle if resized
     const resized = _resizeRequest;
     if (resized) {
-      const height = _target.clientHeight;
+      const height = currentValues.target.clientHeight;
       document.body.style.height = `${height}px`;
       _viewHeight = window.innerHeight;
       _halfViewHeight = _viewHeight / 2;
@@ -39,21 +38,26 @@ export default (target, ease, maxOffset) => {
     }
 
     // Get current y position
-    const scrollY = window.pageYOffset;
-    _currentScroll += (scrollY - _currentScroll) * dt;
-    if (Math.abs(scrollY - _currentScroll) < _endThreshold || resized) {
-      _currentScroll = scrollY;
+    /* eslint-disable */
+    currentValues.scrollY = window.pageYOffset;
+    _currentScroll += (currentValues.scrollY - _currentScroll) * dt;
+    if (
+      Math.abs(currentValues.scrollY - _currentScroll) < _endThreshold ||
+      resized
+    ) {
+      _currentScroll = currentValues.scrollY;
       _scrollRequest = false;
     }
     const scrollOrigin = _currentScroll + _halfViewHeight;
-    _target.style.transform = `translate3d(0, -${_currentScroll}px,0)`;
+    currentValues.target.style.transform = `translate3d(0, -${_currentScroll}px,0)`;
+    /* eslint-enable */
 
     for (let i = 0; i < _scrollItems.length; i += 1) {
       const item = _scrollItems[i];
       const distance = scrollOrigin - item.top;
       const offsetRatio = distance / _maxDistance;
       item.endOffset = Math.round(_maxOffset * item.depthRatio * offsetRatio);
-      if (Math.abs(item.endOffset - item.currentOffset < _endThreshold)) {
+      if (Math.abs(item.endOffset - item.currentOffset) < _endThreshold) {
         item.currentOffset = item.endOffset;
       } else {
         item.currentOffset += (item.endOffset - item.currentOffset) * dt;
