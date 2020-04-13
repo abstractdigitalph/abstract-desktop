@@ -1,3 +1,3 @@
 // Add your scripts here
 import './common';
-import './animations';
+import './animations/index';

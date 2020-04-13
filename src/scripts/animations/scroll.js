@@ -1,8 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollScene } from 'scrollscene';
-import fullpage from 'fullpage.js';
 
-const parallax = () => {
+export const parallax = () => {
   const parallaxTimeline = gsap.timeline({ paused: true });
   const parallaxNode = document.querySelector('.animate__parallax');
   const triggerNode = document.querySelector('.animate__parallax--trigger');
@@ -31,7 +30,7 @@ const parallax = () => {
   });
 };
 
-const show = () => {
+export const show = () => {
   const showNodes = document.querySelectorAll('.animate__show');
 
   showNodes.forEach((item) => {
@@ -78,7 +77,7 @@ const show = () => {
   });
 };
 
-const reveal = () => {
+export const reveal = () => {
   const revealNodes = document.querySelectorAll('.animate__reveal');
 
   revealNodes.forEach((item) => {
@@ -98,24 +97,3 @@ const reveal = () => {
     });
   });
 };
-
-const loadAnimations = () => {
-  const fullpageNode = document.querySelector('.animate__fullpage');
-
-  // eslint-disable-next-line
-  const fullpageInstance = new fullpage(fullpageNode, {
-    licenseKey: 'test',
-    verticalCentered: false,
-    scrollBar: true,
-    scrollingSpeed: 1500,
-  });
-
-  parallax();
-  show();
-  reveal();
-};
-
-// Global Animations
-document.addEventListener('DOMContentLoaded', () => {
-  loadAnimations();
-});
