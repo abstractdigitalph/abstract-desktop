@@ -83,7 +83,7 @@ const addParallax = (index) => {
       parallaxTimeline.to(
         '.hero__holder',
         {
-          y: layer[0],
+          y: -layer[0],
           ease: defaultEase,
           duration: defaultDuration,
         },
