@@ -18,12 +18,17 @@ const pageNumberRightNode = document.querySelector(
 // Store different layers. These will be used in setting the the
 // amount of travel they will do per scroll
 const layer = [50, -100, -250, -400, -650, -1750];
+
 // Set global default ease and default duration for the parallax effects
 const defaultEase = 'power2.inOut';
 const defaultDuration = 1.5;
 
+// Adds the parallax effect to the individual images in the landing page
+// The array is sorted from the bottom layer going to the top
 const addImageParallax = (nameArray, reversed) => {
   const imageParallaxTimeline = gsap.timeline();
+  // Animation type is changed depending if the current animation
+  // is going in to the slide or out of the slide
   if (reversed) {
     nameArray.forEach((name, index) => {
       imageParallaxTimeline.from(
@@ -52,38 +57,61 @@ const addImageParallax = (nameArray, reversed) => {
   return imageParallaxTimeline;
 };
 
+const animateReveal = (currentSlide) => {
+  const elementList = fullpageNode.children[currentSlide].querySelectorAll(
+    '.reveal--landing',
+  );
+  gsap.from(elementList, {
+    yPercent: 110,
+    duration: 0.75,
+    delay: 1,
+    stagger: 0.4,
+    ease: 'power2.inOut',
+  });
+};
+
+// Creates the parallax effect for each slides
 const addParallax = (index) => {
   const parallaxTimeline = gsap.timeline();
-  parallaxTimeline.to(shapesNode, {
-    y: layer[5] * index,
-    ease: defaultEase,
-    duration: defaultDuration,
-  });
-  parallaxTimeline.to(
-    scrollbarNode,
-    {
-      y: vhToPx(4 * index),
-      ease: defaultEase,
-      duration: defaultDuration,
-    },
-    '<',
-  );
-  parallaxTimeline.to(
-    pageNumberRightNode,
-    {
-      y: -17 * index,
-      ease: defaultEase,
-      duration: defaultDuration,
-    },
-    '<',
-  );
 
+  // Adding animations that will run on all slide transitions
+  parallaxTimeline
+    // Animates the shapes on the outside
+    .to(shapesNode, {
+      y: layer[5] * index,
+      ease: defaultEase,
+      duration: defaultDuration,
+    })
+    // Animates the main sidebar
+    .to(
+      scrollbarNode,
+      {
+        y: vhToPx(4 * index),
+        ease: defaultEase,
+        duration: defaultDuration,
+      },
+      '<',
+    )
+    // Animates the last numbers of the sidebarj
+    .to(
+      pageNumberRightNode,
+      {
+        y: -17 * index,
+        ease: defaultEase,
+        duration: defaultDuration,
+      },
+      '<',
+    );
+
+  // Adding specific animations per slide transition. With the index serving
+  // as the slide that is going into. e.g. case 1 is the transition from 0 to 1 or
+  // from 2 to 1
   switch (index) {
     case 1:
       parallaxTimeline.to(
         '.hero__holder',
         {
-          y: layer[0],
+          y: layer[2],
           ease: defaultEase,
           duration: defaultDuration,
         },
@@ -149,6 +177,8 @@ const addParallax = (index) => {
       break;
 
     case 7:
+      // Moves the first and second characters so that FIN will be shown as the slide
+      // number
       parallaxTimeline
         .to(
           pageNumberLeftNode,
@@ -176,15 +206,19 @@ const addParallax = (index) => {
 
   return parallaxTimeline;
 };
+
+// Creates the main timeline for the landing page
 const createTimeline = (mainNode, height) => {
   const mainTimeline = gsap.timeline({ paused: true });
   for (let i = 1; i < mainNode.children.length; i += 1) {
     mainTimeline.addLabel(`${i}`);
+    // Creates the animation for the slide transition.
     mainTimeline.to(mainNode, {
       y: -height * i,
       ease: defaultEase,
       duration: defaultDuration,
     });
+    // Add specific animation for each slide transition
     mainTimeline.add(addParallax(i), `${i}`);
   }
   return mainTimeline;
@@ -199,6 +233,7 @@ const fullpageData = {
   tween: null,
 };
 
+// Gets the direction of the user wants, depending on the event type
 const getDirection = (type, event) => {
   switch (type) {
     case 'wheel':
@@ -257,6 +292,7 @@ const fullpageScroll = (type, event) => {
     // last slide. If it is not, animate moving to the next slide
     fullpageData.currentSlide += 1;
     fullpageData.tween = timeline.tweenTo(timeline.nextLabel());
+    animateReveal(fullpageData.currentSlide);
   } else if (direction === 'up' && fullpageData.currentSlide > 0) {
     // If it is going up, check if the current slide is not the first slide. If
     // it is not the first slide, animate moving to the previous slide
