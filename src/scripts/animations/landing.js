@@ -1,14 +1,23 @@
 import { gsap } from 'gsap';
 import debounce from 'lodash/debounce';
+import { vhToPx } from './helpers';
 
 // Query elements
 const fullpageNode = document.querySelector('.fullpage');
 const body = document.documentElement;
 const shapesNode = document.querySelector('.shapes--landing');
+const scrollbarNode = document.querySelector('.overlay__active');
+const pageNumberLeftNode = document.querySelector('.overlay__pageNumber--left');
+const pageNumberMiddleNode = document.querySelector(
+  '.overlay__pageNumber--middle',
+);
+const pageNumberRightNode = document.querySelector(
+  '.overlay__pageNumber--right',
+);
 
 // Store different layers. These will be used in setting the the
 // amount of travel they will do per scroll
-const layer = [50, -100, -250, -400, -650, -1500];
+const layer = [50, -100, -250, -400, -650, -1750];
 // Set global default ease and default duration for the parallax effects
 const defaultEase = 'power2.inOut';
 const defaultDuration = 1.5;
@@ -50,6 +59,24 @@ const addParallax = (index) => {
     ease: defaultEase,
     duration: defaultDuration,
   });
+  parallaxTimeline.to(
+    scrollbarNode,
+    {
+      y: vhToPx(4 * index),
+      ease: defaultEase,
+      duration: defaultDuration,
+    },
+    '<',
+  );
+  parallaxTimeline.to(
+    pageNumberRightNode,
+    {
+      y: -17 * index,
+      ease: defaultEase,
+      duration: defaultDuration,
+    },
+    '<',
+  );
 
   switch (index) {
     case 1:
@@ -119,6 +146,28 @@ const addParallax = (index) => {
         addImageParallax(['diab3', 'diab1', 'diab4', 'diab5', 'diab2'], false),
         '<',
       );
+      break;
+
+    case 7:
+      parallaxTimeline
+        .to(
+          pageNumberLeftNode,
+          {
+            y: -17,
+            ease: defaultEase,
+            duration: defaultDuration,
+          },
+          '<',
+        )
+        .to(
+          pageNumberMiddleNode,
+          {
+            y: -17,
+            ease: defaultEase,
+            duration: defaultDuration,
+          },
+          '<',
+        );
       break;
 
     default:
@@ -213,20 +262,6 @@ const fullpageScroll = (type, event) => {
     // it is not the first slide, animate moving to the previous slide
     fullpageData.currentSlide -= 1;
     fullpageData.tween = timeline.tweenTo(timeline.previousLabel());
-  } else if (direction === 'home') {
-    // If going back to home, set current slide and tween to correct label
-    fullpageData.currentSlide = 0;
-    fullpageData.tween = timeline.tweenTo('0', {
-      ease: defaultEase,
-      duration: 2,
-    });
-  } else if (direction === 'end') {
-    // If going to the end, set current slide and tween to correct label
-    fullpageData.currentSlide = node.children.length - 1;
-    fullpageData.tween = timeline.tweenTo(`${node.children.length}`, {
-      ease: defaultEase,
-      duration: 2,
-    });
   }
 };
 
@@ -239,6 +274,7 @@ const fullpageResize = () => {
     // Tween to correct location
     fullpageData.tween = fullpageData.timeline.tweenTo(
       `${fullpageData.currentSlide}`,
+      { duration: 2 },
     );
   }
 };

@@ -79,6 +79,19 @@
     @extend .text-pageNumber;
     @extend .text-white;
     margin-right: 0.625rem;
+    display: flex;
+    height: 17px;
+    line-height: 17px;
+    overflow: hidden;
+
+    &--left,
+    &--middle,
+    &--right {
+      width: 1ch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__activeBar {
@@ -92,6 +105,6 @@
   &__bar {
     @extend .overlay__activeBar;
     background-color: var(--color-white20);
-    height: 31vh;
+    height: 32vh;
   }
 }
