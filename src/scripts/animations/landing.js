@@ -8,7 +8,7 @@ const shapesNode = document.querySelector('.shapes--landing');
 
 // Store different layers. These will be used in setting the the
 // amount of travel they will do per scroll
-const layer = [50, -100, -250, -400, -550, -1500];
+const layer = [50, -100, -250, -400, -650, -1500];
 // Set global default ease and default duration for the parallax effects
 const defaultEase = 'power2.inOut';
 const defaultDuration = 1.5;
@@ -85,8 +85,8 @@ const addParallax = (index) => {
           [
             'tightrope5',
             'tightrope1',
-            'tightrope4',
             'tightrope2',
+            'tightrope4',
             'tightrope3',
           ],
           true,
@@ -100,8 +100,8 @@ const addParallax = (index) => {
           [
             'tightrope5',
             'tightrope1',
-            'tightrope4',
             'tightrope2',
+            'tightrope4',
             'tightrope3',
           ],
           false,
