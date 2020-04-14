@@ -8,10 +8,40 @@ const shapesNode = document.querySelector('.shapes--landing');
 
 // Store different layers. These will be used in setting the the
 // amount of travel they will do per scroll
-const layer = [-250, -500, -750, -1000, -1250, -1500];
+const layer = [50, -100, -250, -400, -550, -1500];
 // Set global default ease and default duration for the parallax effects
 const defaultEase = 'power2.inOut';
 const defaultDuration = 1.5;
+
+const addImageParallax = (nameArray, reversed) => {
+  const imageParallaxTimeline = gsap.timeline();
+  if (reversed) {
+    nameArray.forEach((name, index) => {
+      imageParallaxTimeline.from(
+        `.projects__image--${name}`,
+        {
+          y: -layer[index],
+          ease: defaultEase,
+          duration: defaultDuration,
+        },
+        '<',
+      );
+    });
+  } else {
+    nameArray.forEach((name, index) => {
+      imageParallaxTimeline.to(
+        `.projects__image--${name}`,
+        {
+          y: layer[index],
+          ease: defaultEase,
+          duration: defaultDuration,
+        },
+        '<',
+      );
+    });
+  }
+  return imageParallaxTimeline;
+};
 
 const addParallax = (index) => {
   const parallaxTimeline = gsap.timeline();
@@ -33,6 +63,25 @@ const addParallax = (index) => {
         '<',
       );
       break;
+    case 2:
+      parallaxTimeline.add(
+        addImageParallax(
+          ['spenmo5', 'spenmo1', 'spenmo2', 'spenmo4', 'spenmo3'],
+          true,
+        ),
+        '<',
+      );
+      break;
+    case 3:
+      parallaxTimeline.add(
+        addImageParallax(
+          ['spenmo5', 'spenmo1', 'spenmo2', 'spenmo4', 'spenmo3'],
+          false,
+        ),
+        '<',
+      );
+      break;
+
     default:
       break;
   }
