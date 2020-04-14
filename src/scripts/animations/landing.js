@@ -26,6 +26,7 @@ const defaultDuration = 1.5;
 // Adds the parallax effect to the individual images in the landing page
 // The array is sorted from the bottom layer going to the top
 const addImageParallax = (nameArray, reversed) => {
+  console.log(nameArray);
   const imageParallaxTimeline = gsap.timeline();
   // Animation type is changed depending if the current animation
   // is going in to the slide or out of the slide
@@ -62,11 +63,11 @@ const animateReveal = (currentSlide) => {
     '.reveal--landing',
   );
   gsap.from(elementList, {
-    yPercent: 110,
+    y: 200,
     duration: 0.75,
     delay: 1,
-    stagger: 0.4,
-    ease: 'power2.inOut',
+    stagger: 0.1,
+    ease: 'power2.out',
   });
 };
 
@@ -305,13 +306,11 @@ const fullpageResize = () => {
   if (fullpageData.height !== body.clientHeight) {
     // Update object height
     fullpageData.height = body.clientHeight;
+    fullpageData.timeline.kill();
     // Update timeline based on height
-    fullpageData.timeline = createTimeline(fullpageNode, body.clientHeight);
-    // Tween to correct location
-    fullpageData.tween = fullpageData.timeline.tweenTo(
-      `${fullpageData.currentSlide}`,
-      { duration: 2 },
-    );
+    const newTimeline = createTimeline(fullpageNode, body.clientHeight);
+    fullpageData.tween = newTimeline.seek(`${fullpageData.currentSlide + 1}`);
+    fullpageData.timeline = newTimeline;
   }
 };
 
