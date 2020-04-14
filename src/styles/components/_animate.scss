@@ -36,3 +36,13 @@
     left: 0;
   }
 }
+
+.reveal {
+  &__container {
+    overflow: hidden;
+  }
+}
+
+span {
+  display: inline-block;
+}
