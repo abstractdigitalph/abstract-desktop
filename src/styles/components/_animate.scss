@@ -1,4 +1,4 @@
-.parallax {
+.shapes {
   z-index: 90;
   position: absolute;
   top: 0;
@@ -9,6 +9,11 @@
   background-image: url("../images/parallax-background.svg");
   background-size: 100%;
   pointer-events: none;
+
+  &--landing {
+    @extend .shapes;
+    bottom: 0;
+  }
 
   &__trigger {
     overflow: hidden;
