@@ -4,18 +4,40 @@ import debounce from 'lodash/debounce';
 // Query elements
 const fullpageNode = document.querySelector('.fullpage');
 const body = document.documentElement;
+const shapesNode = document.querySelector('.shapes--landing');
+
+// Store different layers. These will be used in setting the the
+// amount of travel they will do per scroll
+const layer = [-250, -500, -750, -1000, -1250, -1500];
+// Set global default ease and default duration for the parallax effects
+const defaultEase = 'power2.inOut';
+const defaultDuration = 1.5;
 
 const addParallax = (index) => {
+  const parallaxTimeline = gsap.timeline();
+  parallaxTimeline.to(shapesNode, {
+    y: layer[5] * index,
+    ease: defaultEase,
+    duration: defaultDuration,
+  });
+
   switch (index) {
     case 1:
-      return gsap.to('.hero__holder', {
-        y: -500,
-        ease: 'power2.inOut',
-        duration: 1.5,
-      });
+      parallaxTimeline.to(
+        '.hero__holder',
+        {
+          y: layer[0],
+          ease: defaultEase,
+          duration: defaultDuration,
+        },
+        '<',
+      );
+      break;
     default:
-      return null;
+      break;
   }
+
+  return parallaxTimeline;
 };
 const createTimeline = (mainNode, height) => {
   const mainTimeline = gsap.timeline({ paused: true });
@@ -23,8 +45,8 @@ const createTimeline = (mainNode, height) => {
     mainTimeline.addLabel(`${i}`);
     mainTimeline.to(mainNode, {
       y: -height * i,
-      ease: 'power2.inOut',
-      duration: 1.5,
+      ease: defaultEase,
+      duration: defaultDuration,
     });
     mainTimeline.add(addParallax(i), `${i}`);
   }
@@ -107,14 +129,14 @@ const fullpageScroll = (type, event) => {
     // If going back to home, set current slide and tween to correct label
     fullpageData.currentSlide = 0;
     fullpageData.tween = timeline.tweenTo('0', {
-      ease: 'power2.inOut',
+      ease: defaultEase,
       duration: 2,
     });
   } else if (direction === 'end') {
     // If going to the end, set current slide and tween to correct label
     fullpageData.currentSlide = node.children.length - 1;
     fullpageData.tween = timeline.tweenTo(`${node.children.length}`, {
-      ease: 'power2.inOut',
+      ease: defaultEase,
       duration: 2,
     });
   }
@@ -122,7 +144,6 @@ const fullpageScroll = (type, event) => {
 
 const fullpageResize = () => {
   if (fullpageData.height !== body.clientHeight) {
-    console.log('here');
     // Update object height
     fullpageData.height = body.clientHeight;
     // Update timeline based on height
@@ -134,10 +155,13 @@ const fullpageResize = () => {
   }
 };
 
-const addEvents = () => {
+const startLandingAnimation = () => {
+  gsap.set(shapesNode, {
+    bottom: layer[5] * (fullpageNode.children.length - 1),
+  });
   window.addEventListener('wheel', (event) => fullpageScroll('wheel', event));
   window.addEventListener('keydown', (event) => fullpageScroll('keydown', event));
   window.addEventListener('resize', debounce(fullpageResize, 200));
 };
 
-document.addEventListener('DOMContentLoaded', addEvents());
+document.addEventListener('DOMContentLoaded', startLandingAnimation());
