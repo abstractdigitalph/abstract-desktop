@@ -80,6 +80,45 @@ const addParallax = (index) => {
         ),
         '<',
       );
+      parallaxTimeline.add(
+        addImageParallax(
+          [
+            'tightrope5',
+            'tightrope1',
+            'tightrope4',
+            'tightrope2',
+            'tightrope3',
+          ],
+          true,
+        ),
+        '<',
+      );
+      break;
+    case 4:
+      parallaxTimeline.add(
+        addImageParallax(
+          [
+            'tightrope5',
+            'tightrope1',
+            'tightrope4',
+            'tightrope2',
+            'tightrope3',
+          ],
+          false,
+        ),
+        '<',
+      );
+      parallaxTimeline.add(
+        addImageParallax(['diab3', 'diab1', 'diab4', 'diab5', 'diab2'], true),
+        '<',
+      );
+      break;
+
+    case 5:
+      parallaxTimeline.add(
+        addImageParallax(['diab3', 'diab1', 'diab4', 'diab5', 'diab2'], false),
+        '<',
+      );
       break;
 
     default:
