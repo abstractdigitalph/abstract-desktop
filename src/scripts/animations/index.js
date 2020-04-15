@@ -1,13 +1,3 @@
-import { parallax, show, reveal } from './scroll';
+import './scroll';
 import './landing';
-
-const loadAnimations = () => {
-  parallax();
-  show();
-  reveal();
-};
-
-// Global Animations
-document.addEventListener('DOMContentLoaded', () => {
-  loadAnimations();
-});
+import './menu';

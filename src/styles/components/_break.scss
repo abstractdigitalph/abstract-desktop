@@ -4,4 +4,11 @@
   border: transparent;
   background-color: var(--color-brandLight, var(--color-primary));
   margin: 0;
+
+  &--small {
+    @extend .break;
+    margin-bottom: 0.375rem;
+    width: 1rem;
+    height: 0.125rem;
+  }
 }
