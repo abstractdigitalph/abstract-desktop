@@ -1,11 +1,11 @@
-@mixin bar {
+%bar {
   display: block;
   position: absolute;
   height: 2px;
   border-radius: 6px;
   background-color: var(--color-white);
+  transition: background-color 0.1s ease;
 }
-
 .hamburger {
   background-color: transparent;
   border: 1px solid transparent;
@@ -18,76 +18,34 @@
     position: relative;
     width: 24px;
     height: 18px;
-    display: flex;
-    align-items: center;
   }
 
-  &__inner {
-    @include bar;
-    width: 24px;
-    transition: width 0.1s ease;
-
-    &::before {
-      @include bar;
+  &__bar {
+    &--top {
+      @extend %bar;
       width: 16px;
-      content: "";
-      position: absolute;
-      bottom: 8px;
-      transition: bottom 0.1s ease, width 0.1s ease, transform 0.1s ease;
+      top: 0;
     }
-
-    &::after {
-      @include bar;
-      width: 16px;
-      content: "";
-      position: absolute;
+    &--middle {
+      @extend %bar;
+      width: 24px;
       top: 8px;
-      transition: top 0.1s ease, width 0.1s ease, transform 0.1s ease;
+    }
+    &--bottom {
+      @extend %bar;
+      width: 16px;
+      bottom: 0;
     }
   }
 
   &:hover,
   &:focus {
     outline: none;
-    .hamburger {
-      &__inner::before,
-      &__inner::after {
-        width: 24px;
-      }
-
-      &__inner {
-        width: 16px;
-      }
-    }
-  }
-
-  &--active {
-    box-shadow: none;
-
-    /* stylelint-disable */
-    .hamburger__inner {
-      width: 0;
-
-      &::before {
-        bottom: 0;
-        width: 24px;
-        transform: rotate(45deg);
-      }
-
-      &::after {
-        top: 0;
-        width: 24px;
-        transform: rotate(-45deg);
-      }
-    }
-    /* stylelint-enable */
-
-    &:hover,
-    &:focus {
-      outline: none;
-
-      .hamburger__inner {
-        width: 0;
+    .hamburger__bar {
+      &--top,
+      &--middle,
+      &--bottom {
+        background-color: var(--color-primary);
       }
     }
   }
