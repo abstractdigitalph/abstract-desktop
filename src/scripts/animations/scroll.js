@@ -1,37 +1,42 @@
 import { gsap } from 'gsap';
 import { ScrollScene } from 'scrollscene';
 
-export const parallax = () => {
-  const parallaxTimeline = gsap.timeline({ paused: true });
-  const parallaxNode = document.querySelector('.animate__parallax');
-  const triggerNode = document.querySelector('.animate__parallax--trigger');
+const parallax = () => {
+  // Query shape node
+  const parallaxNode = document.querySelector('.shapes');
 
-  // Properly set the bottom of the parallax element so that when the bottom of the
-  // page is reached, the parallax element will still reach, even after the transform.
-  // The scrollHeight is used so that the speed of the element will be consistent between
-  // the different pages
-  const length = triggerNode.scrollHeight / -1.5;
-  gsap.set(parallaxNode, { bottom: length });
-  parallaxTimeline.to(parallaxNode, {
-    y: length,
-    ease: 'linear',
-  });
+  // If node exists, run functions for animation
+  if (parallaxNode) {
+    const parallaxTimeline = gsap.timeline({ paused: true });
+    const triggerNode = document.querySelector('.shapes--trigger');
 
-  // eslint-disable-next-line
-  const scrollScene = new ScrollScene({
-    triggerElement: triggerNode,
-    gsap: { timeline: parallaxTimeline },
-    duration: triggerNode.scrollHeight,
-    /*
+    // Properly set the bottom of the parallax element so that when the bottom of the
+    // page is reached, the parallax element will still reach, even after the transform.
+    // The scrollHeight is used so that the speed of the element will be consistent between
+    // the different pages
+    const length = triggerNode.scrollHeight / -1.5;
+    gsap.set(parallaxNode, { bottom: length });
+    parallaxTimeline.to(parallaxNode, {
+      y: length,
+      ease: 'linear',
+    });
+
+    // eslint-disable-next-line
+    const scrollScene = new ScrollScene({
+      triggerElement: triggerNode,
+      gsap: { timeline: parallaxTimeline },
+      duration: triggerNode.scrollHeight,
+      /*
     controller: {
       addIndicators: true,
     },
     */
-  });
+    });
+  }
 };
 
-export const show = () => {
-  const showNodes = document.querySelectorAll('.animate__show');
+const show = () => {
+  const showNodes = document.querySelectorAll('.show');
 
   showNodes.forEach((item) => {
     const showTimeline = gsap.timeline({ paused: true });
@@ -77,7 +82,7 @@ export const show = () => {
   });
 };
 
-export const reveal = () => {
+const reveal = () => {
   const revealNodes = document.querySelectorAll('.animate__reveal');
 
   revealNodes.forEach((item) => {
@@ -97,3 +102,14 @@ export const reveal = () => {
     });
   });
 };
+
+const loadAnimations = () => {
+  parallax();
+  show();
+  reveal();
+};
+
+// Global Animations
+document.addEventListener('DOMContentLoaded', () => {
+  loadAnimations();
+});
