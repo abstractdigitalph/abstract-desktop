@@ -326,8 +326,8 @@ if (fullpageNode) {
     gsap.set(shapesNode, {
       bottom: layer[5] * (fullpageNode.children.length - 1),
     });
-    window.addEventListener('wheel', (event) => fullpageScroll('wheel', event));
-    window.addEventListener('keydown', (event) => fullpageScroll('keydown', event));
+    fullpageNode.addEventListener('wheel', (event) => fullpageScroll('wheel', event));
+    fullpageNode.addEventListener('keydown', (event) => fullpageScroll('keydown', event));
     window.addEventListener('resize', debounce(fullpageResize, 200));
   };
 
