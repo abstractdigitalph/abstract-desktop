@@ -9,8 +9,6 @@ const navNode = document.querySelector('.mainNav');
 const dribbbleNode = document.querySelector('.overlay__dribbble');
 const contactNode = document.querySelector('.contact');
 const contactTriggerNode = document.querySelectorAll('.contact__trigger');
-const calendarNode = document.querySelector('.calendar');
-const calendarTriggerNode = document.querySelectorAll('.calendar__trigger');
 
 // Timeline to animate hamburger. Turning it to or from an x
 const hamburgerTimeline = gsap
@@ -49,24 +47,9 @@ const menuTimeline = gsap
 const contactTimeline = gsap
   .timeline({
     paused: true,
-    defaults: { ease: 'power3.out' },
+    defaults: { ease: 'power2.out' },
   })
-  .fromTo(
-    contactNode,
-    { display: 'none', opacity: 0, duration: 0.5 },
-    { display: 'flex', opacity: 1 },
-  );
-
-const calendarTimeline = gsap
-  .timeline({
-    paused: true,
-    defaults: { ease: 'power3.out' },
-  })
-  .fromTo(
-    calendarNode,
-    { display: 'none', opacity: 0, duration: 0.5 },
-    { display: 'flex', opacity: 1 },
-  );
+  .from(contactNode, { xPercent: -100, duration: 0.5 });
 
 // Closes the respective timeline
 const close = (timeline) => {
@@ -99,9 +82,6 @@ const menuAnimation = () => {
     case 'contact':
       close(contactTimeline);
       break;
-    case 'calendar':
-      close(calendarTimeline);
-      break;
     case 'closed':
     default:
       open(menuTimeline, 'menu');
@@ -114,14 +94,6 @@ contactTriggerNode.forEach((element) => {
     element.addEventListener('click', () => open(contactTimeline, 'contact', menuTimeline));
   } else {
     element.addEventListener('click', () => open(contactTimeline, 'contact'));
-  }
-});
-
-calendarTriggerNode.forEach((element) => {
-  if (element.dataset.fromContact) {
-    element.addEventListener('click', () => open(calendarTimeline, 'calendar', contactTimeline));
-  } else {
-    element.addEventListener('click', () => open(calendarTimeline, 'calendar'));
   }
 });
 

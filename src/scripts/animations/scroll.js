@@ -1,22 +1,26 @@
 import { gsap } from 'gsap';
 import { ScrollScene } from 'scrollscene';
 
-const parallax = () => {
+const shapes = () => {
   // Query shape node
-  const parallaxNode = document.querySelector('.shapes');
+  const shapesNode = document.querySelector('.shapes');
 
   // If node exists, run functions for animation
-  if (parallaxNode) {
+  if (shapesNode) {
     const parallaxTimeline = gsap.timeline({ paused: true });
-    const triggerNode = document.querySelector('.shapes--trigger');
+    const triggerNode = document.querySelector('.shapes__trigger');
+
+    if (!triggerNode) {
+      throw new Error('Expected a triggerNode to exists. None was found');
+    }
 
     // Properly set the bottom of the parallax element so that when the bottom of the
     // page is reached, the parallax element will still reach, even after the transform.
     // The scrollHeight is used so that the speed of the element will be consistent between
     // the different pages
     const length = triggerNode.scrollHeight / -1.5;
-    gsap.set(parallaxNode, { bottom: length });
-    parallaxTimeline.to(parallaxNode, {
+    gsap.set(shapesNode, { bottom: length });
+    parallaxTimeline.to(shapesNode, {
       y: length,
       ease: 'linear',
     });
@@ -35,25 +39,25 @@ const parallax = () => {
   }
 };
 
-const show = () => {
-  const showNodes = document.querySelectorAll('.show');
+const parallax = () => {
+  const parallaxNodes = document.querySelectorAll('.parallax');
 
-  showNodes.forEach((item) => {
-    const showTimeline = gsap.timeline({ paused: true });
+  parallaxNodes.forEach((item) => {
+    const parallaxTimeline = gsap.timeline({ paused: true });
     const layer = item.dataset.layer ? item.dataset.layer * 100 : 100;
     const { direction } = item.dataset;
     if (direction === 'up') {
-      showTimeline.from(item, {
+      parallaxTimeline.from(item, {
         y: layer,
         ease: 'linear',
       });
     } else if (direction === 'down') {
-      showTimeline.to(item, {
+      parallaxTimeline.to(item, {
         y: -layer,
         ease: 'linear',
       });
     } else {
-      showTimeline.fromTo(
+      parallaxTimeline.fromTo(
         item,
         {
           y: layer,
@@ -75,7 +79,7 @@ const show = () => {
     // eslint-disable-next-line
     const scrollScene = new ScrollScene({
       triggerElement,
-      gsap: { timeline: showTimeline },
+      gsap: { timeline: parallaxTimeline },
       triggerHook,
       duration: '100%',
     });
@@ -83,7 +87,7 @@ const show = () => {
 };
 
 const reveal = () => {
-  const revealNodes = document.querySelectorAll('.animate__reveal');
+  const revealNodes = document.querySelectorAll('.reveal');
 
   revealNodes.forEach((item) => {
     const revealTimeline = gsap.timeline({ paused: true });
@@ -104,8 +108,8 @@ const reveal = () => {
 };
 
 const loadAnimations = () => {
+  shapes();
   parallax();
-  show();
   reveal();
 };
 
