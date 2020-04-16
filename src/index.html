@@ -86,7 +86,10 @@
             <a href="/our-work.html" class="mainNav__link--main">Work</a>
             <a href="/our-process.html" class="mainNav__link--main">Process</a>
             <a href="/about-us.html" class="mainNav__link--mainLast">About</a>
-            <button class="button button--nav">
+            <button
+              class="button button--nav contact__trigger"
+              data-from-menu="true"
+            >
               Start A Project With Us
               <svg
                 width="31"
@@ -672,11 +675,11 @@
                     <h1 class="footer__h1">
                       Let’s ideate, validate & ship fast
                     </h1>
-                    <a href="calendar.html" class="filledButton">
-                      <span class="text-button2 text-white"
-                        >Book A Free Consulation</span
-                      >
-                    </a>
+                    <button class="filledButton calendar__trigger">
+                      <span class="text-button2 text-white">
+                        Book A Free Consulation
+                      </span>
+                    </button>
                     <span class="text-start text-primary"
                       >*Project starts at $4k</span
                     >
@@ -756,11 +759,14 @@
               Ready to talk? Schedule a 15 minute free consultation from us – at
               no charge at all.
             </p>
-            <a href="calendar.html" class="filledButton">
+            <button
+              class="filledButton calendar__trigger"
+              data-from-contact="true"
+            >
               <span class="text-button2 text-white"
                 >Book A Free Consulation</span
               >
-            </a>
+            </button>
           </div>
           <div class="col-xs-offset-1 col-xs-4">
             <div class="footer__contactInfo">
@@ -804,5 +810,23 @@
         </div>
       </div>
     </div>
+    <div class="calendar">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8 calendar__col">
+            <div
+              class="calendly-inline-widget"
+              data-url="https://calendly.com/madebyabstract?hide_landing_page_details=1"
+              style="height: 900px"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://assets.calendly.com/assets/external/widget.js"
+    ></script>
   </body>
 </html>
