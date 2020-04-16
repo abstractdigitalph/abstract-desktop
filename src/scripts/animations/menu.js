@@ -25,45 +25,48 @@ const hamburgerTimeline = gsap
   .to(topNode, { rotate: 45 })
   .to(middleNode, { rotate: 45 }, '<')
   .to(bottomNode, { rotate: -45 }, '<')
-  .set({}, {}, 1.2);
+  .set({}, {}, 0.5);
 
 // Removes the dribbble logo from the left sidebar. Workaround as z-indexing
 // the dribbble logo to cover it up with the various overlays will not work
 const removeDribbleTimeline = gsap
   .timeline({ paused: true })
   .to(dribbbleNode, { opacity: 0, ease: 'power1.out', duration: 0.2 })
-  .set({}, {}, 1.2);
+  .set({}, {}, 0.5);
 
 // Animate opening and closing the timeline
 const menuTimeline = gsap
   .timeline({
     paused: true,
-    defaults: { duration: 1, ease: 'bounce' },
+    defaults: { duration: 0.5, ease: 'power2.in' },
   })
   .fromTo(
     navNode,
     { clipPath: 'circle(0 at 4rem 50%)' },
-    { clipPath: 'circle(100vw at 4rem 50%)' },
-  )
-  .to(navNode, {
-    clipPath: 'circle(110vw at 4rem 50%)',
-    ease: 'power1.out',
-    duration: 0.2,
-  });
+    { clipPath: 'circle(110vw at 4rem 50%)' },
+  );
 
 const contactTimeline = gsap
   .timeline({
     paused: true,
     defaults: { ease: 'power3.out' },
   })
-  .from(contactNode, { xPercent: -100, duration: 1 });
+  .fromTo(
+    contactNode,
+    { display: 'none', opacity: 0, duration: 0.5 },
+    { display: 'flex', opacity: 1 },
+  );
 
 const calendarTimeline = gsap
   .timeline({
     paused: true,
     defaults: { ease: 'power3.out' },
   })
-  .from(calendarNode, { xPercent: -100, duration: 1 });
+  .fromTo(
+    calendarNode,
+    { display: 'none', opacity: 0, duration: 0.5 },
+    { display: 'flex', opacity: 1 },
+  );
 
 // Closes the respective timeline
 const close = (timeline) => {
