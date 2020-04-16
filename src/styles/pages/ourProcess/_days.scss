@@ -1,6 +1,5 @@
 .days {
   margin: 5.625rem 3.125rem 0;
-  position: relative;
 
   &__slider {
     width: 100%;
@@ -8,6 +7,7 @@
     align-items: center;
     justify-content: space-between;
     height: 3.125rem;
+    position: relative;
   }
 
   &__step {
@@ -46,5 +46,79 @@
     background-color: var(--color-gray);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
     border-radius: 0.5rem;
+  }
+
+  &__holder {
+    width: 100%;
+    margin-top: 1.875rem;
+    position: relative;
+    display: flex;
+  }
+
+  &__overflow {
+    overflow: hidden;
+  }
+}
+
+.day {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  border: solid 1px var(--color-border);
+  height: 55vh;
+
+  &:first-child {
+    position: relative;
+  }
+
+  &__left {
+    width: 40%;
+    border-right: solid 1px var(--color-border);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__sides {
+    padding: 2.5rem 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &--top {
+      border-bottom: solid 1px var(--color-border);
+    }
+
+    &--whole {
+      justify-content: flex-start;
+    }
+  }
+
+  &__right {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__activity {
+    @extend .text-day;
+    @extend .text-white;
+    margin: 0 0 0.75rem;
+  }
+
+  &__list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0.75rem 0 0;
+
+    > li {
+      @extend .text-clientInfo;
+      @extend .text-white;
+      line-height: 1.7em;
+      margin-bottom: 0.5rem;
+    }
   }
 }

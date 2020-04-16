@@ -6,7 +6,7 @@
     margin: 3.125rem 0;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 100;
     height: calc(100vh - 6.25rem);
 
     display: flex;
@@ -16,7 +16,7 @@
     &--left {
       left: 3.125rem;
       align-items: flex-start;
-      z-index: 20;
+      z-index: 200;
     }
 
     &--right {
@@ -59,6 +59,7 @@
     border-radius: 0.5rem;
     padding: 0.5rem 1.5rem;
     transition: background-color 0.1s ease-in-out;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--color-white);
@@ -107,5 +108,15 @@
     @extend .overlay__activeBar;
     background-color: var(--color-white20);
     height: 32vh;
+  }
+
+  &__dribbble {
+    path {
+      transition: 0.1s ease fill;
+    }
+
+    &:hover path {
+      fill: #ea4c89;
+    }
   }
 }

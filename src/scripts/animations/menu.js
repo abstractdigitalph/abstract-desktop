@@ -51,13 +51,24 @@ const contactTimeline = gsap
   })
   .from(contactNode, { xPercent: -100, duration: 0.5 });
 
+const preventDefault = (e) => {
+  e.preventDefault();
+};
+
 // Closes the respective timeline
 const close = (timeline) => {
   timeline.reverse();
   removeDribbleTimeline.reverse();
   hamburgerTimeline.reverse();
   hamburgerNode.dataset.active = 'false';
+
+  // Remove focused element
   document.activeElement.blur();
+
+  // Allow scrolling again
+  window.removeEventListener('wheel', preventDefault);
+  window.removeEventListener('touchmove', preventDefault);
+  window.removeEventListener('keydown', preventDefault);
 };
 
 // Opens the respective timeline
@@ -71,7 +82,15 @@ const open = (timeline, type, otherTimeline) => {
     timeline.play();
   }
   hamburgerNode.dataset.active = type;
+
+  // Remove focused element
   document.activeElement.blur();
+
+  // Disable scrolling
+  // TODO Disable certain keydown events only. do not disable everything
+  window.addEventListener('wheel', preventDefault);
+  window.addEventListener('touchmove', preventDefault);
+  window.addEventListener('keydown', preventDefault);
 };
 
 // Animates the various parts depending on the
