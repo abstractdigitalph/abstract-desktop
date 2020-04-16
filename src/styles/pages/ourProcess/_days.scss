@@ -1,0 +1,50 @@
+.days {
+  margin: 5.625rem 3.125rem 0;
+  position: relative;
+
+  &__slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.125rem;
+  }
+
+  &__step {
+    @extend .text-step;
+    @extend .text-white;
+    position: relative;
+    z-index: 2;
+
+    width: 12.5rem;
+    height: 100%;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+
+    transition: 0.1s ease color;
+
+    &:hover,
+    &:focus {
+      outline: 0;
+      @extend .text-primary;
+    }
+
+    &:active {
+      @extend .text-secondary;
+    }
+  }
+
+  &__indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 12.5rem;
+    z-index: 1;
+
+    background-color: var(--color-gray);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+    border-radius: 0.5rem;
+  }
+}

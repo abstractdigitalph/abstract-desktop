@@ -57,6 +57,7 @@ const close = (timeline) => {
   removeDribbleTimeline.reverse();
   hamburgerTimeline.reverse();
   hamburgerNode.dataset.active = 'false';
+  document.activeElement.blur();
 };
 
 // Opens the respective timeline
@@ -70,6 +71,7 @@ const open = (timeline, type, otherTimeline) => {
     timeline.play();
   }
   hamburgerNode.dataset.active = type;
+  document.activeElement.blur();
 };
 
 // Animates the various parts depending on the
