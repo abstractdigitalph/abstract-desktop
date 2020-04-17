@@ -8,6 +8,21 @@
   margin-bottom: 6.25rem;
 }
 
+%diabBig {
+  width: 90%;
+  margin-bottom: 3.75rem;
+}
+
+%diabPhotoFull {
+  width: 100%;
+  margin-bottom: 6.25rem;
+}
+
+%diabPhotoCutout {
+  width: 80%;
+  margin-bottom: 6.25rem;
+}
+
 %mobile {
   width: calc(33% - 1.66667rem);
   height: auto;
@@ -118,6 +133,37 @@
       &--tightrope13 {
         transform: translateY(6.25rem);
       }
+
+      &--diab1,
+      &--diab3 {
+        @extend %diabBig;
+        align-self: flex-start;
+      }
+
+      &--diab2 {
+        @extend %diabBig;
+        align-self: flex-end;
+      }
+
+      &--diab3 {
+        margin-bottom: 10rem;
+      }
+
+      &--diab4,
+      &--diab6,
+      &--diab7 {
+        @extend %diabPhotoFull;
+      }
+
+      &--diab7 {
+        margin-top: 14rem;
+      }
+
+      &--diab5,
+      &--diab8,
+      &--diab9 {
+        @extend %diabPhotoCutout;
+      }
     }
 
     &__imageGroup {
@@ -138,7 +184,16 @@
       &--tightropeFlat {
         @extend .results__imageGroup;
         flex-flow: nowrap;
-        margin-top: 9.375rem;
+        margin-top: rem;
+      }
+
+      &--diab {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &--half {
+        width: calc(50% - 0.9375rem);
       }
     }
   }
