@@ -76,6 +76,37 @@
         right: 16%;
         top: -20%;
       }
+
+      &--diab1 {
+        @extend .projects__image;
+        width: 4.375rem;
+        height: auto;
+        left: 20%;
+        top: -11%;
+      }
+
+      &--diab2 {
+        @extend .projects__image;
+        height: auto;
+        width: 33.125rem;
+        z-index: 2;
+
+        left: 14%;
+      }
+      &--diab3 {
+        @extend .projects__image;
+        width: 18.75rem;
+
+        left: -9%;
+      }
+
+      &--diab4 {
+        @extend .projects__image;
+        width: 10rem;
+        z-index: 1;
+        left: -16%;
+        top: 3%;
+      }
     }
 
     &__imageHolder {

@@ -1,0 +1,86 @@
+%spenmoBig {
+  width: 90%;
+  margin-bottom: 5rem;
+}
+%mobile {
+  width: calc(33% - 1.66667rem);
+  height: auto;
+  margin-bottom: 3.75rem;
+}
+
+#projectsResults {
+  .results {
+    &__h3 {
+      @extend .text-white;
+      font-weight: 600;
+      margin: 0.625rem 0 2.5rem;
+    }
+
+    &__h4 {
+      @extend .text-white;
+      margin: 0 0 1.625rem;
+    }
+
+    &__h5 {
+      @extend .text-white;
+      margin: 0 0 2.5rem;
+    }
+
+    &__images {
+      text-align: center;
+      margin-top: 8.75rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &__image {
+      &--spenmo1,
+      &--spenmo3 {
+        @extend %spenmoBig;
+        align-self: flex-start;
+      }
+
+      &--spenmo2 {
+        @extend %spenmoBig;
+        align-self: flex-end;
+      }
+
+      &--logo {
+        width: 5rem;
+        margin: 9.375rem 0 1.25rem;
+      }
+
+      &--spenmo4,
+      &--spenmo5,
+      &--spenmo6,
+      &--spenmo7,
+      &--spenmo8,
+      &--spenmo9 {
+        @extend %mobile;
+      }
+
+      &--spenmo5,
+      &--spenmo8 {
+        transform: translateY(5rem);
+      }
+
+      &--spenmo10,
+      &--spenmo11 {
+        width: 100%;
+        margin-bottom: 3.75rem;
+      }
+    }
+
+    &__imageGroup {
+      display: flex;
+      justify-content: space-between;
+      flex-flow: wrap;
+
+      &--spenmo {
+        @extend .results__imageGroup;
+        margin-bottom: 18.75rem;
+      }
+    }
+  }
+}
