@@ -11,4 +11,10 @@
     width: 1rem;
     height: 0.125rem;
   }
+
+  &--gradient {
+    @extend .break;
+    background: var(--color-gradient);
+    margin: 1.875rem auto 0;
+  }
 }
