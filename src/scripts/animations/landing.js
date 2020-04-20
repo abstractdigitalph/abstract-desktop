@@ -1,17 +1,17 @@
 import { gsap } from 'gsap';
-import debounce from 'lodash/debounce';
+// import debounce from 'lodash/debounce';
 import { vhToPx } from './helpers';
 
-// Query fullpage element
 const fullpageNode = document.querySelector('.fullpage');
 
 // Run All necessary functions if fullpage element is present
 if (fullpageNode) {
-  // Continue query
-  //
+  // Query all of the nodes that will be animated. This is done at the start so that
+  // the query will only be done once.
   const body = document.documentElement;
   const shapesNode = document.querySelector('.shapes--landing');
   const scrollbarNode = document.querySelector('.overlay__active');
+  const revealNodes = [...fullpageNode.children].map((element) => element.querySelectorAll('.reveal--landing'));
   const pageNumberLeftNode = document.querySelector(
     '.overlay__pageNumber--left',
   );
@@ -22,224 +22,239 @@ if (fullpageNode) {
     '.overlay__pageNumber--right',
   );
 
+  const height = body.clientHeight;
+  let currentSlide = 0;
+  let timeline = null;
+
   // Store different layers. These will be used in setting the the
   // amount of travel they will do per scroll
   const layer = [50, -100, -250, -400, -650, -1750];
 
+  // Store the layering of the different projects
+  const spenmoDirection = [
+    'spenmo5',
+    'spenmo1',
+    'spenmo2',
+    'spenmo4',
+    'spenmo3',
+  ];
+  const tightropeDirection = [
+    'tightrope5',
+    'tightrope1',
+    'tightrope2',
+    'tightrope4',
+    'tightrope3',
+  ];
+  const diabDirection = ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'];
+
   // Set global default ease and default duration for the parallax effects
   const defaultEase = 'power2.inOut';
   const defaultDuration = 1.5;
-  // Adds the parallax effect to the individual images in the landing page
-  // The array is sorted from the bottom layer going to the top
-  const addImageParallax = (nameArray, reversed) => {
-    const imageParallaxTimeline = gsap.timeline();
-    // Animation type is changed depending if the current animation
-    // is going in to the slide or out of the slide
-    if (reversed) {
-      nameArray.forEach((name, index) => {
-        imageParallaxTimeline.from(
-          `.projects__image--${name}`,
-          {
-            y: -layer[index],
-            ease: defaultEase,
-            duration: defaultDuration,
-          },
-          '<',
-        );
-      });
-    } else {
-      nameArray.forEach((name, index) => {
-        imageParallaxTimeline.to(
-          `.projects__image--${name}`,
-          {
-            y: layer[index],
-            ease: defaultEase,
-            duration: defaultDuration,
-          },
-          '<',
-        );
+
+  /**
+   * Animates each text element that will be revealed as it's containing slide is
+   * animated into
+   * @param {Number} to - The index of the slide that is being animated to
+   */
+  const revealAnimation = (to) => {
+    if (revealNodes[to].length !== 0) {
+      gsap.from(revealNodes[to], {
+        y: 200,
+        duration: 0.75,
+        delay: 1,
+        stagger: 0.1,
+        ease: 'power2.out',
       });
     }
-    return imageParallaxTimeline;
   };
 
-  const animateReveal = (currentSlide) => {
-    const elementList = fullpageNode.children[currentSlide].querySelectorAll(
-      '.reveal--landing',
-    );
-    gsap.from(elementList, {
-      y: 200,
-      duration: 0.75,
-      delay: 1,
-      stagger: 0.1,
-      ease: 'power2.out',
-    });
-  };
-
-  // Creates the parallax effect for each slides
-  const addParallax = (index) => {
-    const parallaxTimeline = gsap.timeline();
-
-    // Adding animations that will run on all slide transitions
-    parallaxTimeline
-      // Animates the shapes on the outside
-      .to(shapesNode, {
-        y: layer[5] * index,
-        ease: defaultEase,
-        duration: defaultDuration,
-      })
-      // Animates the main sidebar
+  /**
+   * Animates the scrollbar and the numbers that indicate the current slide
+   * @param {Number} from - The index of the slide that is being animated from
+   * @param {Number} to - The index of the slide that is being animated to
+   */
+  const scrollbarAnimation = (from, to) => {
+    gsap
+      .timeline()
       .to(
         scrollbarNode,
         {
-          y: vhToPx(4 * index),
+          y: vhToPx(4 * to),
           ease: defaultEase,
           duration: defaultDuration,
         },
         '<',
       )
-      // Animates the last numbers of the sidebarj
+      // Animates the last numbers of the sidebar
       .to(
         pageNumberRightNode,
         {
-          y: -17 * index,
+          y: -17 * to,
           ease: defaultEase,
           duration: defaultDuration,
         },
         '<',
       );
 
-    // Adding specific animations per slide transition. With the index serving
-    // as the slide that is going into. e.g. case 1 is the transition from 0 to 1 or
-    // from 2 to 1
-    switch (index) {
-      case 1:
-        parallaxTimeline.to(
-          '.hero__holder',
+    // Moves the first and second characters so that FIN will be shown as the slide
+    // number
+    if (from === 7) {
+      gsap
+        .timeline()
+        .to(
+          pageNumberLeftNode,
           {
-            y: layer[2],
+            y: 0,
+            ease: defaultEase,
+            duration: defaultDuration,
+          },
+          '<',
+        )
+        .to(
+          pageNumberMiddleNode,
+          {
+            y: 0,
             ease: defaultEase,
             duration: defaultDuration,
           },
           '<',
         );
+    } else if (to === 7) {
+      gsap
+        .timeline()
+        .to(
+          pageNumberLeftNode,
+          {
+            y: -17,
+            ease: defaultEase,
+            duration: defaultDuration,
+          },
+          '<',
+        )
+        .to(
+          pageNumberMiddleNode,
+          {
+            y: -17,
+            ease: defaultEase,
+            duration: defaultDuration,
+          },
+          '<',
+        );
+    }
+  };
+
+  const shapeAnimation = (to) => {
+    gsap.to(shapesNode, {
+      y: layer[5] * to,
+      ease: defaultEase,
+      duration: defaultDuration,
+    });
+  };
+
+  const imageAnimation = (nameArray, to, isGoingDown) => {
+    // Animation type is changed depending if the current animation
+    // is going in to the slide or out of the slide
+    if (to) {
+      if (isGoingDown) {
+        nameArray.forEach((name, index) => {
+          gsap.set(`.projects__image--${name}`, {
+            y: 0,
+          });
+          gsap.from(`.projects__image--${name}`, {
+            y: -layer[index],
+            ease: defaultEase,
+            duration: defaultDuration,
+          });
+        });
+      } else {
+        nameArray.forEach((name) => {
+          gsap.to(`.projects__image--${name}`, {
+            y: 0,
+            ease: defaultEase,
+            duration: defaultDuration,
+          });
+        });
+      }
+    } else if (isGoingDown) {
+      nameArray.forEach((name, index) => {
+        gsap.set(`.projects__image--${name}`, {
+          y: 0,
+        });
+        gsap.to(`.projects__image--${name}`, {
+          y: layer[index],
+          ease: defaultEase,
+          duration: defaultDuration,
+        });
+      });
+    } else {
+      nameArray.forEach((name, index) => {
+        gsap.set(`.projects__image--${name}`, {
+          y: 0,
+        });
+        gsap.to(`.projects__image--${name}`, {
+          y: -layer[index],
+          ease: defaultEase,
+          duration: defaultDuration,
+        });
+      });
+    }
+  };
+
+  const parallaxAnimation = (from, to) => {
+    // Adding specific animations per slide transition. With the index serving
+    // as the slide that is going into. e.g. case 1 is the transition from 0 to 1 or
+    // from 2 to 1
+    console.log(from, to);
+    const down = from - to < 0;
+
+    switch (from) {
+      case 0:
+        gsap.to('.hero__holder', {
+          y: layer[2],
+          ease: defaultEase,
+          duration: defaultDuration,
+        });
         break;
       case 2:
-        parallaxTimeline.add(
-          addImageParallax(
-            ['spenmo5', 'spenmo1', 'spenmo2', 'spenmo4', 'spenmo3'],
-            true,
-          ),
-          '<',
-        );
+        imageAnimation(spenmoDirection, false, down);
         break;
       case 3:
-        parallaxTimeline.add(
-          addImageParallax(
-            ['spenmo5', 'spenmo1', 'spenmo2', 'spenmo4', 'spenmo3'],
-            false,
-          ),
-          '<',
-        );
-        parallaxTimeline.add(
-          addImageParallax(
-            [
-              'tightrope5',
-              'tightrope1',
-              'tightrope2',
-              'tightrope4',
-              'tightrope3',
-            ],
-            true,
-          ),
-          '<',
-        );
+        imageAnimation(tightropeDirection, false, down);
         break;
       case 4:
-        parallaxTimeline.add(
-          addImageParallax(
-            [
-              'tightrope5',
-              'tightrope1',
-              'tightrope2',
-              'tightrope4',
-              'tightrope3',
-            ],
-            false,
-          ),
-          '<',
-        );
-        parallaxTimeline.add(
-          addImageParallax(['diab3', 'diab1', 'diab4', 'diab5', 'diab2'], true),
-          '<',
-        );
+        imageAnimation(diabDirection, false, down);
         break;
-
-      case 5:
-        parallaxTimeline.add(
-          addImageParallax(
-            ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'],
-            false,
-          ),
-          '<',
-        );
+      default:
         break;
+    }
 
-      case 7:
-        // Moves the first and second characters so that FIN will be shown as the slide
-        // number
-        parallaxTimeline
-          .to(
-            pageNumberLeftNode,
-            {
-              y: -17,
-              ease: defaultEase,
-              duration: defaultDuration,
-            },
-            '<',
-          )
-          .to(
-            pageNumberMiddleNode,
-            {
-              y: -17,
-              ease: defaultEase,
-              duration: defaultDuration,
-            },
-            '<',
-          );
+    switch (to) {
+      case 2:
+        imageAnimation(spenmoDirection, true, down);
+        break;
+      case 3:
+        imageAnimation(tightropeDirection, true, down);
+        break;
+      case 4:
+        imageAnimation(diabDirection, true, down);
         break;
 
       default:
         break;
     }
-
-    return parallaxTimeline;
   };
 
-  // Creates the main timeline for the landing page
-  const createTimeline = (mainNode, height) => {
-    const mainTimeline = gsap.timeline({ paused: true });
-    for (let i = 1; i < mainNode.children.length; i += 1) {
-      mainTimeline.addLabel(`${i}`);
-      // Creates the animation for the slide transition.
-      mainTimeline.to(mainNode, {
-        y: -height * i,
-        ease: defaultEase,
-        duration: defaultDuration,
-      });
-      // Add specific animation for each slide transition
-      mainTimeline.add(addParallax(i), `${i}`);
-    }
-    return mainTimeline;
-  };
-
-  // Store relevant data for fullpage
-  const fullpageData = {
-    node: fullpageNode,
-    height: body.clientHeight,
-    currentSlide: 0,
-    timeline: createTimeline(fullpageNode, body.clientHeight),
-    tween: null,
+  const changeSlide = (from, to) => {
+    const slideTimeline = gsap.timeline().to(fullpageNode, {
+      y: -height * to,
+      ease: defaultEase,
+      duration: defaultDuration,
+    });
+    parallaxAnimation(from, to);
+    scrollbarAnimation(from, to);
+    shapeAnimation(to);
+    revealAnimation(to);
+    timeline = slideTimeline;
   };
 
   // Gets the direction of the user wants, depending on the event type
@@ -275,50 +290,38 @@ if (fullpageNode) {
 
       default:
         throw new Error(
-          `Expected one of event types: wheel, got ${event} instead.`,
+          `Expected one of event types: wheel, keydown. Got ${event} instead.`,
         );
     }
   };
 
   const fullpageScroll = (type, event) => {
-    const { node, timeline } = fullpageData;
-
-    // Check if tween is created. If it is created, check if the tween
-    // is active. Do not run the animation if the tween is active
-    if (fullpageData.tween && fullpageData.tween.isActive()) {
+    if (timeline && timeline.isActive()) {
       return;
     }
 
-    // Get  direction of the event
-    const direction = getDirection(type, event);
-
-    // Check direction
-    if (
-      direction === 'down'
-      && fullpageData.currentSlide < node.children.length - 1
-    ) {
-      // Wheel is going down, check if the currentSlide is not the
-      // last slide. If it is not, animate moving to the next slide
-      fullpageData.currentSlide += 1;
-      fullpageData.tween = timeline.tweenTo(timeline.nextLabel());
-      animateReveal(fullpageData.currentSlide);
-    } else if (direction === 'up' && fullpageData.currentSlide > 0) {
-      // If it is going up, check if the current slide is not the first slide. If
-      // it is not the first slide, animate moving to the previous slide
-      fullpageData.currentSlide -= 1;
-      fullpageData.tween = timeline.tweenTo(timeline.previousLabel());
-    }
-  };
-
-  const fullpageResize = () => {
-    if (fullpageData.height !== body.clientHeight) {
-      // Update object height
-      fullpageData.height = body.clientHeight;
-      fullpageData.timeline.kill();
-      // Update timeline based on height
-      const newTimeline = createTimeline(fullpageNode, body.clientHeight);
-      fullpageData.tween = newTimeline.seek(`${fullpageData.currentSlide + 1}`);
-      fullpageData.timeline = newTimeline;
+    switch (getDirection(type, event)) {
+      case 'down':
+        if (currentSlide < fullpageNode.children.length - 1) {
+          changeSlide(currentSlide, (currentSlide += 1));
+        }
+        break;
+      case 'up':
+        if (currentSlide > 0) {
+          changeSlide(currentSlide, (currentSlide -= 1));
+        }
+        break;
+      case 'home':
+        changeSlide(currentSlide, (currentSlide = 0));
+        break;
+      case 'end':
+        changeSlide(
+          currentSlide,
+          (currentSlide = fullpageNode.children.length - 1),
+        );
+        break;
+      default:
+        throw new Error('Expected one of directions: up, down, home, end.');
     }
   };
 
@@ -327,8 +330,8 @@ if (fullpageNode) {
       bottom: layer[5] * (fullpageNode.children.length - 1),
     });
     fullpageNode.addEventListener('wheel', (event) => fullpageScroll('wheel', event));
-    fullpageNode.addEventListener('keydown', (event) => fullpageScroll('keydown', event));
-    window.addEventListener('resize', debounce(fullpageResize, 200));
+    document.addEventListener('keydown', (event) => fullpageScroll('keydown', event));
+    // window.addEventListener('resize', debounce(fullpageResize, 200));
   };
 
   document.addEventListener('DOMContentLoaded', startLandingAnimation);
