@@ -74,7 +74,9 @@
     display: flex;
     align-items: center;
     position: absolute;
-    right: 0;
+    right: 0.0625rem;
+    transform: translateY(0);
+    z-index: 1;
   }
 
   &__pageNumber {
@@ -96,6 +98,11 @@
     }
   }
 
+  &__scrollbar {
+    height: 32vh;
+    position: relative;
+  }
+
   &__activeBar {
     height: 4vh;
     width: 0.125rem;
@@ -107,7 +114,25 @@
   &__bar {
     @extend .overlay__activeBar;
     background-color: var(--color-white20);
-    height: 32vh;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+  }
+
+  &__hitboxes {
+    position: absolute;
+    height: 100%;
+    width: calc(3ch + 0.75rem);
+    top: 0;
+    right: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  &__hitbox {
+    height: calc(100% / 8);
+    width: 100%;
   }
 
   &__dribbble {
