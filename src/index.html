@@ -6,21 +6,6 @@
     <meta name="description" content="" />
   </head>
   <body>
-    <aside class="viewport">
-      <div class="viewport__container">
-        <span class="text-label text-white"
-          >Make your browser window wider</span
-        >
-        <h1 class="viewport__h1">too small</h1>
-        <img src="images/overlay/increase.svg" class="viewport__img" />
-        <p class="text-body1 text-white75">
-          C’mon, don’t be shy. Stretch that browser window wider.  But if you
-          really want to visit this site in this view size, then just use your
-          mobile device.
-        </p>
-        <hr class="break--gradient" />
-      </div>
-    </aside>
     <!-- Overlay -->
     <aside class="overlay">
       <div class="overlay__sides overlay__sides--left">
@@ -181,8 +166,8 @@
     </nav>
 
     <!-- Main Content -->
-    <main id="landing" class="fullpage__window" data-router-wrapper>
-      <div data-router-view="landing">
+    <main data-router-wrapper>
+      <div id="landing" class="fullpage__window" data-router-view="landing">
         <div class="shapes--landing"></div>
         <div class="fullpage">
           <!-- Hero -->
@@ -861,5 +846,25 @@
         </div>
       </div>
     </div>
+    <aside class="viewport">
+      <div class="viewport__container">
+        <span class="text-label text-white"
+          >Make your browser window wider</span
+        >
+        <h1 class="viewport__h1">too small</h1>
+        <img src="images/overlay/increase.svg" class="viewport__img" />
+        <p class="text-body1 text-white75">
+          C’mon, don’t be shy. Stretch that browser window wider.  But if you
+          really want to visit this site in this view size, then just use your
+          mobile device.
+        </p>
+        <hr class="break--gradient" />
+      </div>
+    </aside>
+    <aside class="transitions">
+      <div class="transition__primary"></div>
+      <div class="transition__secondary"></div>
+      <div class="transition__main"></div>
+    </aside>
   </body>
 </html>
