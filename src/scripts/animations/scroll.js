@@ -107,13 +107,10 @@ const reveal = () => {
   });
 };
 
-const loadAnimations = () => {
+const scrollAnimations = () => {
   shapes();
   parallax();
   reveal();
 };
 
-// Global Animations
-document.addEventListener('DOMContentLoaded', () => {
-  loadAnimations();
-});
+export default scrollAnimations;
