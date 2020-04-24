@@ -45,6 +45,9 @@
     &__image {
       width: 100%;
 
+      &--spenmo {
+        border-radius: 0.5rem;
+      }
       &--diab1 {
         width: calc(70% - 2rem);
         margin-right: 4rem;
