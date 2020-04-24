@@ -6,6 +6,7 @@ import {
 } from './renderers/index';
 import { Fade } from './transitions';
 
+// eslint-disable-next-line
 const road = new Highway.Core({
   transitions: {
     default: Fade,
