@@ -112,7 +112,7 @@ export default class MenuAnimation {
       case 'contact':
         this.close(this.contactTimeline);
         break;
-      case 'closed':
+      case 'false':
       default:
         this.open(this.menuTimeline, 'menu');
         break;
@@ -129,5 +129,12 @@ export default class MenuAnimation {
     });
 
     this.hamburgerNode.addEventListener('click', () => this.menuAnimation());
+  }
+
+  leave() {
+    const { active } = this.hamburgerNode.dataset;
+    if (typeof active !== 'undefined' && active !== 'false') {
+      this.menuAnimation();
+    }
   }
 }

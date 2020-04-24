@@ -104,7 +104,7 @@ export default class ScrollAnimations {
 
   load() {
     this.shapesScene = this.shapesNode && this.shapes();
-    this.parallaxScene = this.parentNode && this.parallax();
-    this.revealScene = this.revealNode && this.reveal();
+    this.parallaxScene = this.parallaxNodes && this.parallax();
+    this.revealScene = this.revealNodes && this.reveal();
   }
 }

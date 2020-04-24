@@ -1,10 +1,10 @@
-import Highway from '@dogstudio/highway';
-import { DaysAnimation } from '../../animations';
+import DefaultRenderer from './DefaultRenderer';
+import { ScrollAnimation } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
-export default class ScrollRenderer extends Highway.Renderer {
+export default class ScrollRenderer extends DefaultRenderer {
   onEnterCompleted() {
-    const days = new DaysAnimation();
-    days.load();
+    const scroll = new ScrollAnimation();
+    scroll.load();
   }
 }

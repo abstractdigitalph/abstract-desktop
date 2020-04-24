@@ -409,7 +409,7 @@ export default class LandingAnimation {
       node.addEventListener('click', () => this.hitboxClick(index));
       node.addEventListener('mouseenter', () => this.hitboxEnter(index));
     });
-    this.hitboxesNode.addEventListener('mouseleave', this.hitboxLeave);
+    this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
     // window.addEventListener('resize', debounce(fullpageResize, 200));
   }
 }
