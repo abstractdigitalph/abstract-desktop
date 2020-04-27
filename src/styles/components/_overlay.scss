@@ -101,6 +101,7 @@
   &__scrollbar {
     height: 32vh;
     position: relative;
+    display: none;
   }
 
   &__activeBar {

@@ -15,6 +15,8 @@ export default class MenuAnimation {
     this.dribbbleNode = document.querySelector('.overlay__dribbble');
     this.contactNode = document.querySelector('.contact');
     this.contactTriggerNode = document.querySelectorAll('.contact__trigger');
+    this.scrollbarNode = document.querySelector('.overlay__scrollbar');
+
     /* -- Create Timelines -- */
     // Timeline to animate hamburger. Turning it to or from an x
     this.hamburgerTimeline = gsap
@@ -119,6 +121,14 @@ export default class MenuAnimation {
         this.open(this.menuTimeline, 'menu');
         break;
     }
+  }
+
+  addScrollbar() {
+    gsap.set(this.scrollbarNode, { display: 'block' });
+  }
+
+  removeScrollbar() {
+    gsap.set(this.scrollbarNode, { display: 'none' });
   }
 
   load() {

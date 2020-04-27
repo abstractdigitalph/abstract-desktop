@@ -10,7 +10,7 @@ export default class LandingAnimation {
     // the query will only be done once.
     this.body = document.documentElement;
     this.shapesNode = document.querySelector('.shapes--landing');
-    this.scrollbarNode = document.querySelector('.overlay__active');
+    this.activeScrollbarNode = document.querySelector('.overlay__active');
     this.revealNodes = [...this.fullpageNode.children].map((element) => element.querySelectorAll('.reveal--landing'));
     this.pageNumberLeftNode = document.querySelector(
       '.overlay__pageNumber--left',
@@ -86,7 +86,7 @@ export default class LandingAnimation {
     gsap
       .timeline()
       .to(
-        this.scrollbarNode,
+        this.activeScrollbarNode,
         {
           y: vhToPx(4 * to),
           ease: this.defaultEase,
@@ -389,18 +389,29 @@ export default class LandingAnimation {
     }
   }
 
+  /**
+   * Changes the slide based on the hitbox being clicked
+   * @param {string} to - The slide number that was clicked
+   */
   hitboxClick(to) {
     if (this.currentSlide !== to) {
       this.changeSlide(this.currentSlide, (this.currentSlide = to));
     }
   }
 
+  /**
+   * Moves the active scrollbar to the hovered hitbox
+   * @param {string} to - The hitbox that is being hovered
+   */
   hitboxEnter(to) {
-    this.scrollbarAnimation(to);
+    this.scrollbarAnimation(to, true);
   }
 
+  /**
+   * Returns the hitbox to its normal position if the mouse leaves the area
+   */
   hitboxLeave() {
-    this.scrollbarAnimation(this.currentSlide);
+    this.scrollbarAnimation(this.currentSlide, true);
   }
 
   /**
