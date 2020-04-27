@@ -44,6 +44,7 @@ export default class MenuAnimation {
         paused: true,
         defaults: { duration: 0.5, ease: 'power2.in' },
       })
+      .set(this.navNode, { display: 'block' })
       .fromTo(
         this.navNode,
         { clipPath: 'circle(0 at 4rem 50%)' },
@@ -56,6 +57,7 @@ export default class MenuAnimation {
         paused: true,
         defaults: { ease: 'power2.out' },
       })
+      .set(this.contactNode, { display: 'flex' })
       .from(this.contactNode, { xPercent: -100, duration: 0.5, delay: 0.5 });
 
     // Anonymous function to call to prevent default
