@@ -5,7 +5,7 @@
     <title>Abstract Digital | Spenmo</title>
     <meta name="description" content="" />
   </head>
-  <body class="brand-spenmo">
+  <body>
     <aside class="viewport">
       <div class="viewport__container">
         <span class="text-label text-white"
@@ -113,10 +113,14 @@
       <div class="container mainNav__container">
         <div class="row">
           <div class="col-xs-offset-1 col-xs-5 mainNav__left">
-            <a href="/" class="mainNav__link--mainActive">Home</a>
+            <a href="/" class="mainNav__link--main">Home</a>
             <a href="/our-work.html" class="mainNav__link--main">Work</a>
             <a href="/our-process.html" class="mainNav__link--main">Process</a>
-            <a href="/about-us.html" class="mainNav__link--mainLast">About</a>
+            <a
+              href="/about-us.html"
+              class="mainNav__link--main mainNav__link--last"
+              >About</a
+            >
             <button
               class="button button--nav contact__trigger"
               data-from-menu="true"
@@ -182,7 +186,7 @@
 
     <main data-router-wrapper>
       <!-- Hero -->
-      <div id="projects" data-router-view="scroll">
+      <div id="projects" class="brand-spenmo" data-router-view="scroll">
         <section id="projectsLanding">
           <h1 class="projects__h1">
             Spenmo

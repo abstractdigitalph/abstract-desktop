@@ -415,12 +415,24 @@ export default class LandingAnimation {
   }
 
   /**
+   * Resets the scrollbar when going into the landing page
+   */
+  resetScrollbar() {
+    gsap.set(this.pageNumberLeftNode, { y: 0 });
+    gsap.set(this.pageNumberMiddleNode, { y: 0 });
+    gsap.set(this.pageNumberRightNode, { y: 0 });
+    gsap.set(this.activeScrollbarNode, { y: 0 });
+  }
+
+  /**
    * Starts all the event listeners and sets necessary gsap styles
    */
   load() {
     gsap.set(this.shapesNode, {
       bottom: this.layer[5] * (this.fullpageNode.children.length - 1),
     });
+
+    this.resetScrollbar();
     this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
     document.addEventListener('keydown', (event) => this.fullpageScroll('keydown', event));
     this.hitboxNodes.forEach((node, index) => {

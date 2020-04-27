@@ -3,9 +3,9 @@ import { ScrollScene } from 'scrollscene';
 
 export default class ScrollAnimations {
   constructor() {
-    this.shapesNode = document.querySelector('.shapes');
-    this.parallaxNodes = document.querySelectorAll('.parallax');
-    this.revealNodes = document.querySelectorAll('.reveal');
+    this.shapesNode = null;
+    this.parallaxNodes = null;
+    this.revealNodes = null;
     this.shapesScene = null;
     this.parallaxScene = null;
     this.revealScene = null;
@@ -34,6 +34,7 @@ export default class ScrollAnimations {
       triggerElement: triggerNode,
       gsap: { timeline: parallaxTimeline },
       duration: triggerNode.scrollHeight,
+      useGlobalController: false,
     });
     return shapesScene;
   }
@@ -78,6 +79,7 @@ export default class ScrollAnimations {
         gsap: { timeline: parallaxTimeline },
         triggerHook,
         duration: '100%',
+        useGlobalController: false,
       });
       return scrollScene;
     });
@@ -97,14 +99,30 @@ export default class ScrollAnimations {
         scene: {
           reverse: false,
         },
+        useGlobalController: false,
       });
       return revealScene;
     });
   }
 
   load() {
+    this.shapesNode = document.querySelectorAll('.shapes');
+    this.parallaxNodes = document.querySelectorAll('.parallax');
+    this.revealNodes = document.querySelectorAll('.reveal');
     this.shapesScene = this.shapesNode && this.shapes();
     this.parallaxScene = this.parallaxNodes && this.parallax();
     this.revealScene = this.revealNodes && this.reveal();
+  }
+
+  leave() {
+    if (this.shapesScene) {
+      this.shapesScene.Controller.destroy(true);
+    }
+    if (this.parallaxScene) {
+      this.parallaxScene.Controller.destroy(true);
+    }
+    if (this.revealScene) {
+      this.revealScene.Controller.destroy(true);
+    }
   }
 }

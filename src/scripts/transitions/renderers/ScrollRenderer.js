@@ -1,10 +1,14 @@
 import DefaultRenderer from './DefaultRenderer';
-import { ScrollAnimation } from '../../animations';
+import { scroll } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class ScrollRenderer extends DefaultRenderer {
   onEnterCompleted() {
-    const scroll = new ScrollAnimation();
     scroll.load();
+  }
+
+  onLeave() {
+    super.onLeave();
+    scroll.leave();
   }
 }
