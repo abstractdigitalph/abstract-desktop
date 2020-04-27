@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-// import debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 import { vhToPx } from './helpers';
 
 export default class LandingAnimation {
@@ -344,6 +344,13 @@ export default class LandingAnimation {
   }
   /* eslint-enable class-methods-use-this */
 
+  fullpageResize() {
+    if (this.height !== this.body.clientHeight) {
+      this.height = this.body.clientHeight;
+      this.changeSlide(this.currentSlide, this.currentSlide);
+    }
+  }
+
   /**
    * Called whenever an event that indicates a scroll is fired
    * @param {string} type - The type of the event that called the function
@@ -410,6 +417,9 @@ export default class LandingAnimation {
       node.addEventListener('mouseenter', () => this.hitboxEnter(index));
     });
     this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
-    // window.addEventListener('resize', debounce(fullpageResize, 200));
+    window.addEventListener(
+      'resize',
+      debounce(() => this.fullpageResize(), 200),
+    );
   }
 }
