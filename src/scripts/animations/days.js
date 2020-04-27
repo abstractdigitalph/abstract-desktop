@@ -1,9 +1,10 @@
 import { gsap } from 'gsap';
+import debounce from 'lodash/debounce';
 
 export default class DaysAnimation {
   constructor() {
     this.indicatorNode = document.querySelector('.days__indicator');
-    this.stepNode = document.querySelectorAll('.days__step');
+    this.stepNodes = document.querySelectorAll('.days__step');
     this.sliderNode = document.querySelector('.days__slider');
     this.daysNode = document.querySelector('.days__holder');
 
@@ -14,6 +15,7 @@ export default class DaysAnimation {
       sides: element.querySelectorAll('.day__sides'),
       reveal: element.querySelectorAll('.reveal--day'),
     }));
+    this.width = this.stepNodes[0].clientWidth;
   }
 
   moveIndicator(movementFactor, location) {
@@ -58,7 +60,7 @@ export default class DaysAnimation {
   }
 
   moveSlide(nextStep) {
-    const stepWidth = this.stepNode[0].clientWidth;
+    const stepWidth = this.stepNodes[0].clientWidth;
     const movementFactor = (this.sliderNode.clientWidth - stepWidth * 4) / 3 + stepWidth;
 
     if (nextStep !== this.currentStep) {
@@ -69,13 +71,19 @@ export default class DaysAnimation {
     }
   }
 
+  handleResize() {
+    console.log('here');
+    if (this.width !== this.stepNodes[0].clientWidth) {
+      this.width = this.stepNodes[0].clientWidth;
+      gsap.set(this.indicatorNode, { width: this.stepNodes[0].clientWidth });
+    }
+  }
+
   load() {
     // Reset current step on load
     this.currentStep = 0;
-    this.stepNode.forEach((element) => {
-      element.addEventListener('click', () => this.moveSlide(element.dataset.step));
-    });
 
+    // Set initial styles
     for (let i = 1; i < this.day.length; i += 1) {
       gsap.set(this.day[i].element, {
         visibility: 'hidden',
@@ -85,5 +93,15 @@ export default class DaysAnimation {
       gsap.set(this.day[i].reveal, { opacity: 0 });
     }
     gsap.set(this.day[0].element, { visibility: 'visible', zIndex: 2 });
+    gsap.set(this.indicatorNode, { width: this.stepNodes[0].clientWidth });
+
+    // Add event listeners
+    window.addEventListener(
+      'resize',
+      debounce(() => this.handleResize(), 200),
+    );
+    this.stepNodes.forEach((element) => {
+      element.addEventListener('click', () => this.moveSlide(element.dataset.step));
+    });
   }
 }
