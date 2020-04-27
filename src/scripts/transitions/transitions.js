@@ -1,35 +1,19 @@
 import Highway from '@dogstudio/highway';
-import { gsap } from 'gsap';
+import { transition } from '../animations/index';
 
-/* eslint-disable  */
-export class Fade extends Highway.Transition {
+/* eslint-disable */
+export class SwipeUp extends Highway.Transition {
   in({ from, to, done }) {
     // Reset Scroll
+    transition.animateTopClose(done);
+    from.remove();
     window.scrollTo(0, 0);
 
     // Remove Old View
-    from.remove();
-
-    // Animation
-    gsap.fromTo(
-      to,
-      { opacity: 0, duration: 0.5 },
-      {
-        opacity: 1,
-        onComplete: done
-      }
-    );
   }
 
   out({ from, done }) {
-    // Animation
-    gsap.fromTo(
-      from,
-      { opacity: 1, duration: 0.5 },
-      {
-        opacity: 0,
-        onComplete: done
-      }
-    );
+    // Animate
+    transition.animateTopOpen(done);
   }
 }

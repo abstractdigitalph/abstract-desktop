@@ -3,8 +3,8 @@ import { DaysAnimation } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class ProcessRenderer extends ScrollRenderer {
-  onEnterCompleted() {
-    super.onEnterCompleted();
+  onEnter() {
+    super.onEnter();
     const days = new DaysAnimation();
     days.load();
   }
