@@ -32,6 +32,7 @@ export default class ScrollAnimations {
 
     const shapesScene = new ScrollScene({
       triggerElement: triggerNode,
+      triggerHook: 1,
       gsap: { timeline: parallaxTimeline },
       duration: triggerNode.scrollHeight,
       useGlobalController: false,
@@ -106,12 +107,15 @@ export default class ScrollAnimations {
   }
 
   load() {
-    this.shapesNode = document.querySelectorAll('.shapes');
     this.parallaxNodes = document.querySelectorAll('.parallax');
     this.revealNodes = document.querySelectorAll('.reveal');
-    this.shapesScene = this.shapesNode && this.shapes();
-    this.parallaxScene = this.parallaxNodes && this.parallax();
-    this.revealScene = this.revealNodes && this.reveal();
+    this.parallaxScene = this.parallaxNodes.length > 0 && this.parallax();
+    this.revealScene = this.revealNodes.length > 0 && this.reveal();
+  }
+
+  loadShapes() {
+    this.shapesNode = document.querySelectorAll('.shapes');
+    this.shapesScene = this.shapesNode.length > 0 && this.shapes();
   }
 
   leave() {

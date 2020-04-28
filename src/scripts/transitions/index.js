@@ -4,11 +4,11 @@ import {
   ScrollRenderer,
   LandingRenderer,
 } from './renderers/index';
-import { SwipeUp } from './transitions';
+import Fade from './transitions';
 
 const road = new Highway.Core({
   transitions: {
-    default: SwipeUp,
+    default: Fade,
   },
   renderers: {
     process: ProcessRenderer,

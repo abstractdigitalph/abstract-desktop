@@ -5,6 +5,7 @@ import { scroll } from '../../animations';
 export default class ScrollRenderer extends DefaultRenderer {
   onEnter() {
     scroll.load();
+    scroll.loadShapes();
   }
 
   onLeave() {
