@@ -23,10 +23,8 @@ export default class ScrollAnimations {
     // page is reached, the parallax element will still reach, even after the transform.
     // The scrollHeight is used so that the speed of the element will be consistent between
     // the different pages
-    const length = triggerNode.scrollHeight / -1.5;
-    gsap.set(this.shapesNode, { bottom: length });
     parallaxTimeline.to(this.shapesNode, {
-      y: length,
+      yPercent: -50,
       ease: 'linear',
     });
 
@@ -34,7 +32,7 @@ export default class ScrollAnimations {
       triggerElement: triggerNode,
       triggerHook: 1,
       gsap: { timeline: parallaxTimeline },
-      duration: triggerNode.scrollHeight,
+      duration: triggerNode.scrollHeight * 2,
       useGlobalController: false,
     });
     return shapesScene;

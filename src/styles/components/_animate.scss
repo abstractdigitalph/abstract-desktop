@@ -1,18 +1,32 @@
 .shapes {
-  z-index: 90;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+  width: 100%;
+  height: 200%;
 
   background-image: url("../images/parallax-background.svg");
   background-size: 100%;
   pointer-events: none;
 
   &--landing {
-    @extend .shapes;
+    z-index: 90;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
+
+    background-image: url("../images/parallax-background.svg");
+    background-size: 100%;
+    pointer-events: none;
+  }
+
+  &__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+    pointer-events: none;
+
+    overflow: hidden;
   }
 
   &__trigger {
