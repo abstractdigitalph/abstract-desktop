@@ -9,7 +9,7 @@ export default class Fade extends Highway.Transition {
     gsap.fromTo(
       to,
       { opacity: 0 },
-      { opacity: 1, ease: "power0.in", duration: 1, onComplete: done }
+      { opacity: 1, ease: "power1.out", duration: 0.75, onComplete: done }
     );
   }
 
@@ -17,7 +17,7 @@ export default class Fade extends Highway.Transition {
     gsap.fromTo(
       from,
       { opacity: 1 },
-      { opacity: 0, ease: "power0.in", duration: 1, onComplete: done }
+      { opacity: 0, ease: "power1.out", duration: 0.75, onComplete: done }
     );
   }
 }
