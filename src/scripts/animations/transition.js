@@ -19,7 +19,7 @@ export default class TransitionAnimation {
     gsap
       .timeline({
         defaults: {
-          ease: 'power3.in',
+          ease: 'power2.in',
           duration: 0.75,
         },
         onComplete: highwayCallback,
@@ -30,10 +30,9 @@ export default class TransitionAnimation {
         this.transitionSecondary,
         { yPercent: 100 },
         { yPercent: 0 },
-        '<0.25',
+        '<0.05',
       )
-      .fromTo(this.transitionMain, { yPercent: 100 }, { yPercent: 0 }, '<0.25')
-      .set({}, {}, 1);
+      .fromTo(this.transitionMain, { yPercent: 100 }, { yPercent: 0 }, '<0.05');
   }
 
   animateTopClose(highwayCallback) {
@@ -41,7 +40,7 @@ export default class TransitionAnimation {
     gsap
       .timeline({
         defaults: {
-          ease: 'power3.in',
+          ease: 'power2.in',
           duration: 0.75,
         },
         onComplete: highwayCallback,
@@ -51,13 +50,13 @@ export default class TransitionAnimation {
         this.transitionSecondary,
         { yPercent: 0 },
         { yPercent: -100 },
-        '<0.25',
+        '<0.05',
       )
       .fromTo(
         this.transitionPrimary,
         { yPercent: 0 },
         { yPercent: -100 },
-        '<0.25',
+        '<0.05',
       )
       .set(this.transitionNode, {
         display: 'none',
