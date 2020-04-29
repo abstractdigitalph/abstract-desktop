@@ -124,11 +124,25 @@ export default class MenuAnimation {
   }
 
   addScrollbar() {
-    gsap.set(this.scrollbarNode, { display: 'block' });
+    gsap
+      .timeline()
+      .set(this.scrollbarNode, { display: 'block' })
+      .fromTo(
+        this.scrollbarNode,
+        { opacity: 0 },
+        { opacity: 1, ease: 'linear', duration: 0.65 },
+      );
   }
 
   removeScrollbar() {
-    gsap.set(this.scrollbarNode, { display: 'none' });
+    gsap
+      .timeline()
+      .fromTo(
+        this.scrollbarNode,
+        { opacity: 1 },
+        { opacity: 0, ease: 'linear', duration: 0.65 },
+      )
+      .set(this.scrollbarNode, { display: 'none' });
   }
 
   load() {
