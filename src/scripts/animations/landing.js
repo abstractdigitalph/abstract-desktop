@@ -53,16 +53,12 @@ export default class LandingAnimation {
     this.layer = [50, -100, -250, -400, -650, -1750]; // Stores the amount of travel per layer
 
     // Swipe Detection
-    this.swipedir = null;
     this.startX = null;
     this.startY = null;
-    this.distX = null;
-    this.distY = null;
-    this.threshold = 150; // required min distance traveled to be considered swipe
-    this.restraint = 100; // maximum distance allowed at the same time in perpendicular direction
-    this.allowedTime = 300; // maximum time allowed to travel that distance
-    this.elapsedTime = null;
     this.startTime = null;
+    this.minDist = 150;
+    this.maxPerpendicular = 100;
+    this.allowedTime = 300;
   }
 
   /**
@@ -348,9 +344,12 @@ export default class LandingAnimation {
             return 'null';
         }
 
+      case 'touch':
+        return event;
+
       default:
         throw new Error(
-          `Expected one of event types: wheel, keydown. Got ${event} instead.`,
+          `Expected one of event types: wheel, keydown. Got ${type} instead.`,
         );
     }
   }
@@ -439,12 +438,36 @@ export default class LandingAnimation {
     }
   }
 
+  /**
+   * Stores the initial touch event
+   * @param {Object} event - The event object that was returned from the listener
+   */
   handleTouchStart(event) {
-    console.log(event.changedTouches[0]);
+    const { pageX: startX, pageY: startY } = event.changedTouches[0];
+    this.startX = startX;
+    this.startY = startY;
+    this.startTime = new Date().getTime();
+    event.preventDefault();
+  }
 
-    this.swipedir = 'none';
-    this.dist = 0;
-    this.startTime = new Date().getTime(); // record time when finger first makes contact with surface
+  /**
+   * Handles ending the touch event and calculates if the direction is up or down
+   * @param {Object} event - The event object that was returned from the listener
+   */
+  handleTouchEnd(event) {
+    const { pageX: endX, pageY: endY } = event.changedTouches[0];
+    const distX = endX - this.startX;
+    const distY = endY - this.startY;
+    const absDistX = Math.abs(distX);
+    const absDistY = Math.abs(distY);
+    const elapsedTime = new Date().getTime() - this.startTime;
+    if (
+      elapsedTime <= this.allowedTime
+      && absDistY >= this.minDist
+      && absDistX <= this.maxPerpendicular
+    ) {
+      this.fullpageScroll('touch', distY > 0 ? 'up' : 'down');
+    }
     event.preventDefault();
   }
 
@@ -460,8 +483,9 @@ export default class LandingAnimation {
     this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
     document.addEventListener('keydown', (event) => this.fullpageScroll('keydown', event));
 
-    this.fullpageNode.addEventListener('touchstart', (event) => handleTouchStart(event));
-    this.fullpageNode.addEventListener('touchend', (event) => console.log(event));
+    this.fullpageNode.addEventListener('touchstart', (event) => this.handleTouchStart(event));
+    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
+    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
 
     this.hitboxNodes.forEach((node, index) => {
       node.addEventListener('click', () => this.hitboxClick(index));

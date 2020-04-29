@@ -22,7 +22,6 @@
   }
 }
 @mixin breakpoint-down($class) {
-  /* stylelint-disable block-closing-brace-newline-after */
   @if $class == sm {
     @media only screen and (max-width: 575px) {
       @content;
