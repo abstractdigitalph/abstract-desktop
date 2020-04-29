@@ -1,65 +1,66 @@
 import { gsap } from 'gsap';
-// import debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 import { vhToPx } from './helpers';
 
-const fullpageNode = document.querySelector('.fullpage');
+export default class LandingAnimation {
+  constructor() {
+    this.fullpageNode = document.querySelector('.fullpage');
 
-// Run All necessary functions if fullpage element is present
-if (fullpageNode) {
-  // Query all of the nodes that will be animated. This is done at the start so that
-  // the query will only be done once.
-  const body = document.documentElement;
-  const shapesNode = document.querySelector('.shapes--landing');
-  const scrollbarNode = document.querySelector('.overlay__active');
-  const revealNodes = [...fullpageNode.children].map((element) => element.querySelectorAll('.reveal--landing'));
-  const pageNumberLeftNode = document.querySelector(
-    '.overlay__pageNumber--left',
-  );
-  const pageNumberMiddleNode = document.querySelector(
-    '.overlay__pageNumber--middle',
-  );
-  const pageNumberRightNode = document.querySelector(
-    '.overlay__pageNumber--right',
-  );
-  const hitboxesNode = document.querySelector('.overlay__hitboxes');
-  const hitboxNodes = document.querySelectorAll('.overlay__hitbox');
+    // Query all of the nodes that will be animated. This is done at the start so that
+    // the query will only be done once.
+    this.body = document.documentElement;
+    this.shapesNode = document.querySelector('.shapes--landing');
+    this.activeScrollbarNode = document.querySelector('.overlay__active');
+    this.revealNodes = [...this.fullpageNode.children].map((element) => element.querySelectorAll('.reveal--landing'));
+    this.pageNumberLeftNode = document.querySelector(
+      '.overlay__pageNumber--left',
+    );
+    this.pageNumberMiddleNode = document.querySelector(
+      '.overlay__pageNumber--middle',
+    );
+    this.pageNumberRightNode = document.querySelector(
+      '.overlay__pageNumber--right',
+    );
+    this.hitboxesNode = document.querySelector('.overlay__hitboxes');
+    this.hitboxNodes = document.querySelectorAll('.overlay__hitbox');
 
-  // Store the layering of the different projects
-  const spenmoDirection = [
-    'spenmo5',
-    'spenmo1',
-    'spenmo2',
-    'spenmo4',
-    'spenmo3',
-  ];
-  const tightropeDirection = [
-    'tightrope5',
-    'tightrope1',
-    'tightrope2',
-    'tightrope4',
-    'tightrope3',
-  ];
-  const diabDirection = ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'];
+    // Store the layering of the different projects
+    this.spenmoDirection = [
+      'spenmo5',
+      'spenmo1',
+      'spenmo2',
+      'spenmo4',
+      'spenmo3',
+    ];
+    this.tightropeDirection = [
+      'tightrope5',
+      'tightrope1',
+      'tightrope2',
+      'tightrope4',
+      'tightrope3',
+    ];
+    this.diabDirection = ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'];
 
-  // Set global default ease and default duration for the parallax effects
-  const defaultEase = 'power2.inOut';
-  const defaultDuration = 1.5;
+    // Set global default ease and default duration for the parallax effects
+    this.defaultEase = 'power2.inOut';
+    this.defaultDuration = 1.5;
 
-  // Other necessary variables
-  const height = body.clientHeight;
-  let currentSlide = 0;
-  let timeline = null;
-  let currentScrollbar = 0;
-  const layer = [50, -100, -250, -400, -650, -1750]; // Stores the amount of travel per layer
+    // Other necessary variables
+    this.height = this.body.clientHeight;
+    this.currentSlide = 0;
+    this.timeline = null;
+    this.currentScrollbar = 0;
+    this.layer = [50, -100, -250, -400, -650, -1750]; // Stores the amount of travel per layer
+  }
 
   /**
    * Animates each text element that will be revealed as it's containing slide is
    * animated into
    * @param {number} to - The index of the slide that is being animated to
    */
-  const revealAnimation = (to) => {
-    if (revealNodes[to].length !== 0) {
-      gsap.from(revealNodes[to], {
+  revealAnimation(to) {
+    if (this.revealNodes[to].length !== 0) {
+      gsap.from(this.revealNodes[to], {
         y: 200,
         duration: 0.75,
         delay: 1,
@@ -67,36 +68,38 @@ if (fullpageNode) {
         ease: 'power2.out',
       });
     }
-  };
+  }
 
   /**
    * Animates the scrollbar and the numbers that indicate the current slide
    * @param {number} to - The index of the slide that is being animated to
+   * @param {boolean} isHover - Modifies the duration if the time the animation is being
+   *                            called as a hover effect
    */
-  const scrollbarAnimation = (to, isHover) => {
-    if (currentScrollbar === to) {
+  scrollbarAnimation(to, isHover) {
+    if (this.currentScrollbar === to) {
       return;
     }
 
-    const duration = isHover ? 0.75 : defaultDuration;
+    const duration = isHover ? 0.75 : this.defaultDuration;
 
     gsap
       .timeline()
       .to(
-        scrollbarNode,
+        this.activeScrollbarNode,
         {
           y: vhToPx(4 * to),
-          ease: defaultEase,
+          ease: this.defaultEase,
           duration,
         },
         '<',
       )
       // Animates the last numbers of the sidebar
       .to(
-        pageNumberRightNode,
+        this.pageNumberRightNode,
         {
           y: -17 * to,
-          ease: defaultEase,
+          ease: this.defaultEase,
           duration,
         },
         '<',
@@ -104,23 +107,23 @@ if (fullpageNode) {
 
     // Moves the first and second characters so that FIN will be shown as the slide
     // number
-    if (currentScrollbar === 7) {
+    if (this.currentScrollbar === 7) {
       gsap
         .timeline()
         .to(
-          pageNumberLeftNode,
+          this.pageNumberLeftNode,
           {
             y: 0,
-            ease: defaultEase,
+            ease: this.defaultEase,
             duration,
           },
           '<',
         )
         .to(
-          pageNumberMiddleNode,
+          this.pageNumberMiddleNode,
           {
             y: 0,
-            ease: defaultEase,
+            ease: this.defaultEase,
             duration,
           },
           '<',
@@ -129,39 +132,39 @@ if (fullpageNode) {
       gsap
         .timeline()
         .to(
-          pageNumberLeftNode,
+          this.pageNumberLeftNode,
           {
             y: -17,
-            ease: defaultEase,
+            ease: this.defaultEase,
             duration,
           },
           '<',
         )
         .to(
-          pageNumberMiddleNode,
+          this.pageNumberMiddleNode,
           {
             y: -17,
-            ease: defaultEase,
+            ease: this.defaultEase,
             duration,
           },
           '<',
         );
     }
 
-    currentScrollbar = to;
-  };
+    this.currentScrollbar = to;
+  }
 
   /**
    * Animates the shapes at the edge of the browser to move in a parallax effect
    * @param {number} to - The index of the slide that is being animated to
    */
-  const shapeAnimation = (to) => {
-    gsap.to(shapesNode, {
-      y: layer[5] * to,
-      ease: defaultEase,
-      duration: defaultDuration,
+  shapeAnimation(to) {
+    gsap.to(this.shapesNode, {
+      y: this.layer[5] * to,
+      ease: this.defaultEase,
+      duration: this.defaultDuration,
     });
-  };
+  }
 
   /**
    * Animates the individual images found in the projects part
@@ -170,7 +173,7 @@ if (fullpageNode) {
    * @param {number} to - The index of the slide that is being animated to
    * @param {boolean} isGoingDown - Indicates the direction of the current animation
    */
-  const imageAnimation = (nameArray, to, isGoingDown) => {
+  imageAnimation(nameArray, to, isGoingDown) {
     // Animation type is changed depending if the current animation
     // is going in to the slide or out of the slide
     if (to) {
@@ -180,20 +183,20 @@ if (fullpageNode) {
             y: 0,
           });
           gsap.from(`.projects__image--${name}`, {
-            y: -layer[index],
-            ease: defaultEase,
-            duration: defaultDuration,
+            y: -this.layer[index],
+            ease: this.defaultEase,
+            duration: this.defaultDuration,
           });
         });
       } else {
         nameArray.forEach((name, index) => {
           gsap.set(`.projects__image--${name}`, {
-            y: layer[index],
+            y: this.layer[index],
           });
           gsap.to(`.projects__image--${name}`, {
             y: 0,
-            ease: defaultEase,
-            duration: defaultDuration,
+            ease: this.defaultEase,
+            duration: this.defaultDuration,
           });
         });
       }
@@ -203,9 +206,9 @@ if (fullpageNode) {
           y: 0,
         });
         gsap.to(`.projects__image--${name}`, {
-          y: layer[index],
-          ease: defaultEase,
-          duration: defaultDuration,
+          y: this.layer[index],
+          ease: this.defaultEase,
+          duration: this.defaultDuration,
         });
       });
     } else {
@@ -214,38 +217,38 @@ if (fullpageNode) {
           y: 0,
         });
         gsap.to(`.projects__image--${name}`, {
-          y: -layer[index],
-          ease: defaultEase,
-          duration: defaultDuration,
+          y: -this.layer[index],
+          ease: this.defaultEase,
+          duration: this.defaultDuration,
         });
       });
     }
-  };
+  }
 
   /**
    * Calls the correct animations when leaving or entering specific slides
    * @param {number} from - The index of the slide that is being animated from
    * @param {number} to - The index of the slide that is being animated to
    */
-  const parallaxAnimation = (from, to) => {
+  parallaxAnimation(from, to) {
     const down = from - to < 0;
 
     switch (from) {
       case 0:
         gsap.to('.hero__holder', {
-          y: layer[2],
-          ease: defaultEase,
-          duration: defaultDuration,
+          y: this.layer[2],
+          ease: this.defaultEase,
+          duration: this.defaultDuration,
         });
         break;
       case 2:
-        imageAnimation(spenmoDirection, false, down);
+        this.imageAnimation(this.spenmoDirection, false, down);
         break;
       case 3:
-        imageAnimation(tightropeDirection, false, down);
+        this.imageAnimation(this.tightropeDirection, false, down);
         break;
       case 4:
-        imageAnimation(diabDirection, false, down);
+        this.imageAnimation(this.diabDirection, false, down);
         break;
       default:
         break;
@@ -255,54 +258,55 @@ if (fullpageNode) {
       case 0:
         gsap.to('.hero__holder', {
           y: 0,
-          ease: defaultEase,
-          duration: defaultDuration,
+          ease: this.defaultEase,
+          duration: this.defaultDuration,
         });
         break;
       case 2:
-        imageAnimation(spenmoDirection, true, down);
+        this.imageAnimation(this.spenmoDirection, true, down);
         break;
       case 3:
-        imageAnimation(tightropeDirection, true, down);
+        this.imageAnimation(this.tightropeDirection, true, down);
         break;
       case 4:
-        imageAnimation(diabDirection, true, down);
+        this.imageAnimation(this.diabDirection, true, down);
         break;
 
       default:
         break;
     }
-  };
+  }
 
   /**
    * Runs the whole animation when moving from one slide to another
    * @param {number} from - The index of the slide that is being animated from
    * @param {number} to - The index of the slide that is being animated to
    */
-  const changeSlide = (from, to) => {
-    if (timeline && timeline.isActive()) {
+  changeSlide(from, to) {
+    if (this.timeline && this.timeline.isActive()) {
       return;
     }
 
-    const slideTimeline = gsap.timeline().to(fullpageNode, {
-      y: -height * to,
-      ease: defaultEase,
-      duration: defaultDuration,
+    const slideTimeline = gsap.timeline().to(this.fullpageNode, {
+      y: -this.height * to,
+      ease: this.defaultEase,
+      duration: this.defaultDuration,
     });
-    parallaxAnimation(from, to);
-    scrollbarAnimation(to);
-    shapeAnimation(to);
-    revealAnimation(to);
-    timeline = slideTimeline;
-  };
+    this.parallaxAnimation(from, to);
+    this.scrollbarAnimation(to);
+    this.shapeAnimation(to);
+    this.revealAnimation(to);
+    this.timeline = slideTimeline;
+  }
 
+  /* eslint-disable class-methods-use-this */
   /**
    * Returns the direction based on the events given
    * @param {number} from - The index of the slide that is being animated from
    * @param {number} to - The index of the slide that is being animated to
    * @returns {string} - One of 'up', 'down', 'home', 'end'
    */
-  const getDirection = (type, event) => {
+  getDirection(type, event) {
     switch (type) {
       case 'wheel':
         if (event.deltaY > 0) {
@@ -337,74 +341,108 @@ if (fullpageNode) {
           `Expected one of event types: wheel, keydown. Got ${event} instead.`,
         );
     }
-  };
+  }
+  /* eslint-enable class-methods-use-this */
+
+  fullpageResize() {
+    if (this.height !== this.body.clientHeight) {
+      this.height = this.body.clientHeight;
+      this.changeSlide(this.currentSlide, this.currentSlide);
+    }
+  }
 
   /**
    * Called whenever an event that indicates a scroll is fired
    * @param {string} type - The type of the event that called the function
    * @param {Object} event - The event object that was returned from the listener
    */
-  const fullpageScroll = (type, event) => {
+  fullpageScroll(type, event) {
     // Built-in throttle function that does not run when an critical animation is still running
-    if (timeline && timeline.isActive()) {
+    if (this.timeline && this.timeline.isActive()) {
       return;
     }
 
-    switch (getDirection(type, event)) {
+    switch (this.getDirection(type, event)) {
       case 'down':
         // Does not allow moving down if the next slide does not exist
-        if (currentSlide < fullpageNode.children.length - 1) {
-          changeSlide(currentSlide, (currentSlide += 1));
+        if (this.currentSlide < this.fullpageNode.children.length - 1) {
+          this.changeSlide(this.currentSlide, (this.currentSlide += 1));
         }
         break;
       case 'up':
         // Does not allow moving up if the current slide is at 0
-        if (currentSlide > 0) {
-          changeSlide(currentSlide, (currentSlide -= 1));
+        if (this.currentSlide > 0) {
+          this.changeSlide(this.currentSlide, (this.currentSlide -= 1));
         }
         break;
       case 'home':
-        changeSlide(currentSlide, (currentSlide = 0));
+        this.changeSlide(this.currentSlide, (this.currentSlide = 0));
         break;
       case 'end':
-        changeSlide(
-          currentSlide,
-          (currentSlide = fullpageNode.children.length - 1),
+        this.changeSlide(
+          this.currentSlide,
+          (this.currentSlide = this.fullpageNode.children.length - 1),
         );
         break;
       default:
         throw new Error('Expected one of directions: up, down, home, end.');
     }
-  };
+  }
 
-  const hitboxClick = (to) => {
-    if (currentSlide !== to) {
-      changeSlide(currentSlide, (currentSlide = to));
+  /**
+   * Changes the slide based on the hitbox being clicked
+   * @param {string} to - The slide number that was clicked
+   */
+  hitboxClick(to) {
+    if (this.currentSlide !== to) {
+      this.changeSlide(this.currentSlide, (this.currentSlide = to));
     }
-  };
-  const hitboxEnter = (to) => {
-    scrollbarAnimation(to);
-  };
-  const hitboxLeave = () => {
-    scrollbarAnimation(currentSlide);
-  };
+  }
+
+  /**
+   * Moves the active scrollbar to the hovered hitbox
+   * @param {string} to - The hitbox that is being hovered
+   */
+  hitboxEnter(to) {
+    this.scrollbarAnimation(to, true);
+  }
+
+  /**
+   * Returns the hitbox to its normal position if the mouse leaves the area
+   */
+  hitboxLeave() {
+    this.scrollbarAnimation(this.currentSlide, true);
+  }
+
+  /**
+   * Resets the scrollbar when going into the landing page
+   */
+  resetScrollbar() {
+    gsap.set(this.pageNumberLeftNode, { y: 0 });
+    gsap.set(this.pageNumberMiddleNode, { y: 0 });
+    gsap.set(this.pageNumberRightNode, { y: 0 });
+    gsap.set(this.activeScrollbarNode, { y: 0 });
+  }
 
   /**
    * Starts all the event listeners and sets necessary gsap styles
    */
-  const startLandingAnimation = () => {
-    gsap.set(shapesNode, {
-      bottom: layer[5] * (fullpageNode.children.length - 1),
+  load() {
+    gsap.set(this.shapesNode, {
+      bottom: this.layer[5] * (this.fullpageNode.children.length - 1),
     });
-    fullpageNode.addEventListener('wheel', (event) => fullpageScroll('wheel', event));
-    document.addEventListener('keydown', (event) => fullpageScroll('keydown', event));
-    hitboxNodes.forEach((node, index) => {
-      node.addEventListener('click', () => hitboxClick(index));
-      node.addEventListener('mouseenter', () => hitboxEnter(index));
-    });
-    hitboxesNode.addEventListener('mouseleave', hitboxLeave);
-    // window.addEventListener('resize', debounce(fullpageResize, 200));
-  };
 
-  document.addEventListener('DOMContentLoaded', startLandingAnimation);
+    this.resetScrollbar();
+    this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
+    document.addEventListener('keydown', (event) => this.fullpageScroll('keydown', event));
+    this.hitboxNodes.forEach((node, index) => {
+      node.addEventListener('click', () => this.hitboxClick(index));
+      node.addEventListener('mouseenter', () => this.hitboxEnter(index));
+    });
+    this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
+    window.addEventListener(
+      'resize',
+      debounce(() => this.fullpageResize(), 200),
+    );
+  }
 }

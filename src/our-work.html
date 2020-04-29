@@ -62,6 +62,41 @@
         <button class="overlay__hire contact__trigger">
           <span class="overlay__hireText">Hire Us</span>
         </button>
+        <div class="overlay__scrollbar">
+          <div class="overlay__active">
+            <div class="overlay__pageNumber">
+              <div class="overlay__pageNumber--left">
+                <span><br />F</span>
+              </div>
+              <div class="overlay__pageNumber--middle">
+                <span>0</span>
+                <span>I</span>
+              </div>
+              <div class="overlay__pageNumber--right">
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>N</span>
+              </div>
+            </div>
+            <div class="overlay__activeBar"></div>
+          </div>
+          <div class="overlay__bar"></div>
+          <div class="overlay__hitboxes">
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+          </div>
+        </div>
         <div class="overlay__scroll">
           <div class="overlay__textHolder">
             <span class="overlay__text">Scroll Down</span>
@@ -78,10 +113,18 @@
       <div class="container mainNav__container">
         <div class="row">
           <div class="col-xs-offset-1 col-xs-5 mainNav__left">
-            <a href="/" class="mainNav__link--mainActive">Home</a>
-            <a href="/our-work.html" class="mainNav__link--main">Work</a>
+            <a href="/" class="mainNav__link--main">Home</a>
+            <a
+              href="/our-work.html"
+              class="mainNav__link--main mainNav__link--active"
+              >Work</a
+            >
             <a href="/our-process.html" class="mainNav__link--main">Process</a>
-            <a href="/about-us.html" class="mainNav__link--mainLast">About</a>
+            <a
+              href="/about-us.html"
+              class="mainNav__link--main mainNav__link--last"
+              >About</a
+            >
             <button
               class="button button--nav contact__trigger"
               data-from-menu="true"
@@ -146,13 +189,16 @@
     </nav>
 
     <!-- Main Content  -->
-    <main id="ourWork" class="shapes__trigger">
-      <div class="shapes"></div>
-      <div>
+
+    <main data-router-wrapper>
+      <div id="ourWork" class="shapes__trigger" data-router-view="scroll">
+        <div class="shapes__container">
+          <div class="shapes"></div>
+        </div>
         <section id="ourWorkHero">
           <h1 class="hero__h1 parallax">
             We’re a team of strategists, designers, developers, storytellers,
-            dreamers, do-ers, illustrators and mario kart racers.
+            dreamers, do-ers, illustrators and Mario Kart racers.
           </h1>
         </section>
         <section id="ourWorkWorks">
@@ -515,5 +561,25 @@
         </div>
       </div>
     </div>
+    <aside class="viewport">
+      <div class="viewport__container">
+        <span class="text-label text-white"
+          >Make your browser window wider</span
+        >
+        <h1 class="viewport__h1">too small</h1>
+        <img src="images/overlay/increase.svg" class="viewport__img" />
+        <p class="text-body1 text-white75">
+          C’mon, don’t be shy. Stretch that browser window wider.  But if you
+          really want to visit this site in this view size, then just use your
+          mobile device.
+        </p>
+        <hr class="break--gradient" />
+      </div>
+    </aside>
+    <aside class="transition">
+      <div class="transition__primary"></div>
+      <div class="transition__secondary"></div>
+      <div class="transition__main"></div>
+    </aside>
   </body>
 </html>

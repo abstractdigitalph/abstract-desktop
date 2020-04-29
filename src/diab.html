@@ -5,22 +5,7 @@
     <title>Abstract Digital | Diet In A Box</title>
     <meta name="description" content="" />
   </head>
-  <body class="brand-diab">
-    <aside class="viewport">
-      <div class="viewport__container">
-        <span class="text-label text-white"
-          >Make your browser window wider</span
-        >
-        <h1 class="viewport__h1">too small</h1>
-        <img src="images/overlay/increase.svg" class="viewport__img" />
-        <p class="text-body1 text-white75">
-          C’mon, don’t be shy. Stretch that browser window wider.  But if you
-          really want to visit this site in this view size, then just use your
-          mobile device.
-        </p>
-        <hr class="break--gradient" />
-      </div>
-    </aside>
+  <body>
     <!-- Overlay -->
     <aside class="overlay">
       <div class="overlay__sides overlay__sides--left">
@@ -62,6 +47,41 @@
         <button class="overlay__hire contact__trigger">
           <span class="overlay__hireText">Hire Us</span>
         </button>
+        <div class="overlay__scrollbar">
+          <div class="overlay__active">
+            <div class="overlay__pageNumber">
+              <div class="overlay__pageNumber--left">
+                <span><br />F</span>
+              </div>
+              <div class="overlay__pageNumber--middle">
+                <span>0</span>
+                <span>I</span>
+              </div>
+              <div class="overlay__pageNumber--right">
+                <span>0</span>
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>N</span>
+              </div>
+            </div>
+            <div class="overlay__activeBar"></div>
+          </div>
+          <div class="overlay__bar"></div>
+          <div class="overlay__hitboxes">
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+            <div class="overlay__hitbox"></div>
+          </div>
+        </div>
         <div class="overlay__scroll">
           <div class="overlay__textHolder">
             <span class="overlay__text">Scroll Down</span>
@@ -78,10 +98,14 @@
       <div class="container mainNav__container">
         <div class="row">
           <div class="col-xs-offset-1 col-xs-5 mainNav__left">
-            <a href="/" class="mainNav__link--mainActive">Home</a>
+            <a href="/" class="mainNav__link--main">Home</a>
             <a href="/our-work.html" class="mainNav__link--main">Work</a>
             <a href="/our-process.html" class="mainNav__link--main">Process</a>
-            <a href="/about-us.html" class="mainNav__link--mainLast">About</a>
+            <a
+              href="/about-us.html"
+              class="mainNav__link--main mainNav__link--last"
+              >About</a
+            >
             <button
               class="button button--nav contact__trigger"
               data-from-menu="true"
@@ -145,8 +169,8 @@
       </div>
     </nav>
 
-    <main id="projects">
-      <div>
+    <main data-router-wrapper>
+      <div id="projects" class="brand-diab" data-router-view="scroll">
         <!-- Hero -->
         <section id="projectsLanding">
           <h1 class="projects__h1">
@@ -276,14 +300,14 @@
               </div>
               <div class="col-xs-offset-1 col-xs-5">
                 <h4 class="process__h4">
-                  How might improve the customer experience of ordering food?
+                  How might we improve the customer experience of ordering food?
                 </h4>
                 <p class="text-body1 text-white">
                   Chime knew that the old platform needs a total revamp. But
                   where do we start?
                 </p>
                 <p class="text-body1 text-white">
-                  The team performed an innovation workshop inorder to
+                  The team performed an innovation workshop in order to
                   understand the goals and intent of the redesign. We then
                   selected a design direction to implement and test.
                 </p>
@@ -462,5 +486,92 @@
         </footer>
       </div>
     </main>
+
+    <div class="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-offset-1 col-xs-4">
+            <span class="text-label text-lineBefore text-white20">
+              Your Search is Over
+            </span>
+            <h2 class="contact__h2">Let's Build Great Products Together</h2>
+            <hr class="break" />
+            <p class="contact__p">
+              Ready to talk? Schedule a 15 minute free consultation from us – at
+              no charge at all.
+            </p>
+            <a
+              href="https://calendly.com/madebyabstract"
+              class="filledButton"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="text-button2 text-white"
+                >Book A Free Consulation</span
+              >
+            </a>
+          </div>
+          <div class="col-xs-offset-1 col-xs-4">
+            <div class="footer__contactInfo">
+              <a href="mailto: hello@abstract.ph" class="footer__link">
+                <h5 class="footer__contact">
+                  hello@abstract.ph
+                </h5>
+              </a>
+              <span class="text-contact text-white60">
+                We love our inbox – drop us an email.
+              </span>
+            </div>
+
+            <div class="footer__contactInfo">
+              <a href="tel: +63 998 544 4728" class="footer__link">
+                <h5 class="footer__contact">
+                  +63 998 544 4728
+                </h5>
+                <span class="text-contact text-white60">
+                  Hello Garci. How are you?
+                </span>
+              </a>
+            </div>
+
+            <div class="footer__contactInfo">
+              <a
+                href="https://google.com/search?q=abstractdigitalph"
+                class="footer__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h5 class="footer__contact">
+                  @abstractdigitalph
+                </h5>
+              </a>
+              <span class="text-contact text-white60">
+                Stalking us? Use this handle to find us on the interwebs.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="viewport">
+      <div class="viewport__container">
+        <span class="text-label text-white"
+          >Make your browser window wider</span
+        >
+        <h1 class="viewport__h1">too small</h1>
+        <img src="images/overlay/increase.svg" class="viewport__img" />
+        <p class="text-body1 text-white75">
+          C’mon, don’t be shy. Stretch that browser window wider.  But if you
+          really want to visit this site in this view size, then just use your
+          mobile device.
+        </p>
+        <hr class="break--gradient" />
+      </div>
+    </aside>
+    <aside class="transition">
+      <div class="transition__primary"></div>
+      <div class="transition__secondary"></div>
+      <div class="transition__main"></div>
+    </aside>
   </body>
 </html>
