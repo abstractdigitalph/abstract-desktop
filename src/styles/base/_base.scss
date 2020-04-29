@@ -6,7 +6,10 @@
 }
 
 :root {
-  font-size: 16px;
+  font-size: 12px;
+  @include breakpoint("xl") {
+    font-size: 16px;
+  }
 }
 
 body {
