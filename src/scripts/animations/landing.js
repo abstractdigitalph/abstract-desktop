@@ -59,7 +59,9 @@ export default class LandingAnimation {
     this.currentSlide = 0;
     this.timeline = null;
     this.currentScrollbar = 0;
-    this.layer = [200, 50, -100, -400, -1200, -1700, -2200]; // Stores the amount of travel per layer
+
+    // Stores the amount of travel per layer
+    this.layer = [200, 50, -100, -400, -1200, -1700, -2200];
     this.slides = this.fullpageNode.children.length - 1;
 
     // Swipe Detection
