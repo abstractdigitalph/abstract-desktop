@@ -3,7 +3,7 @@ import { menu } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class DefaultRenderer extends Highway.Renderer {
-  onLeave() {
+  onLeaveCompleted() {
     menu.leave();
   }
 }
