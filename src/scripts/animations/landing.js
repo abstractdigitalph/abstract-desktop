@@ -41,6 +41,15 @@ export default class LandingAnimation {
     ];
     this.diabDirection = ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'];
 
+    this.flashDirection = [
+      'flash5',
+      'flash6',
+      'flash4',
+      'flash3',
+      'flash2',
+      'flash1',
+    ];
+
     // Set global default ease and default duration for the parallax effects
     this.defaultEase = 'power2.inOut';
     this.defaultDuration = 1;
@@ -50,7 +59,7 @@ export default class LandingAnimation {
     this.currentSlide = 0;
     this.timeline = null;
     this.currentScrollbar = 0;
-    this.layer = [50, -100, -250, -400, -650, -1750]; // Stores the amount of travel per layer
+    this.layer = [200, 50, -100, -400, -1200, -1700, -2200]; // Stores the amount of travel per layer
     this.slides = this.fullpageNode.children.length - 1;
 
     // Swipe Detection
@@ -169,7 +178,7 @@ export default class LandingAnimation {
    */
   shapeAnimation(to) {
     gsap.to(this.shapesNode, {
-      y: this.layer[5] * to,
+      y: this.layer[6] * to,
       ease: this.defaultEase,
       duration: this.defaultDuration,
     });
@@ -182,7 +191,7 @@ export default class LandingAnimation {
    * @param {number} to - The index of the slide that is being animated to
    * @param {boolean} isGoingDown - Indicates the direction of the current animation
    */
-  imageAnimation(nameArray, to, isGoingDown) {
+  imageAnimation(nameArray, to, isGoingDown, offset = 1) {
     // Animation type is changed depending if the current animation
     // is going in to the slide or out of the slide
     if (to) {
@@ -192,7 +201,7 @@ export default class LandingAnimation {
             y: 0,
           });
           gsap.from(`.projects__image--${name}`, {
-            y: -this.layer[index],
+            y: -this.layer[index + offset],
             ease: this.defaultEase,
             duration: this.defaultDuration,
           });
@@ -200,7 +209,7 @@ export default class LandingAnimation {
       } else {
         nameArray.forEach((name, index) => {
           gsap.set(`.projects__image--${name}`, {
-            y: this.layer[index],
+            y: this.layer[index + offset],
           });
           gsap.to(`.projects__image--${name}`, {
             y: 0,
@@ -215,7 +224,7 @@ export default class LandingAnimation {
           y: 0,
         });
         gsap.to(`.projects__image--${name}`, {
-          y: this.layer[index],
+          y: this.layer[index + offset],
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
@@ -226,7 +235,7 @@ export default class LandingAnimation {
           y: 0,
         });
         gsap.to(`.projects__image--${name}`, {
-          y: -this.layer[index],
+          y: -this.layer[index + offset],
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
@@ -245,11 +254,15 @@ export default class LandingAnimation {
     switch (from) {
       case 0:
         gsap.to('.hero__holder', {
-          y: this.layer[2],
+          y: this.layer[3],
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
         break;
+      case 2:
+        this.imageAnimation(this.flashDirection, false, down, 0);
+        break;
+
       case 3:
         this.imageAnimation(this.spenmoDirection, false, down);
         break;
@@ -270,6 +283,9 @@ export default class LandingAnimation {
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
+        break;
+      case 2:
+        this.imageAnimation(this.flashDirection, true, down, 0);
         break;
       case 3:
         this.imageAnimation(this.spenmoDirection, true, down);
@@ -476,7 +492,7 @@ export default class LandingAnimation {
    */
   load() {
     gsap.set(this.shapesNode, {
-      bottom: this.layer[5] * (this.fullpageNode.children.length - 1),
+      bottom: this.layer[6] * this.slides,
     });
 
     this.resetScrollbar();

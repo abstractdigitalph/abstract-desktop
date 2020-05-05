@@ -38,11 +38,11 @@
       position: relative;
       @include breakpoint-down("xl") {
         margin-left: 4rem;
-        height: 16rem;
+        height: 18rem;
       }
       @include breakpoint-down("lg") {
         margin-left: 8.333333%;
-        height: 12.75rem;
+        height: 13.75rem;
       }
     }
 
