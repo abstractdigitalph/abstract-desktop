@@ -34,6 +34,9 @@
   --color-diab: #3cc823;
   --color-diabLight: #3be47f;
 
+  // Flash
+  --color-flash: #f9cf2f;
+
   --color-gradient: linear-gradient(90deg, #c45af4 0%, #7163de 100%);
 }
 
@@ -55,4 +58,9 @@
 .brand-abstract {
   --color-brand: var(--color-primary);
   --color-brandLight: var(--color-secondary);
+}
+
+.brand-flash {
+  --color-brand: var(--color-flash);
+  --color-brandLight: var(--color-flash);
 }

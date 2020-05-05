@@ -51,6 +51,7 @@ export default class LandingAnimation {
     this.timeline = null;
     this.currentScrollbar = 0;
     this.layer = [50, -100, -250, -400, -650, -1750]; // Stores the amount of travel per layer
+    this.slides = this.fullpageNode.children.length - 1;
 
     // Swipe Detection
     this.startX = null;
@@ -96,7 +97,7 @@ export default class LandingAnimation {
       .to(
         this.activeScrollbarNode,
         {
-          y: vhToPx(4 * to),
+          y: vhToPx((32 / 9) * to),
           ease: this.defaultEase,
           duration,
         },
@@ -115,7 +116,7 @@ export default class LandingAnimation {
 
     // Moves the first and second characters so that FIN will be shown as the slide
     // number
-    if (this.currentScrollbar === 7) {
+    if (this.currentScrollbar === this.slides) {
       gsap
         .timeline()
         .to(
@@ -136,7 +137,7 @@ export default class LandingAnimation {
           },
           '<',
         );
-    } else if (to === 7) {
+    } else if (to === this.slides) {
       gsap
         .timeline()
         .to(
@@ -249,13 +250,13 @@ export default class LandingAnimation {
           duration: this.defaultDuration,
         });
         break;
-      case 2:
+      case 3:
         this.imageAnimation(this.spenmoDirection, false, down);
         break;
-      case 3:
+      case 4:
         this.imageAnimation(this.tightropeDirection, false, down);
         break;
-      case 4:
+      case 5:
         this.imageAnimation(this.diabDirection, false, down);
         break;
       default:
@@ -270,13 +271,13 @@ export default class LandingAnimation {
           duration: this.defaultDuration,
         });
         break;
-      case 2:
+      case 3:
         this.imageAnimation(this.spenmoDirection, true, down);
         break;
-      case 3:
+      case 4:
         this.imageAnimation(this.tightropeDirection, true, down);
         break;
-      case 4:
+      case 5:
         this.imageAnimation(this.diabDirection, true, down);
         break;
 
@@ -416,7 +417,7 @@ export default class LandingAnimation {
     switch (this.getDirection(type, event)) {
       case 'down':
         // Does not allow moving down if the next slide does not exist
-        if (this.currentSlide < this.fullpageNode.children.length - 1) {
+        if (this.currentSlide < this.slides) {
           this.changeSlide(this.currentSlide, (this.currentSlide += 1));
         }
         break;
@@ -430,10 +431,7 @@ export default class LandingAnimation {
         this.changeSlide(this.currentSlide, (this.currentSlide = 0));
         break;
       case 'end':
-        this.changeSlide(
-          this.currentSlide,
-          (this.currentSlide = this.fullpageNode.children.length - 1),
-        );
+        this.changeSlide(this.currentSlide, (this.currentSlide = this.slides));
         break;
       default:
         throw new Error('Expected one of directions: up, down, home, end.');
