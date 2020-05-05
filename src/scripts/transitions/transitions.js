@@ -1,7 +1,18 @@
 import Highway from '@dogstudio/highway';
-import { gsap } from 'gsap';
+import { transition } from '../animations';
 
 /* eslint-disable */
+export default class Fade extends Highway.Transition {
+  in({ from, to, done }) {
+    window.scrollTo(0, 0);
+    from.remove();
+    transition.animateTopClose(done);
+  }
+  out({ from, done }) {
+    transition.animateTopOpen(done);
+  }
+}
+/*
 export default class Fade extends Highway.Transition {
   in({ from, to, done }) {
     window.scrollTo(0, 0);
@@ -21,3 +32,4 @@ export default class Fade extends Highway.Transition {
     );
   }
 }
+*/

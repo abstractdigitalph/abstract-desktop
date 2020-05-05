@@ -8,11 +8,8 @@ export default class ScrollRenderer extends DefaultRenderer {
     scroll.loadShapes();
   }
 
-  onLeave() {
-    super.onLeave();
-  }
-
   onLeaveCompleted() {
+    super.onLeaveCompleted();
     scroll.leave();
   }
 }
