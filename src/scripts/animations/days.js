@@ -46,7 +46,7 @@ export default class DaysAnimation {
       // Reveal info
       .from(this.day[nextStep].reveal, {
         y: 200,
-        duration: 0.75,
+        duration: 0.5,
         stagger: 0.05,
         ease: 'power2.out',
       })

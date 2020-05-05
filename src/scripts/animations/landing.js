@@ -43,7 +43,7 @@ export default class LandingAnimation {
 
     // Set global default ease and default duration for the parallax effects
     this.defaultEase = 'power2.inOut';
-    this.defaultDuration = 1.5;
+    this.defaultDuration = 1;
 
     // Other necessary variables
     this.height = this.body.clientHeight;
@@ -70,9 +70,9 @@ export default class LandingAnimation {
     if (this.revealNodes[to].length !== 0) {
       gsap.from(this.revealNodes[to], {
         y: 200,
-        duration: 0.75,
-        delay: 1,
-        stagger: 0.1,
+        duration: 0.5,
+        delay: 0.5,
+        stagger: 0.075,
         ease: 'power2.out',
       });
     }
@@ -303,7 +303,9 @@ export default class LandingAnimation {
     this.parallaxAnimation(from, to);
     this.scrollbarAnimation(to);
     this.shapeAnimation(to);
-    this.revealAnimation(to);
+    if (from < to) {
+      this.revealAnimation(to);
+    }
     this.timeline = slideTimeline;
   }
 
