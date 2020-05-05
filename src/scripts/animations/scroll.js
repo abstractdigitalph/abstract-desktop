@@ -86,8 +86,12 @@ export default class ScrollAnimations {
 
   reveal() {
     this.revealNodes.forEach((item) => {
-      const revealTimeline = gsap.timeline({ paused: true });
-      revealTimeline.from(item, { y: '200px', opacity: 0, ease: 'sine' });
+      const revealTimeline = gsap.timeline({ paused: true }).from(item, {
+        y: 200,
+        opacity: 0,
+        ease: 'power2.out',
+        duration: 0.25,
+      });
 
       const triggerElement = item.dataset.self ? item : item.parentNode;
       const triggerHook = item.dataset.self ? 0.75 : 0.5;
