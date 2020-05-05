@@ -9,7 +9,6 @@ export default class TransitionAnimation {
   }
 
   animateTopOpen(highwayCallback) {
-    console.log('animateTopOpen');
     gsap
       .timeline({
         defaults: {
@@ -23,7 +22,6 @@ export default class TransitionAnimation {
   }
 
   animateTopClose(highwayCallback) {
-    console.log('animateTopClose');
     gsap
       .timeline({
         defaults: {

@@ -12,7 +12,7 @@
     &:focus {
       .button {
         opacity: 1;
-        transform: translateY(calc(2.4rem));
+        transform: translateY(2.4rem);
       }
     }
 
@@ -26,11 +26,10 @@
       border-radius: 0.75rem;
       height: 28.75rem;
       display: flex;
-      justify-content: space-between;
-      flex-direction: column;
       margin-bottom: 5rem;
       background-color: var(--color-brandLight);
       overflow: hidden;
+      position: relative;
     }
 
     &__half {
@@ -43,12 +42,21 @@
     }
 
     &__imageHolder {
-      max-height: 70%;
+      position: absolute;
+      width: 100%;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
       overflow: hidden;
       border-radius: 0 0 0 0.75rem;
+
+      &--top {
+        @extend .work__imageHolder;
+        top: 0;
+      }
+
+      &--bottom {
+        @extend .work__imageHolder;
+        bottom: 0;
+      }
     }
 
     &__image {
@@ -60,6 +68,11 @@
       @extend .text-white;
       padding: 1.875rem;
       margin: 0;
+
+      &--bottom {
+        @extend .work__h4;
+        align-self: flex-end;
+      }
     }
   }
 }
