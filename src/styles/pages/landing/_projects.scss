@@ -8,6 +8,11 @@
   align-items: center;
 
   .projects {
+    &__row {
+      @include breakpoint-down("xl") {
+        align-items: center;
+      }
+    }
     &__company {
       @extend .text-label;
       @extend .text-brand;
@@ -31,6 +36,14 @@
 
     &__images {
       position: relative;
+      @include breakpoint-down("xl") {
+        margin-left: 4rem;
+        height: 16rem;
+      }
+      @include breakpoint-down("lg") {
+        margin-left: 8.333333%;
+        height: 12.75rem;
+      }
     }
 
     &__link {

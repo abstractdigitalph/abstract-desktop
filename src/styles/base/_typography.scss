@@ -82,21 +82,30 @@ $SourceSerifPro: "Source Serif Pro", Cambria, "Hoefler Text", Utopia,
 
 h1 {
   @extend %sofiaBold;
-  font-size: 3rem;
+  font-size: 2.5rem;
   line-height: 1.3em;
+  @include breakpoint("xl") {
+    font-size: 3rem;
+  }
 }
 
 h2 {
   @extend %sofiaBold;
-  font-size: 2.625rem;
+  font-size: 2.25rem;
   line-height: 1.3em;
+  @include breakpoint("xl") {
+    font-size: 2.625rem;
+  }
 }
 
 h3 {
   @extend %sofiaBold;
   font-weight: 700;
-  font-size: 2.25rem;
+  font-size: 2rem;
   line-height: 1.3em;
+  @include breakpoint("xl") {
+    font-size: 2.25rem;
+  }
 }
 
 h4 {
@@ -108,9 +117,12 @@ h4 {
 
 h5 {
   @extend %sofiaBold;
-  font-size: 1.3125rem;
+  font-size: 1.125rem;
   line-height: 1em;
   letter-spacing: -0.02em;
+  @include breakpoint("xl") {
+    font-size: 1.3125rem;
+  }
 }
 
 h6 {
@@ -121,9 +133,12 @@ h6 {
 
 .text-body1 {
   @extend %sourceSerifRegular;
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.8em;
   margin-bottom: 1rem;
+  @include breakpoint("xl") {
+    font-size: 1.125rem;
+  }
 }
 
 .text-body2 {
@@ -134,10 +149,13 @@ h6 {
 
 .text-label {
   @extend %sofiaSemiBold;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   line-height: 1.3em;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  @include breakpoint("xl") {
+    font-size: 0.8125rem;
+  }
 }
 
 .text-pageNumber {
@@ -154,8 +172,11 @@ h6 {
 
 .text-button1 {
   @extend %sofiaBold;
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1em;
+  @include breakpoint("xl") {
+    font-size: 1.125rem;
+  }
 }
 
 .text-button2 {
@@ -189,9 +210,12 @@ h6 {
 
 .text-nextStop {
   @extend %sofiaBold;
-  font-size: 4.5rem;
+  font-size: 3.75rem;
   line-height: 1em;
   letter-spacing: -0.02em;
+  @include breakpoint("xl") {
+    font-size: 4.5rem;
+  }
 }
 
 .text-portfolio {
@@ -221,9 +245,12 @@ h6 {
 
 .text-step {
   @extend %sofiaBold;
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.5em;
   letter-spacing: -0.02em;
+  @include breakpoint("xl") {
+    font-size: 1.125rem;
+  }
 }
 
 .text-day {

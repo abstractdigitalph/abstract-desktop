@@ -51,6 +51,14 @@ export default class LandingAnimation {
     this.timeline = null;
     this.currentScrollbar = 0;
     this.layer = [50, -100, -250, -400, -650, -1750]; // Stores the amount of travel per layer
+
+    // Swipe Detection
+    this.startX = null;
+    this.startY = null;
+    this.startTime = null;
+    this.minDist = 150;
+    this.maxPerpendicular = 100;
+    this.allowedTime = 300;
   }
 
   /**
@@ -336,14 +344,55 @@ export default class LandingAnimation {
             return 'null';
         }
 
+      case 'touch':
+        return event;
+
       default:
         throw new Error(
-          `Expected one of event types: wheel, keydown. Got ${event} instead.`,
+          `Expected one of event types: wheel, keydown. Got ${type} instead.`,
         );
     }
   }
   /* eslint-enable class-methods-use-this */
 
+  /**
+   * Changes the slide based on the hitbox being clicked
+   * @param {string} to - The slide number that was clicked
+   */
+  hitboxClick(to) {
+    if (this.currentSlide !== to) {
+      this.changeSlide(this.currentSlide, (this.currentSlide = to));
+    }
+  }
+
+  /**
+   * Moves the active scrollbar to the hovered hitbox
+   * @param {string} to - The hitbox that is being hovered
+   */
+  hitboxEnter(to) {
+    this.scrollbarAnimation(to, true);
+  }
+
+  /**
+   * Returns the hitbox to its normal position if the mouse leaves the area
+   */
+  hitboxLeave() {
+    this.scrollbarAnimation(this.currentSlide, true);
+  }
+
+  /**
+   * Resets the scrollbar when going into the landing page
+   */
+  resetScrollbar() {
+    gsap.set(this.pageNumberLeftNode, { y: 0 });
+    gsap.set(this.pageNumberMiddleNode, { y: 0 });
+    gsap.set(this.pageNumberRightNode, { y: 0 });
+    gsap.set(this.activeScrollbarNode, { y: 0 });
+  }
+
+  /**
+   * Handles when resizing the page
+   */
   fullpageResize() {
     if (this.height !== this.body.clientHeight) {
       this.height = this.body.clientHeight;
@@ -390,38 +439,36 @@ export default class LandingAnimation {
   }
 
   /**
-   * Changes the slide based on the hitbox being clicked
-   * @param {string} to - The slide number that was clicked
+   * Stores the initial touch event
+   * @param {Object} event - The event object that was returned from the listener
    */
-  hitboxClick(to) {
-    if (this.currentSlide !== to) {
-      this.changeSlide(this.currentSlide, (this.currentSlide = to));
+  handleTouchStart(event) {
+    const { pageX: startX, pageY: startY } = event.changedTouches[0];
+    this.startX = startX;
+    this.startY = startY;
+    this.startTime = new Date().getTime();
+    event.preventDefault();
+  }
+
+  /**
+   * Handles ending the touch event and calculates if the direction is up or down
+   * @param {Object} event - The event object that was returned from the listener
+   */
+  handleTouchEnd(event) {
+    const { pageX: endX, pageY: endY } = event.changedTouches[0];
+    const distX = endX - this.startX;
+    const distY = endY - this.startY;
+    const absDistX = Math.abs(distX);
+    const absDistY = Math.abs(distY);
+    const elapsedTime = new Date().getTime() - this.startTime;
+    if (
+      elapsedTime <= this.allowedTime
+      && absDistY >= this.minDist
+      && absDistX <= this.maxPerpendicular
+    ) {
+      this.fullpageScroll('touch', distY > 0 ? 'up' : 'down');
     }
-  }
-
-  /**
-   * Moves the active scrollbar to the hovered hitbox
-   * @param {string} to - The hitbox that is being hovered
-   */
-  hitboxEnter(to) {
-    this.scrollbarAnimation(to, true);
-  }
-
-  /**
-   * Returns the hitbox to its normal position if the mouse leaves the area
-   */
-  hitboxLeave() {
-    this.scrollbarAnimation(this.currentSlide, true);
-  }
-
-  /**
-   * Resets the scrollbar when going into the landing page
-   */
-  resetScrollbar() {
-    gsap.set(this.pageNumberLeftNode, { y: 0 });
-    gsap.set(this.pageNumberMiddleNode, { y: 0 });
-    gsap.set(this.pageNumberRightNode, { y: 0 });
-    gsap.set(this.activeScrollbarNode, { y: 0 });
+    event.preventDefault();
   }
 
   /**
@@ -435,6 +482,11 @@ export default class LandingAnimation {
     this.resetScrollbar();
     this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
     document.addEventListener('keydown', (event) => this.fullpageScroll('keydown', event));
+
+    this.fullpageNode.addEventListener('touchstart', (event) => this.handleTouchStart(event));
+    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
+    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
+
     this.hitboxNodes.forEach((node, index) => {
       node.addEventListener('click', () => this.hitboxClick(index));
       node.addEventListener('mouseenter', () => this.hitboxEnter(index));
