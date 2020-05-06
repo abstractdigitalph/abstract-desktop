@@ -66,6 +66,39 @@
       &--tightrope2 {
         width: calc(55% - 1.875rem);
       }
+
+      &--flash1 {
+        width: calc(40% - 0.9375rem);
+      }
+
+      &--flash2 {
+        width: 100%;
+        margin-bottom: 3.75rem;
+      }
+
+      &--flash3 {
+        width: 65%;
+      }
+    }
+
+    &__imageGroup {
+      width: calc(60% - 0.9375rem);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 22%;
+        padding-bottom: 22%;
+        top: -10%;
+        left: -11%;
+        background: url("../images/projects/flash/challenge/4.png");
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
     }
 
     &__blurbHolder {

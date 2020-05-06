@@ -80,6 +80,10 @@
           @extend .results__image--logo;
           margin-top: 6.25rem;
         }
+        &Flash {
+          @extend .results__image--logo;
+          margin-top: 0;
+        }
       }
 
       &--spenmo4,
@@ -163,6 +167,30 @@
       &--diab8,
       &--diab9 {
         @extend %diabPhotoCutout;
+      }
+
+      &--flash1,
+      &--flash2,
+      &--flash3,
+      &--flash4,
+      &--flash5,
+      &--flash6,
+      &--flash7,
+      &--flash8,
+      &--flash9 {
+        @extend %mobile;
+        margin-bottom: 10rem;
+      }
+
+      &--flash1,
+      &--flash4,
+      &--flash7 {
+        transform: translateY(7.5rem);
+      }
+      &--flash2,
+      &--flash5,
+      &--flash8 {
+        transform: translateY(3.75rem);
       }
     }
 
