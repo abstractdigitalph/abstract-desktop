@@ -105,7 +105,7 @@
   }
 
   &__activeBar {
-    height: 4vh;
+    height: calc(32vh / 9);
     width: 0.125rem;
     background-color: var(--color-white);
     border: none;
@@ -132,7 +132,7 @@
   }
 
   &__hitbox {
-    height: calc(100% / 8);
+    height: calc(100% / 9);
     width: 100%;
   }
 

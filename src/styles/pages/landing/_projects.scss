@@ -38,11 +38,11 @@
       position: relative;
       @include breakpoint-down("xl") {
         margin-left: 4rem;
-        height: 16rem;
+        height: 18rem;
       }
       @include breakpoint-down("lg") {
         margin-left: 8.333333%;
-        height: 12.75rem;
+        height: 13.75rem;
       }
     }
 
@@ -199,6 +199,50 @@
           bottom: -20%;
           left: -11%;
           width: 116%;
+        }
+      }
+
+      &--flash {
+        &1 {
+          position: absolute;
+          width: 24%;
+          right: 9%;
+          bottom: -17%;
+        }
+
+        &2 {
+          position: absolute;
+          width: 90%;
+          left: 7%;
+          bottom: -17%;
+        }
+
+        &3 {
+          position: absolute;
+          width: 50%;
+          left: 5%;
+          top: 6%;
+        }
+
+        &4 {
+          position: absolute;
+          width: 13%;
+          left: 12%;
+          top: -32%;
+        }
+
+        &5 {
+          position: absolute;
+          width: 51%;
+          top: -15%;
+          right: 18%;
+        }
+
+        &6 {
+          position: absolute;
+          width: 9%;
+          right: 0;
+          top: 15%;
         }
       }
     }
