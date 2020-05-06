@@ -107,6 +107,44 @@
         left: -16%;
         top: 3%;
       }
+
+      &--flash1 {
+        @extend .projects__image;
+        z-index: 0;
+        height: auto;
+        width: 10.625rem;
+
+        left: 5%;
+        top: -9%;
+      }
+
+      &--flash2 {
+        position: absolute;
+        z-index: 2;
+        height: auto;
+        width: 41rem;
+
+        left: -23%;
+      }
+
+      &--flash3 {
+        @extend .projects__image;
+        z-index: 0;
+        height: auto;
+        width: 14.0625rem;
+
+        left: 11%;
+      }
+
+      &--flash4 {
+        @extend .projects__image;
+        z-index: 0;
+        height: auto;
+        width: 8.125rem;
+
+        left: -9%;
+        top: 14%;
+      }
     }
 
     &__imageHolder {
