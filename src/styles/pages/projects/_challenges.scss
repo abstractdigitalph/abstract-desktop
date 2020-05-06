@@ -80,6 +80,13 @@
         width: 4.125rem;
         height: 2.75rem;
       }
+
+      &--noQuote {
+        @extend .challenge__blurbHolder;
+        &::before {
+          display: none;
+        }
+      }
     }
   }
 }
