@@ -70,7 +70,7 @@ export default class LandingAnimation {
     this.startTime = null;
     this.minDist = 150;
     this.maxPerpendicular = 100;
-    this.allowedTime = 300;
+    this.allowedTime = 1000;
   }
 
   /**
@@ -498,18 +498,22 @@ export default class LandingAnimation {
     });
 
     this.resetScrollbar();
+
+    // Movement event listeners
     this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
     document.addEventListener('keydown', (event) => this.fullpageScroll('keydown', event));
 
     this.fullpageNode.addEventListener('touchstart', (event) => this.handleTouchStart(event));
     this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
-    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
 
+    // Hitbox event listeners
     this.hitboxNodes.forEach((node, index) => {
       node.addEventListener('click', () => this.hitboxClick(index));
       node.addEventListener('mouseenter', () => this.hitboxEnter(index));
     });
     this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
+
+    // Resize event listener
     window.addEventListener(
       'resize',
       debounce(() => this.fullpageResize(), 200),
