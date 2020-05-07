@@ -4,6 +4,7 @@
     padding: 0;
 
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__half {
@@ -27,8 +28,9 @@
     }
 
     &--leftFull {
-      @extend .footer__half--left;
+      width: 50%;
       padding: 2.5rem;
+      margin: auto 0;
     }
   }
 
@@ -41,23 +43,51 @@
       height: 32%;
     }
   }
+
   &__rightTop {
     padding: 2.5rem;
+    border-left: solid 0.0625rem var(--color-border);
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    @include breakpoint("xl") {
+      height: auto;
+    }
   }
 
   &__rightBottom {
     border-top: solid 0.0625rem var(--color-border);
+    border-left: solid 0.0625rem var(--color-border);
+    padding: 2.5rem;
+    display: none;
+
+    @include breakpoint("xl") {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__whole {
+    border-top: solid 0.0625rem var(--color-border);
+    width: 100%;
     padding: 2.5rem;
 
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
+
+    @include breakpoint("xl") {
+      display: none;
+    }
   }
 
   &__link {
     @extend .text-white;
     text-decoration: none;
     transition: color 0.1s ease-in-out;
+    margin: 0.5rem 0;
 
     &:hover,
     &:focus {
@@ -83,7 +113,12 @@
 
   &__h4 {
     @extend .text-white;
-    margin: 0 0 1.5rem;
+    margin: 0 0 3rem;
+    font-size: 1.85rem;
+    @include breakpoint("xl") {
+      margin: 0 0 1.5rem;
+      font-size: 1.5rem;
+    }
   }
   &__image {
     width: 100%;
@@ -111,6 +146,16 @@
       margin-top: 0;
     }
     margin-top: 1rem;
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint("lg") {
+      display: block;
+    }
   }
 
   &__icon {
@@ -168,6 +213,7 @@
 
     &--github {
       @extend .footer__icon;
+      margin-right: 0;
       &:hover,
       &:focus {
         path {
