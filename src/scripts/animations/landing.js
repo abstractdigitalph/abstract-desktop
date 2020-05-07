@@ -55,7 +55,7 @@ export default class LandingAnimation {
     this.defaultDuration = 1;
 
     // Other necessary variables
-    this.height = this.body.clientHeight;
+    this.height = this.fullpageNode.querySelector('#landingHero').clientHeight;
     this.currentSlide = 0;
     this.timeline = null;
     this.currentScrollbar = 0;
