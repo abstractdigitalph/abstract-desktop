@@ -68,7 +68,7 @@ export default class LandingAnimation {
     this.startX = null;
     this.startY = null;
     this.startTime = null;
-    this.minDist = 150;
+    this.minDist = 50;
     this.maxPerpendicular = 100;
     this.allowedTime = 1000;
   }
