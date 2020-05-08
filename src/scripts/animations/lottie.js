@@ -7,50 +7,68 @@ import portfolioAnimData from './lottie-files/portfolio.json';
 import sprintAnimData from './lottie-files/sprint.json';
 import aboutAnimData from './lottie-files/about.json';
 
+/* eslint-disable class-methods-use-this */
 export default class LottieAnimations {
-  constructor() {
-    this.spenmo = {
+  spenmo() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--spenmo'),
       renderer: 'svg',
       animationData: spenmoAnimData,
-    };
+      autoplay: true,
+    });
+  }
 
-    this.diab = {
+  diab() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--diab'),
       renderer: 'svg',
       animationData: diabAnimData,
-    };
+      autoplay: true,
+    });
+  }
 
-    this.tightrope = {
+  tightrope() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--tightrope'),
       renderer: 'svg',
       animationData: tightropeAnimData,
-    };
+      autoplay: true,
+    });
+  }
 
-    this.flash = {
+  flash() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--flash'),
       renderer: 'svg',
       animationData: flashAnimData,
-    };
+      autoplay: true,
+    });
+  }
 
-    this.portfolio = {
+  portfolio() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--portfolio'),
       renderer: 'svg',
       animationData: portfolioAnimData,
-    };
-    this.sprint = {
+      autoplay: true,
+    });
+  }
+
+  sprint() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--sprint'),
       renderer: 'svg',
       animationData: sprintAnimData,
-    };
-    this.about = {
+      autoplay: true,
+    });
+  }
+
+  about() {
+    lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--about'),
       renderer: 'svg',
       animationData: aboutAnimData,
-    };
-  }
-
-  spenmo() {
-    lottie.loadAnimation(this.spenmo);
+      autoplay: true,
+    });
   }
 }

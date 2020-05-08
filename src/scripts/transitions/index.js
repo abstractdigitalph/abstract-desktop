@@ -4,6 +4,7 @@ import {
   ScrollRenderer,
   LandingRenderer,
   WorkRenderer,
+  AboutRenderer,
 } from './renderers/index';
 import Fade from './transitions';
 
@@ -16,6 +17,7 @@ const road = new Highway.Core({
     scroll: ScrollRenderer,
     landing: LandingRenderer,
     work: WorkRenderer,
+    about: AboutRenderer,
   },
 });
 

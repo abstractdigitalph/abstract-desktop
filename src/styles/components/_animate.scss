@@ -60,3 +60,40 @@
 span {
   display: inline-block;
 }
+
+.lottie__hero {
+  position: absolute;
+  width: 80%;
+  opacity: 10%;
+  z-index: -1;
+
+  &--spenmo {
+    @extend .lottie__hero;
+  }
+
+  &--diab {
+    @extend .lottie__hero;
+  }
+
+  &--tightrope {
+    @extend .lottie__hero;
+  }
+
+  &--flash {
+    @extend .lottie__hero;
+  }
+
+  &--portfolio {
+    @extend .lottie__hero;
+  }
+
+  &--sprint {
+    @extend .lottie__hero;
+    width: 110%;
+  }
+
+  &--about {
+    @extend .lottie__hero;
+    padding-bottom: 5%;
+  }
+}
