@@ -8,9 +8,9 @@ export default class WorkAnimation {
   hideWork(selectedElement) {
     this.workNodes.forEach((element) => {
       if (element !== selectedElement) {
-        gsap.to(element, { opacity: 0.2, duration: 0.5, ease: 'power2.out' });
+        gsap.to(element, { opacity: 0.2, duration: 0.25, ease: 'power2.out' });
       } else {
-        gsap.to(element, { scale: 1.05, duration: 0.5, ease: 'power2.out' });
+        gsap.to(element, { scale: 1.05, duration: 0.25, ease: 'power2.out' });
       }
     });
   }
@@ -20,7 +20,7 @@ export default class WorkAnimation {
       gsap.to(element, {
         opacity: 1,
         scale: 1,
-        duration: 0.5,
+        duration: 0.25,
         ease: 'power2.out',
       });
     });
