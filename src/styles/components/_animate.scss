@@ -68,11 +68,12 @@ span {
     height: auto;
     overflow: hidden;
   }
+
   &__hero {
     position: absolute;
     width: 80%;
-    opacity: 10%;
     z-index: -1;
+    opacity: 10%;
 
     &--spenmo {
       @extend .lottie__hero;
