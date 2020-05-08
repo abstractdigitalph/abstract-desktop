@@ -2,6 +2,11 @@
   height: 0;
   width: 0;
 
+  &__logo--landing {
+    display: none;
+    cursor: pointer;
+  }
+
   &__sides {
     margin: 3.125rem 0;
     position: fixed;

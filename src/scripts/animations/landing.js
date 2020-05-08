@@ -4,6 +4,81 @@ import { vhToPx } from './helpers';
 
 export default class LandingAnimation {
   constructor() {
+    // Create variables to store all nodes
+    this.fullpageNode = null;
+    this.body = null;
+    this.shapesNode = null;
+    this.activeScrollbarNode = null;
+    this.revealNodes = null;
+    this.pageNumberLeftNode = null;
+    this.pageNumberMiddleNode = null;
+    this.pageNumberRightNode = null;
+    this.hitboxesNode = null;
+    this.hitboxNodes = null;
+    this.logoNode = null;
+    this.otherLogoNode = null;
+    this.arrowNode = null;
+
+    // Store the layering of the different projects
+    this.spenmoDirection = [
+      'spenmo5',
+      'spenmo1',
+      'spenmo2',
+      'spenmo4',
+      'spenmo3',
+    ];
+    this.tightropeDirection = [
+      'tightrope5',
+      'tightrope1',
+      'tightrope2',
+      'tightrope4',
+      'tightrope3',
+    ];
+    this.diabDirection = ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'];
+    this.flashDirection = [
+      'flash5',
+      'flash6',
+      'flash4',
+      'flash3',
+      'flash2',
+      'flash1',
+    ];
+
+    // Set global default ease and default duration for the parallax effects
+    this.defaultEase = 'power2.inOut';
+    this.defaultDuration = 1;
+
+    // Other necessary variables
+    this.height = null;
+    this.timeline = null;
+    this.currentSlide = 0;
+    this.currentScrollbar = 0;
+    this.layer = [200, 50, -100, -400, -1200, -1700, -2200];
+    this.slides = null;
+
+    // Swipe Detection
+    this.startX = null;
+    this.startY = null;
+    this.startTime = null;
+    this.minDist = 50;
+    this.maxPerpendicular = 100;
+    this.allowedTime = 1000;
+
+    // Named functions so that events attached to the window and document will
+    // be removed when transitioning to other pages
+    this.keyDownFunc = (event) => {
+      this.fullpageScroll('keydown', event);
+    };
+
+    this.resizeFunc = debounce(() => this.fullpageResize(), 200);
+  }
+
+  /* * SETUP * */
+
+  /**
+   * Queries all selectors on load
+   */
+  querySelectors() {
     this.fullpageNode = document.querySelector('.fullpage');
 
     // Query all of the nodes that will be animated. This is done at the start so that
@@ -23,55 +98,75 @@ export default class LandingAnimation {
     );
     this.hitboxesNode = document.querySelector('.overlay__hitboxes');
     this.hitboxNodes = document.querySelectorAll('.overlay__hitbox');
+    this.logoNode = document.querySelector('.overlay__logo--landing');
+    this.otherLogoNode = document.querySelector('.overlay__logo');
+    this.arrowNode = document.querySelector('.hero__arrow');
 
-    // Store the layering of the different projects
-    this.spenmoDirection = [
-      'spenmo5',
-      'spenmo1',
-      'spenmo2',
-      'spenmo4',
-      'spenmo3',
-    ];
-    this.tightropeDirection = [
-      'tightrope5',
-      'tightrope1',
-      'tightrope2',
-      'tightrope4',
-      'tightrope3',
-    ];
-    this.diabDirection = ['diab3', 'diab1', 'diab4', 'diab5', 'diab2'];
-
-    this.flashDirection = [
-      'flash5',
-      'flash6',
-      'flash4',
-      'flash3',
-      'flash2',
-      'flash1',
-    ];
-
-    // Set global default ease and default duration for the parallax effects
-    this.defaultEase = 'power2.inOut';
-    this.defaultDuration = 1;
-
-    // Other necessary variables
     this.height = this.fullpageNode.querySelector('#landingHero').clientHeight;
-    this.currentSlide = 0;
-    this.timeline = null;
-    this.currentScrollbar = 0;
-
-    // Stores the amount of travel per layer
-    this.layer = [200, 50, -100, -400, -1200, -1700, -2200];
     this.slides = this.fullpageNode.children.length - 1;
-
-    // Swipe Detection
-    this.startX = null;
-    this.startY = null;
-    this.startTime = null;
-    this.minDist = 50;
-    this.maxPerpendicular = 100;
-    this.allowedTime = 1000;
   }
+
+  /**
+   * Sets all inital styles
+   */
+  setStyles() {
+    gsap.set(this.shapesNode, {
+      bottom: this.layer[6] * this.slides,
+    });
+    gsap.set(this.logoNode, {
+      display: 'block',
+    });
+    gsap.set(this.otherLogoNode, {
+      display: 'none',
+    });
+  }
+
+  /**
+   * Removes styles on leave
+   */
+  removeStyles() {
+    gsap.set(this.logoNode, {
+      display: 'none',
+    });
+    gsap.set(this.otherLogoNode, {
+      display: 'block',
+    });
+  }
+
+  /**
+   * Adds all event listeners
+   */
+  addListeners() {
+    // Movement event listeners
+    this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
+    document.addEventListener('keydown', this.keyDownFunc);
+
+    this.fullpageNode.addEventListener('touchstart', (event) => this.handleTouchStart(event));
+    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
+
+    // Hitbox event listeners
+    this.hitboxNodes.forEach((node, index) => {
+      node.addEventListener('click', () => this.hitboxClick(index));
+      node.addEventListener('mouseenter', () => this.hitboxEnter(index));
+    });
+    this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
+
+    this.logoNode.addEventListener('click', () => this.logoClick());
+    this.arrowNode.addEventListener('click', () => this.arrowClick());
+
+    // Resize event listener
+    window.addEventListener('resize', this.resizeFunc);
+  }
+
+  /**
+   * Removes event listeners attached to the document and window
+   */
+  removeListeners() {
+    document.removeEventListener('keydown', this.keyDownFunc);
+    window.removeEventListener('resize', this.resizeFunc);
+  }
+
+  /* * ANIMATION CREATORS * */
 
   /**
    * Animates each text element that will be revealed as it's containing slide is
@@ -172,6 +267,16 @@ export default class LandingAnimation {
     }
 
     this.currentScrollbar = to;
+  }
+
+  /**
+   * Resets the scrollbar when going into the landing page
+   */
+  resetScrollbar() {
+    gsap.set(this.pageNumberLeftNode, { y: 0 });
+    gsap.set(this.pageNumberMiddleNode, { y: 0 });
+    gsap.set(this.pageNumberRightNode, { y: 0 });
+    gsap.set(this.activeScrollbarNode, { y: 0 });
   }
 
   /**
@@ -304,6 +409,8 @@ export default class LandingAnimation {
     }
   }
 
+  /* * ANIMATION HANDLERS * */
+
   /**
    * Runs the whole animation when moving from one slide to another
    * @param {number} from - The index of the slide that is being animated from
@@ -377,51 +484,6 @@ export default class LandingAnimation {
   /* eslint-enable class-methods-use-this */
 
   /**
-   * Changes the slide based on the hitbox being clicked
-   * @param {string} to - The slide number that was clicked
-   */
-  hitboxClick(to) {
-    if (this.currentSlide !== to) {
-      this.changeSlide(this.currentSlide, (this.currentSlide = to));
-    }
-  }
-
-  /**
-   * Moves the active scrollbar to the hovered hitbox
-   * @param {string} to - The hitbox that is being hovered
-   */
-  hitboxEnter(to) {
-    this.scrollbarAnimation(to, true);
-  }
-
-  /**
-   * Returns the hitbox to its normal position if the mouse leaves the area
-   */
-  hitboxLeave() {
-    this.scrollbarAnimation(this.currentSlide, true);
-  }
-
-  /**
-   * Resets the scrollbar when going into the landing page
-   */
-  resetScrollbar() {
-    gsap.set(this.pageNumberLeftNode, { y: 0 });
-    gsap.set(this.pageNumberMiddleNode, { y: 0 });
-    gsap.set(this.pageNumberRightNode, { y: 0 });
-    gsap.set(this.activeScrollbarNode, { y: 0 });
-  }
-
-  /**
-   * Handles when resizing the page
-   */
-  fullpageResize() {
-    if (this.height !== this.body.clientHeight) {
-      this.height = this.body.clientHeight;
-      this.changeSlide(this.currentSlide, this.currentSlide);
-    }
-  }
-
-  /**
    * Called whenever an event that indicates a scroll is fired
    * @param {string} type - The type of the event that called the function
    * @param {Object} event - The event object that was returned from the listener
@@ -454,6 +516,61 @@ export default class LandingAnimation {
       default:
         throw new Error('Expected one of directions: up, down, home, end.');
     }
+  }
+
+  /* * EVENT HANDLERS * */
+
+  /**
+   * Handles when resizing the page
+   */
+  fullpageResize() {
+    if (this.height !== this.body.clientHeight) {
+      this.height = this.body.clientHeight;
+      this.changeSlide(this.currentSlide, this.currentSlide);
+    }
+  }
+
+  /**
+   * Handles when the logo is clicked. Moves the slide to the top
+   */
+  logoClick() {
+    if (this.currentSlide !== 0) {
+      this.changeSlide(this.currentSlide, (this.currentSlide = 0));
+    }
+  }
+
+  /**
+   * Handles when the down arrow is clicked. Moves the logo to the top
+   */
+  arrowClick() {
+    if (this.currentSlide !== 1) {
+      this.changeSlide(this.currentSlide, (this.currentSlide = 1));
+    }
+  }
+
+  /**
+   * Changes the slide based on the hitbox being clicked
+   * @param {string} to - The slide number that was clicked
+   */
+  hitboxClick(to) {
+    if (this.currentSlide !== to) {
+      this.changeSlide(this.currentSlide, (this.currentSlide = to));
+    }
+  }
+
+  /**
+   * Moves the active scrollbar to the hovered hitbox
+   * @param {string} to - The hitbox that is being hovered
+   */
+  hitboxEnter(to) {
+    this.scrollbarAnimation(to, true);
+  }
+
+  /**
+   * Returns the hitbox to its normal position if the mouse leaves the area
+   */
+  hitboxLeave() {
+    this.scrollbarAnimation(this.currentSlide, true);
   }
 
   /**
@@ -489,34 +606,23 @@ export default class LandingAnimation {
     event.preventDefault();
   }
 
+  /* * LOAD AND  CLEAN UP * */
+
   /**
    * Starts all the event listeners and sets necessary gsap styles
    */
   load() {
-    gsap.set(this.shapesNode, {
-      bottom: this.layer[6] * this.slides,
-    });
-
+    this.querySelectors();
+    this.setStyles();
     this.resetScrollbar();
+    this.addListeners();
+  }
 
-    // Movement event listeners
-    this.fullpageNode.addEventListener('wheel', (event) => this.fullpageScroll('wheel', event));
-    document.addEventListener('keydown', (event) => this.fullpageScroll('keydown', event));
-
-    this.fullpageNode.addEventListener('touchstart', (event) => this.handleTouchStart(event));
-    this.fullpageNode.addEventListener('touchend', (event) => this.handleTouchEnd(event));
-
-    // Hitbox event listeners
-    this.hitboxNodes.forEach((node, index) => {
-      node.addEventListener('click', () => this.hitboxClick(index));
-      node.addEventListener('mouseenter', () => this.hitboxEnter(index));
-    });
-    this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
-
-    // Resize event listener
-    window.addEventListener(
-      'resize',
-      debounce(() => this.fullpageResize(), 200),
-    );
+  /**
+   * Cleanup
+   */
+  leave() {
+    this.removeStyles();
+    this.removeListeners();
   }
 }

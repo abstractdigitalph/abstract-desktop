@@ -1,15 +1,15 @@
 import DefaultRenderer from './DefaultRenderer';
-import { LandingAnimation, menu } from '../../animations';
+import { landing, menu } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class LandingRenderer extends DefaultRenderer {
   onEnterCompleted() {
-    const landing = new LandingAnimation();
     landing.load();
     menu.addScrollbar();
   }
 
   onLeave() {
+    landing.leave();
     menu.removeScrollbar();
   }
 }
