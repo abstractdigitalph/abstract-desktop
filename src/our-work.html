@@ -24,7 +24,14 @@
     <!-- Overlay -->
     <aside class="overlay">
       <div class="overlay__sides overlay__sides--left">
-        <a href="/"><img src="images/logo.svg" alt="Abstract Logo"/></a>
+        <img
+          src="images/logo.svg"
+          alt="Abstract Logo"
+          class="overlay__logo--landing"
+        />
+        <a href="/" class="overlay__logo">
+          <img src="images/logo.svg" alt="Abstract Logo" />
+        </a>
         <button
           type="button"
           aria-label="Menu"
@@ -193,7 +200,7 @@
     <!-- Main Content  -->
 
     <main data-router-wrapper>
-      <div id="ourWork" class="shapes__trigger" data-router-view="scroll">
+      <div id="ourWork" class="shapes__trigger" data-router-view="work">
         <div class="shapes__container">
           <div class="shapes"></div>
         </div>

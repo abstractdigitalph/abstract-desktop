@@ -3,6 +3,7 @@ import {
   ProcessRenderer,
   ScrollRenderer,
   LandingRenderer,
+  WorkRenderer,
 } from './renderers/index';
 import Fade from './transitions';
 
@@ -14,6 +15,7 @@ const road = new Highway.Core({
     process: ProcessRenderer,
     scroll: ScrollRenderer,
     landing: LandingRenderer,
+    work: WorkRenderer,
   },
 });
 
