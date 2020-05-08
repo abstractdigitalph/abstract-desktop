@@ -30,13 +30,16 @@
     &__arrow {
       margin-top: 6.25rem;
       transition: transform 0.1s ease-in-out;
+      border: none;
 
       &:hover,
       &:focus {
+        outline: none;
         transform: translateY(0.5rem);
       }
 
       &:active {
+        outline: none;
         transform: translateY(1rem);
       }
     }
