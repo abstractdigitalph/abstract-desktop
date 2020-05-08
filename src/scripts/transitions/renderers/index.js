@@ -3,3 +3,7 @@ export { default as WorkRenderer } from './WorkRenderer';
 export { default as ScrollRenderer } from './ScrollRenderer';
 export { default as LandingRenderer } from './LandingRenderer';
 export { default as AboutRenderer } from './AboutRenderer';
+export { default as FlashRenderer } from './FlashRenderer';
+export { default as SpenmoRenderer } from './SpenmoRenderer';
+export { default as DiabRenderer } from './DiabRenderer';
+export { default as TightropeRenderer } from './TightropeRenderer';

@@ -8,6 +8,8 @@
   justify-content: flex-end;
   align-items: center;
 
+  overflow: hidden;
+
   .projects {
     &__h1 {
       @extend .text-portfolio;

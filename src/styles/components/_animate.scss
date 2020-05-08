@@ -61,39 +61,105 @@ span {
   display: inline-block;
 }
 
-.lottie__hero {
-  position: absolute;
-  width: 80%;
-  opacity: 10%;
-  z-index: -1;
-
-  &--spenmo {
-    @extend .lottie__hero;
+.lottie {
+  &__heroHolder {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
   }
+  &__hero {
+    position: absolute;
+    width: 80%;
+    opacity: 10%;
+    z-index: -1;
 
-  &--diab {
-    @extend .lottie__hero;
-  }
+    &--spenmo {
+      @extend .lottie__hero;
+      z-index: 0;
+      top: 10%;
+      opacity: 50%;
+      width: 70%;
 
-  &--tightrope {
-    @extend .lottie__hero;
-  }
+      @include breakpoint("lg") {
+        top: 7%;
+        opacity: 40%;
+      }
 
-  &--flash {
-    @extend .lottie__hero;
-  }
+      @include breakpoint("xl") {
+        top: -2%;
+        opacity: 30%;
+      }
+    }
 
-  &--portfolio {
-    @extend .lottie__hero;
-  }
+    &--diab {
+      @extend .lottie__hero;
+      width: 110%;
+      z-index: 0;
+      top: 10%;
+      opacity: 60%;
 
-  &--sprint {
-    @extend .lottie__hero;
-    width: 110%;
-  }
+      @include breakpoint("lg") {
+        top: 7%;
+        opacity: 50%;
+      }
 
-  &--about {
-    @extend .lottie__hero;
-    padding-bottom: 5%;
+      @include breakpoint("xl") {
+        top: 2%;
+        opacity: 40%;
+      }
+    }
+
+    &--tightrope {
+      @extend .lottie__hero;
+      z-index: 0;
+      width: 150%;
+      top: 10%;
+      opacity: 60%;
+
+      @include breakpoint("lg") {
+        top: 7%;
+        opacity: 50%;
+      }
+
+      @include breakpoint("xl") {
+        top: 5%;
+        opacity: 40%;
+      }
+    }
+
+    &--flash {
+      @extend .lottie__hero;
+      z-index: 0;
+      top: 10%;
+      opacity: 60%;
+      width: 110%;
+
+      @include breakpoint("lg") {
+        top: 7%;
+        opacity: 50%;
+      }
+
+      @include breakpoint("xl") {
+        top: 5%;
+        opacity: 40%;
+      }
+    }
+
+    &--portfolio {
+      @extend .lottie__hero;
+    }
+
+    &--sprint {
+      @extend .lottie__hero;
+      position: unset;
+      width: 110%;
+      transform: translateX(-5%);
+    }
+
+    &--about {
+      @extend .lottie__hero;
+      padding-bottom: 5%;
+    }
   }
 }

@@ -5,6 +5,10 @@ import {
   LandingRenderer,
   WorkRenderer,
   AboutRenderer,
+  FlashRenderer,
+  SpenmoRenderer,
+  DiabRenderer,
+  TightropeRenderer,
 } from './renderers/index';
 import Fade from './transitions';
 
@@ -18,6 +22,10 @@ const road = new Highway.Core({
     landing: LandingRenderer,
     work: WorkRenderer,
     about: AboutRenderer,
+    flash: FlashRenderer,
+    spenmo: SpenmoRenderer,
+    diab: DiabRenderer,
+    tightrope: TightropeRenderer,
   },
 });
 
