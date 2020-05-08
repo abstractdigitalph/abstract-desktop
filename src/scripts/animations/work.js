@@ -3,23 +3,45 @@ import { gsap } from 'gsap';
 export default class WorkAnimation {
   constructor() {
     this.workNodes = document.querySelectorAll('.work');
+    this.work = [...this.workNodes].map((element) => ({
+      element,
+      image: element.querySelector('.work__image'),
+    }));
   }
 
   hideWork(selectedElement) {
-    this.workNodes.forEach((element) => {
-      if (element !== selectedElement) {
-        gsap.to(element, { opacity: 0.2, duration: 0.25, ease: 'power2.out' });
+    this.work.forEach((workObj) => {
+      if (workObj.element !== selectedElement) {
+        gsap.to(workObj.element, {
+          opacity: 0.2,
+          duration: 0.25,
+          ease: 'power2.out',
+        });
       } else {
-        gsap.to(element, { scale: 1.05, duration: 0.25, ease: 'power2.out' });
+        gsap.to(workObj.element, {
+          scale: 1.05,
+          duration: 0.25,
+          ease: 'power2.out',
+        });
+        gsap.to(workObj.image, {
+          scale: 1,
+          duration: 0.25,
+          ease: 'power2.out',
+        });
       }
     });
   }
 
   showWork() {
-    this.workNodes.forEach((element) => {
-      gsap.to(element, {
+    this.work.forEach((workObj) => {
+      gsap.to(workObj.element, {
         opacity: 1,
         scale: 1,
+        duration: 0.25,
+        ease: 'power2.out',
+      });
+      gsap.to(workObj.image, {
+        scale: 1.05,
         duration: 0.25,
         ease: 'power2.out',
       });
@@ -27,9 +49,10 @@ export default class WorkAnimation {
   }
 
   load() {
-    this.workNodes.forEach((element) => {
-      element.addEventListener('mouseenter', (event) => this.hideWork(event.target));
-      element.addEventListener('mouseleave', () => this.showWork());
+    this.work.forEach((workObj) => {
+      workObj.element.addEventListener('mouseenter', (event) => this.hideWork(event.target));
+      workObj.element.addEventListener('mouseleave', () => this.showWork());
+      gsap.set(workObj.image, { scale: 1.05 });
     });
   }
 }
