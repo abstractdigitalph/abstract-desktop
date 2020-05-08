@@ -16,6 +16,7 @@ export default class DaysAnimation {
       reveal: element.querySelectorAll('.reveal--day'),
     }));
     this.width = this.stepNodes[0].clientWidth;
+    this.height = this.day[1].element.clientHeight;
   }
 
   moveIndicator(movementFactor, location) {
@@ -72,7 +73,6 @@ export default class DaysAnimation {
   }
 
   handleResize() {
-    console.log('here');
     if (this.width !== this.stepNodes[0].clientWidth) {
       this.width = this.stepNodes[0].clientWidth;
       gsap.set(this.indicatorNode, { width: this.stepNodes[0].clientWidth });
@@ -89,10 +89,15 @@ export default class DaysAnimation {
         visibility: 'hidden',
         opacity: 0,
         zIndex: 1,
+        height: this.height,
       });
       gsap.set(this.day[i].reveal, { opacity: 0 });
     }
-    gsap.set(this.day[0].element, { visibility: 'visible', zIndex: 2 });
+    gsap.set(this.day[0].element, {
+      visibility: 'visible',
+      zIndex: 2,
+      height: this.height,
+    });
     gsap.set(this.indicatorNode, { width: this.stepNodes[0].clientWidth });
 
     // Add event listeners
