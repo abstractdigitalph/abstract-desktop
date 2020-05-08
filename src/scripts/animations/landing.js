@@ -23,6 +23,7 @@ export default class LandingAnimation {
     );
     this.hitboxesNode = document.querySelector('.overlay__hitboxes');
     this.hitboxNodes = document.querySelectorAll('.overlay__hitbox');
+    this.logoNode = document.querySelector('.overlay__logo');
 
     // Store the layering of the different projects
     this.spenmoDirection = [
@@ -376,6 +377,12 @@ export default class LandingAnimation {
   }
   /* eslint-enable class-methods-use-this */
 
+  logoClick() {
+    if (this.currentSlide !== 0) {
+      this.changeSlide(this.currentSlide, (this.currentSlide = 0));
+    }
+  }
+
   /**
    * Changes the slide based on the hitbox being clicked
    * @param {string} to - The slide number that was clicked
@@ -512,6 +519,8 @@ export default class LandingAnimation {
       node.addEventListener('mouseenter', () => this.hitboxEnter(index));
     });
     this.hitboxesNode.addEventListener('mouseleave', () => this.hitboxLeave());
+
+    this.logoNode.addEventListener('click', () => this.logoClick());
 
     // Resize event listener
     window.addEventListener(
