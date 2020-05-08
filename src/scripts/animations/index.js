@@ -11,4 +11,5 @@ menu.load();
 // Export per page animation
 export { default as LandingAnimation } from './landing';
 export { default as DaysAnimation } from './days';
+export { default as WorkAnimation } from './work';
 export { menu, scroll, transition };
