@@ -26,27 +26,39 @@
 
     &__content {
       border-radius: 0.75rem;
-      height: 28.75rem;
+      height: 20rem;
       display: flex;
-      margin-bottom: 5rem;
+      margin-bottom: 2.5rem;
       background-color: var(--color-brandLight);
       overflow: hidden;
       position: relative;
+
+      @include breakpoint("lg") {
+        height: 28.75rem;
+        margin-bottom: 5rem;
+      }
     }
 
     &__half {
-      width: 21.25rem;
+      width: 15rem;
+
+      @include breakpoint("lg") {
+        width: 21.25rem;
+      }
 
       &--right {
         @extend .work__half;
-        margin: 10rem 0 0 3.125rem;
+        margin: 10rem 0 0 1.875rem;
+
+        @include breakpoint("lg") {
+          margin-right: 3.125rem;
+        }
       }
     }
 
     &__imageHolder {
       position: absolute;
       width: 100%;
-      display: flex;
       overflow: hidden;
       border-radius: 0 0 0 0.75rem;
 

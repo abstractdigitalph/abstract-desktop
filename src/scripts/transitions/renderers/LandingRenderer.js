@@ -3,7 +3,7 @@ import { LandingAnimation, menu } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class LandingRenderer extends DefaultRenderer {
-  onEnter() {
+  onEnterCompleted() {
     const landing = new LandingAnimation();
     landing.load();
     menu.addScrollbar();
