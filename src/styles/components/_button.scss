@@ -91,4 +91,43 @@
       stroke: var(--color-primary);
     }
   }
+
+  &__hover {
+    &:hover,
+    &:focus {
+      outline: none;
+      .button {
+        outline: none;
+
+        color: var(--color-brand, var(--color-secondary));
+
+        .button__image {
+          transform: translateX(0.5rem);
+
+          &--reversed {
+            transform: translateX(-0.5rem) scaleX(-1);
+          }
+        }
+      }
+
+      .button--white40 {
+        color: var(--color-brand, var(--color-primary));
+      }
+    }
+
+    &:active {
+      outline: none;
+      .button,
+      .button--white40 {
+        outline: none;
+        .button__image {
+          transform: translateX(1rem);
+
+          &--reversed {
+            transform: translateX(-1rem) scaleX(-1);
+          }
+        }
+      }
+    }
+  }
 }
