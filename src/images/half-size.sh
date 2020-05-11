@@ -1,5 +1,7 @@
 #!/bin/bash
 
+shopt -s globstar
+
 for file in **/*.png
 do
   ext="${file##*.}"
