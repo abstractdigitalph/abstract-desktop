@@ -12,39 +12,6 @@
     background-position: center right;
     background-size: 50%;
 
-    &:hover,
-    &:focus {
-      outline: none;
-      .button {
-        outline: none;
-
-        color: var(--color-brand, var(--color-primary));
-
-        .button__image {
-          transform: translateX(0.5rem);
-
-          &--reversed {
-            transform: translateX(-0.5rem) scaleX(-1);
-          }
-        }
-      }
-    }
-
-    &:active {
-      outline: none;
-      .button {
-        outline: none;
-
-        .button__image {
-          transform: translateX(1rem);
-
-          &--reversed {
-            transform: translateX(-1rem) scaleX(-1);
-          }
-        }
-      }
-    }
-
     &__holder {
       display: flex;
       justify-content: space-between;

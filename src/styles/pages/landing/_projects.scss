@@ -48,26 +48,6 @@
 
     &__link {
       text-decoration: none;
-
-      &:hover,
-      &:focus {
-        outline: none;
-        .button {
-          color: var(--color-brand, var(--color-secondary));
-
-          &__image {
-            transform: translateX(0.5rem);
-          }
-        }
-      }
-
-      &:active {
-        outline: none;
-
-        .button__image {
-          transform: translateX(1rem);
-        }
-      }
     }
 
     &__image {
