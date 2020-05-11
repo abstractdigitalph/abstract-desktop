@@ -9,7 +9,7 @@ const html = {
   test: /\.(html)$/,
   use: [
     {
-      loader: 'html-loader',
+      loader: 'html-loader-srcset',
       options: {
         interpolate: true,
       },
@@ -144,8 +144,8 @@ const videos = {
     {
       loader: 'file-loader',
       query: {
-        name: '[name].[hash].[ext]',
-        outputPath: 'images/',
+        name: '[name].[ext]',
+        outputPath: 'videos/',
       },
     },
   ],

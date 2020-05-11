@@ -87,6 +87,7 @@
     "flexboxgrid2": "^7.2.1",
     "ftp-deploy": "^2.3.3",
     "gsap": "^3.2.6",
+    "html-loader-srcset": "^0.5.6",
     "lodash": "^4.17.15",
     "lottie-web": "^5.6.8",
     "mobile-detect": "^1.4.4",
