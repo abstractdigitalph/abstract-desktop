@@ -1,5 +1,5 @@
 import ScrollRenderer from './ScrollRenderer';
-import { days, lottie } from '../../animations';
+import { days, onLoad } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class ProcessRenderer extends ScrollRenderer {
@@ -9,7 +9,7 @@ export default class ProcessRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
-    lottie.sprint();
+    onLoad.sprint();
   }
 
   onLeave() {

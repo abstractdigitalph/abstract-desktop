@@ -18,6 +18,7 @@ export default class TransitionAnimation {
         onComplete: highwayCallback,
       })
       .set(this.transitionNode, { display: 'block' })
+      .set(this.transitionMain, { opacity: 1 })
       .fromTo(this.transitionMain, { yPercent: 100 }, { yPercent: 0 });
   }
 
@@ -26,11 +27,12 @@ export default class TransitionAnimation {
       .timeline({
         defaults: {
           ease: 'power2.in',
-          duration: 0.5,
+          duration: 0.25,
+          delay: 0.35,
         },
         onComplete: highwayCallback,
       })
-      .fromTo(this.transitionMain, { yPercent: 0 }, { yPercent: -100 })
+      .fromTo(this.transitionMain, { opacity: 1 }, { opacity: 0 })
       .set(this.transitionNode, {
         display: 'none',
       });

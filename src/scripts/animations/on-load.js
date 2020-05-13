@@ -8,16 +8,7 @@ import sprintAnimData from './lottie-files/sprint.json';
 import aboutAnimData from './lottie-files/about.json';
 
 /* eslint-disable class-methods-use-this */
-export default class LottieAnimations {
-  spenmo() {
-    lottie.loadAnimation({
-      container: document.querySelector('.lottie__hero--spenmo'),
-      renderer: 'svg',
-      animationData: spenmoAnimData,
-      autoplay: true,
-    });
-  }
-
+export default class OnLoadAnimations {
   diab() {
     lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--diab'),

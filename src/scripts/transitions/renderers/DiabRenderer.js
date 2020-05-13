@@ -1,9 +1,9 @@
 import ScrollRenderer from './ScrollRenderer';
-import { lottie } from '../../animations';
+import { onLoad } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class DiabRenderer extends ScrollRenderer {
   onEnterCompleted() {
-    lottie.diab();
+    onLoad.diab();
   }
 }

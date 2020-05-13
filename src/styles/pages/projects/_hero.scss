@@ -17,6 +17,11 @@
       margin: 0 0 0.625rem;
     }
 
+    &__label {
+      @extend .text-label;
+      @extend .text-black20;
+    }
+
     &__images {
       height: 61.25%;
       width: 100%;
