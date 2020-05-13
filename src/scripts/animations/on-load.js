@@ -1,5 +1,4 @@
 import lottie from 'lottie-web';
-import spenmoAnimData from './lottie-files/spenmo.json';
 import diabAnimData from './lottie-files/diab.json';
 import tightropeAnimData from './lottie-files/tightrope.json';
 import flashAnimData from './lottie-files/flash.json';
