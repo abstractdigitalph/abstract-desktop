@@ -14,9 +14,9 @@ const landing = new LandingAnimation();
 const days = new DaysAnimation();
 const onLoad = new OnLoadAnimation();
 const spenmo = new OnEnterAnimation('spenmo', 2);
-const diab = new OnEnterAnimation('diab', 4);
+const diab = new OnEnterAnimation('diab', 3);
 const tightrope = new OnEnterAnimation('tightrope', 3);
-const flash = new OnEnterAnimation('flash', 4);
+const flash = new OnEnterAnimation('flash', 3);
 menu.load();
 
 // Export per page animation
