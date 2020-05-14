@@ -22,21 +22,6 @@ export default class OnEnterAnimation {
     this.mainTimeline = null;
     this.lineLoopTimeline = null;
 
-    this.origin = [
-      {
-        x: -600,
-        y: -200,
-      },
-      {
-        x: 600,
-        y: -200,
-      },
-      {
-        x: -800,
-        y: -200,
-      },
-    ];
-
     this.animData = null;
     switch (page) {
       case 'spenmo':
@@ -79,8 +64,6 @@ export default class OnEnterAnimation {
       renderer: 'svg',
       autoplay: false,
     });
-
-    this.lottieAnimation.setSpeed(1.5);
   }
 
   generateOnEnterAnimation() {
@@ -94,7 +77,7 @@ export default class OnEnterAnimation {
         },
       })
       .add(this.imageAnimation())
-      .from(this.letterNode, { duration: 0.75, opacity: 0 }, '>-0.25')
+      .from(this.letterNode, { duration: 0.75, opacity: 0 }, '>-0.15')
       .fromTo(this.h1Node, { opacity: 0, y: 200 }, { opacity: 1, y: 0 }, '<.35')
       .fromTo(
         this.labelNode,
@@ -112,16 +95,7 @@ export default class OnEnterAnimation {
           clipPath: 'inset(0 -2px 0%)',
         },
       )
-      .to(this.lineNode, { clipPath: 'inset(100% -2px 0%)' })
-      .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 }, '<')
-      .fromTo(
-        this.lineNode,
-        { clipPath: 'inset(0 -2px 100%)' },
-        {
-          clipPath: 'inset(0 -2px 0%)',
-        },
-        '<.25',
-      );
+      .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 }, '<');
   }
 
   imageAnimation() {
@@ -132,17 +106,16 @@ export default class OnEnterAnimation {
       },
     });
 
-    this.images.forEach((image, index) => {
+    this.images.forEach((image) => {
       timeline.fromTo(
         image,
         {
           scale: 3,
           opacity: 0,
-          ...this.origin[index],
+          y: -400,
         },
         {
           y: 0,
-          x: 0,
           scale: 1,
           opacity: 1,
         },
