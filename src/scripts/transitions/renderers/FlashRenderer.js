@@ -1,9 +1,14 @@
 import ScrollRenderer from './ScrollRenderer';
-import { lottie } from '../../animations';
+import { flash } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class FlashRenderer extends ScrollRenderer {
+  onEnter() {
+    super.onEnter();
+    flash.load();
+  }
+
   onEnterCompleted() {
-    lottie.flash();
+    flash.play();
   }
 }

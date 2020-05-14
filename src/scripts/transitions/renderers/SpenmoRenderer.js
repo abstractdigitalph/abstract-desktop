@@ -1,9 +1,14 @@
 import ScrollRenderer from './ScrollRenderer';
-import { lottie } from '../../animations';
+import { spenmo } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class SpenmoRenderer extends ScrollRenderer {
+  onEnter() {
+    super.onEnter();
+    spenmo.load();
+  }
+
   onEnterCompleted() {
-    lottie.spenmo();
+    spenmo.play();
   }
 }
