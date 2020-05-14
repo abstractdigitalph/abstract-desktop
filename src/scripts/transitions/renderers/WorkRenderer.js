@@ -1,5 +1,5 @@
 import ScrollRenderer from './ScrollRenderer';
-import { WorkAnimation, lottie } from '../../animations';
+import { WorkAnimation, onLoad } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class WorkRenderer extends ScrollRenderer {
@@ -10,6 +10,6 @@ export default class WorkRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
-    lottie.portfolio();
+    onLoad.portfolio();
   }
 }
