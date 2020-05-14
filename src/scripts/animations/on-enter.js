@@ -13,6 +13,7 @@ export default class OnEnterAnimation {
     this.h1Node = null;
     this.labelNode = null;
     this.lineNode = null;
+    this.letterNode = null;
     this.images = [];
 
     this.lottieNode = null;
@@ -22,10 +23,6 @@ export default class OnEnterAnimation {
     this.lineLoopTimeline = null;
 
     this.origin = [
-      {
-        x: 0,
-        y: -200,
-      },
       {
         x: -600,
         y: -200,
@@ -63,6 +60,7 @@ export default class OnEnterAnimation {
     this.h1Node = document.querySelector(`.onEnter__h1--${this.page}`);
     this.labelNode = document.querySelector(`.onEnter__label--${this.page}`);
     this.lineNode = document.querySelector(`.onEnter__line--${this.page}`);
+    this.letterNode = document.querySelector(`.onEnter__letter--${this.page}`);
     for (let i = 1; i <= this.numberOfImages; i += 1) {
       this.images.push(
         document.querySelector(`.onEnter__image--${this.page}${i}`),
@@ -89,21 +87,26 @@ export default class OnEnterAnimation {
     this.timeline = gsap
       .timeline({
         paused: true,
+        delay: 0.3,
         defaults: {
           duration: 0.4,
           ease: 'power3.out',
         },
       })
-      .fromTo(this.h1Node, { opacity: 0, y: -200 }, { opacity: 1, y: 0 })
+      .add(this.imageAnimation())
+      .from(this.letterNode, { duration: 0.75, opacity: 0 })
+      .fromTo(this.h1Node, { opacity: 0, y: 200 }, { opacity: 1, y: 0 }, '<.35')
       .fromTo(
         this.labelNode,
-        { opacity: 0, y: -200 },
-        { opacity: 1, y: 0 },
+        { opacity: 0, y: 200 },
+        {
+          opacity: 1,
+          y: 0,
+          onComplete: () => this.lineLoopTimeline.play(),
+        },
         '<.15',
       )
-      .add(this.imageAnimation(), '<.15')
-      .from(this.overlayNode, { delay: 0.5, duration: 0.75, opacity: 0 })
-      .set(document.body, { overflowY: 'scroll' }, '<');
+      .from(this.overlayNode, { delay: 0.5, duration: 0.75, opacity: 0 });
   }
 
   generateLineLoopAnimation() {
@@ -133,7 +136,6 @@ export default class OnEnterAnimation {
         duration: 0.4,
         ease: 'back.inOut(0.5)',
       },
-      onComplete: () => this.lineLoopTimeline.play(),
     });
 
     this.images.forEach((image, index) => {
@@ -158,13 +160,11 @@ export default class OnEnterAnimation {
   }
 
   load() {
-    gsap.set(document.body, { overflowY: 'hidden' });
     this.querySelectors();
-
     this.generateWriteOnAnimation();
     this.generateLineLoopAnimation();
     this.generateOnEnterAnimation();
-    this.lottieAnimation.addEventListener('complete', () => this.timeline.play());
+    this.timeline.play();
   }
 
   play() {
