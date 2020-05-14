@@ -14,7 +14,7 @@ export default class SpenmoOnEnterAnimation {
     this.lottieNode = null;
     this.lottieAnimation = null;
 
-    this.backEase = 'back.inOut(1.4)';
+    this.backEase = 'back.inOut(1.0)';
     this.timeline = null;
   }
 
@@ -41,7 +41,7 @@ export default class SpenmoOnEnterAnimation {
         paused: true,
         defaults: {
           duration: 0.4,
-          ease: 'power2.out',
+          ease: 'power3.out',
         },
       })
       .fromTo(this.h1Node, { opacity: 0, y: -200 }, { opacity: 1, y: 0 })
@@ -56,11 +56,13 @@ export default class SpenmoOnEnterAnimation {
         {
           scale: 3,
           opacity: 0,
+          y: -200,
         },
         {
-          scale: 0.8,
-          opacity: 0.5,
-          y: -200,
+          ease: this.backEase,
+          y: 0,
+          scale: 1,
+          opacity: 1,
         },
       )
       .fromTo(
@@ -68,66 +70,42 @@ export default class SpenmoOnEnterAnimation {
         {
           scale: 3,
           opacity: 0,
-        },
-        {
-          scale: 0.8,
-          opacity: 0.5,
           x: -400,
           y: -200,
         },
-        '<',
+        {
+          ease: this.backEase,
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          x: 0,
+        },
+        '<.25',
       )
       .fromTo(
         this.image3Node,
         {
           scale: 3,
           opacity: 0,
-        },
-        {
-          scale: 0.8,
-          opacity: 0.5,
           x: 400,
           y: -200,
         },
-        '<',
-      )
-      .to(this.image2Node, {
-        ease: this.backEase,
-        duration: 0.3,
-        y: 0,
-        scale: 1,
-        opacity: 1,
-      })
-      .to(
-        this.image1Node,
         {
           ease: this.backEase,
-          duration: 0.3,
-          x: 0,
-          y: 0,
           scale: 1,
           opacity: 1,
-        },
-        '<',
-      )
-      .to(
-        this.image3Node,
-        {
-          ease: this.backEase,
-          duration: 0.3,
-          x: 0,
           y: 0,
-          scale: 1,
-          opacity: 1,
+          x: 0,
           onComplete: () => this.lineLoop.play(),
         },
-        '<',
+        '<.25',
       );
 
     this.lineLoop = gsap
       .timeline({
         paused: true,
         repeat: -1,
+        delay: 0.5,
         defaults: {
           duration: 1.5,
           ease: 'power2.out',
