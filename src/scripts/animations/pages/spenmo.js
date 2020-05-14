@@ -102,7 +102,8 @@ export default class SpenmoOnEnterAnimation {
         },
         '<.25',
       )
-      .from(this.overlayNode, { delay: 1, duration: 0.75, opacity: 0 });
+      .from(this.overlayNode, { delay: 1, duration: 0.75, opacity: 0 })
+      .set(document.body, { overflowY: 'scroll' });
 
     this.lineLoop = gsap
       .timeline({
@@ -125,6 +126,7 @@ export default class SpenmoOnEnterAnimation {
   }
 
   load() {
+    gsap.set(document.body, { overflowY: 'hidden' });
     this.querySelectors();
     this.lottieAnimation.addEventListener('complete', () => this.timeline.play());
   }
