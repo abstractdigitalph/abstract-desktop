@@ -94,7 +94,7 @@ export default class OnEnterAnimation {
         },
       })
       .add(this.imageAnimation())
-      .from(this.letterNode, { duration: 0.75, opacity: 0 })
+      .from(this.letterNode, { duration: 0.75, opacity: 0 }, '>-0.25')
       .fromTo(this.h1Node, { opacity: 0, y: 200 }, { opacity: 1, y: 0 }, '<.35')
       .fromTo(
         this.labelNode,
@@ -106,7 +106,7 @@ export default class OnEnterAnimation {
         },
         '<.15',
       )
-      .from(this.overlayNode, { delay: 0.5, duration: 0.75, opacity: 0 });
+      .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 });
   }
 
   generateLineLoopAnimation() {
@@ -114,7 +114,6 @@ export default class OnEnterAnimation {
       .timeline({
         paused: true,
         repeat: -1,
-        delay: 0.5,
         defaults: {
           duration: 1.5,
           ease: 'power2.out',
