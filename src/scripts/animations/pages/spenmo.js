@@ -13,6 +13,8 @@ export default class SpenmoOnEnterAnimation {
 
     this.lottieNode = null;
     this.lottieAnimation = null;
+
+    this.backEase = 'back.inOut(3)';
   }
 
   querySelectors() {
@@ -33,24 +35,70 @@ export default class SpenmoOnEnterAnimation {
   }
 
   setup() {
-    this.lottieAnimation.addEventListener('complete', () => this.animateImages());
-    gsap.set(this.image1Node, { opacity: 0 });
-    gsap.set(this.image2Node, { opacity: 0 });
-    gsap.set(this.image3Node, { opacity: 0 });
+    gsap.set(this.image1Node, { scale: 3, opacity: 0 });
+    gsap.set(this.image2Node, { scale: 3, opacity: 0 });
+    gsap.set(this.image3Node, { scale: 3, opacity: 0 });
     gsap.set(this.h1Node, { opacity: 0 });
     gsap.set(this.labelNode, { opacity: 0 });
     gsap.set(this.lineNode, { clipPath: 'inset(0 -2px 100% -2px)' });
+    this.lottieAnimation.addEventListener('complete', () => this.animateImages());
   }
 
   animateImages() {
     gsap
-      .timeline()
+      .timeline({
+        defaults: {
+          duration: 0.3,
+          ease: 'power2.out',
+        },
+      })
       .to(this.h1Node, { opacity: 1 })
-      .to(this.labelNode, { opacity: 1 }, '<.25')
-      .to(this.image2Node, { opacity: 1 })
-      .to(this.image1Node, { opacity: 1 })
-      .to(this.image3Node, { opacity: 1 })
-      .to(this.lineNode, { clipPath: 'inset(0 -2px 0% -2px)' });
+      .to(this.labelNode, { opacity: 1 }, '<.15')
+      .to(this.image2Node, {
+        scale: 1,
+        opacity: 0.5,
+        y: -200,
+      })
+      .to(this.image2Node, {
+        ease: this.backEase,
+        y: 0,
+        opacity: 1,
+      })
+      .to(
+        this.image1Node,
+        {
+          scale: 1,
+          opacity: 0.5,
+          x: -400,
+          y: -200,
+        },
+        '<',
+      )
+      .to(this.image1Node, {
+        ease: this.backEase,
+        x: 0,
+        y: 0,
+        opacity: 1,
+      })
+      .to(
+        this.image3Node,
+        {
+          scale: 1,
+          opacity: 0.5,
+          x: 400,
+          y: -200,
+        },
+        '<',
+      )
+      .to(this.image3Node, {
+        ease: this.backEase,
+        x: 0,
+        y: 0,
+        opacity: 1,
+      })
+      .to(this.lineNode, {
+        clipPath: 'inset(0 -2px 0% -2px)',
+      });
   }
 
   load() {
