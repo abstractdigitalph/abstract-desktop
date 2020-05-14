@@ -14,7 +14,7 @@ export default class SpenmoOnEnterAnimation {
     this.lottieNode = null;
     this.lottieAnimation = null;
 
-    this.backEase = 'back.inOut(3)';
+    this.backEase = 'back.inOut(1.4)';
     this.timeline = null;
   }
 
@@ -44,8 +44,13 @@ export default class SpenmoOnEnterAnimation {
           ease: 'power2.out',
         },
       })
-      .fromTo(this.h1Node, { opacity: 0 }, { opacity: 1 })
-      .fromTo(this.labelNode, { opacity: 0 }, { opacity: 1 }, '<.15')
+      .fromTo(this.h1Node, { opacity: 0, y: -200 }, { opacity: 1, y: 0 })
+      .fromTo(
+        this.labelNode,
+        { opacity: 0, y: -200 },
+        { opacity: 1, y: 0 },
+        '<.15',
+      )
       .fromTo(
         this.image2Node,
         {
@@ -53,16 +58,11 @@ export default class SpenmoOnEnterAnimation {
           opacity: 0,
         },
         {
-          scale: 1,
+          scale: 0.8,
           opacity: 0.5,
           y: -200,
         },
       )
-      .to(this.image2Node, {
-        ease: this.backEase,
-        y: 0,
-        opacity: 1,
-      })
       .fromTo(
         this.image1Node,
         {
@@ -70,19 +70,13 @@ export default class SpenmoOnEnterAnimation {
           opacity: 0,
         },
         {
-          scale: 1,
+          scale: 0.8,
           opacity: 0.5,
           x: -400,
           y: -200,
         },
         '<',
       )
-      .to(this.image1Node, {
-        ease: this.backEase,
-        x: 0,
-        y: 0,
-        opacity: 1,
-      })
       .fromTo(
         this.image3Node,
         {
@@ -90,20 +84,45 @@ export default class SpenmoOnEnterAnimation {
           opacity: 0,
         },
         {
-          scale: 1,
+          scale: 0.8,
           opacity: 0.5,
           x: 400,
           y: -200,
         },
         '<',
       )
-      .to(this.image3Node, {
+      .to(this.image2Node, {
         ease: this.backEase,
-        x: 0,
+        duration: 0.3,
         y: 0,
+        scale: 1,
         opacity: 1,
-        onComplete: () => this.lineLoop.play(),
-      });
+      })
+      .to(
+        this.image1Node,
+        {
+          ease: this.backEase,
+          duration: 0.3,
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+        },
+        '<',
+      )
+      .to(
+        this.image3Node,
+        {
+          ease: this.backEase,
+          duration: 0.3,
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          onComplete: () => this.lineLoop.play(),
+        },
+        '<',
+      );
 
     this.lineLoop = gsap
       .timeline({
@@ -116,12 +135,12 @@ export default class SpenmoOnEnterAnimation {
       })
       .fromTo(
         this.lineNode,
-        { clipPath: 'inset(0 -2px 100% -2px)', height: '75%' },
+        { clipPath: 'inset(0 -2px 100%)' },
         {
-          clipPath: 'inset(0 -2px 0% -2px)',
+          clipPath: 'inset(0 -2px 0%)',
         },
       )
-      .to(this.lineNode, { height: 0 });
+      .to(this.lineNode, { clipPath: 'inset(100% -2px 0%)' });
   }
 
   load() {
