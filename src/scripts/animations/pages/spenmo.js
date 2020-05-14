@@ -10,6 +10,7 @@ export default class SpenmoOnEnterAnimation {
     this.image1Node = null;
     this.image2Node = null;
     this.image3Node = null;
+    this.overlayNode = null;
 
     this.lottieNode = null;
     this.lottieAnimation = null;
@@ -25,6 +26,7 @@ export default class SpenmoOnEnterAnimation {
     this.image1Node = document.querySelector('.onEnter__image--spenmo1');
     this.image2Node = document.querySelector('.onEnter__image--spenmo2');
     this.image3Node = document.querySelector('.onEnter__image--spenmo3');
+    this.overlayNode = document.querySelector('.overlay');
 
     this.lottieNode = document.querySelector('.lottie__hero--spenmo');
     this.lottieAnimation = lottie.loadAnimation({
@@ -99,7 +101,8 @@ export default class SpenmoOnEnterAnimation {
           onComplete: () => this.lineLoop.play(),
         },
         '<.25',
-      );
+      )
+      .from(this.overlayNode, { delay: 1, duration: 0.75, opacity: 0 });
 
     this.lineLoop = gsap
       .timeline({
