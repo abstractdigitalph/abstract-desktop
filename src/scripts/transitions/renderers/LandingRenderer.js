@@ -9,7 +9,11 @@ export default class LandingRenderer extends DefaultRenderer {
   }
 
   onLeave() {
-    landing.leave();
     menu.removeScrollbar();
+  }
+
+  onLeaveCompleted() {
+    super.onLeaveCompleted();
+    landing.leave();
   }
 }
