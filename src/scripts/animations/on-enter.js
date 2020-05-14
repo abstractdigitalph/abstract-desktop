@@ -13,6 +13,7 @@ export default class OnEnterAnimation {
     this.h1Node = null;
     this.labelNode = null;
     this.lineNode = null;
+    this.letterNode = null;
     this.images = [];
 
     this.lottieNode = null;
@@ -20,25 +21,6 @@ export default class OnEnterAnimation {
 
     this.mainTimeline = null;
     this.lineLoopTimeline = null;
-
-    this.origin = [
-      {
-        x: 0,
-        y: -200,
-      },
-      {
-        x: -600,
-        y: -200,
-      },
-      {
-        x: 600,
-        y: -200,
-      },
-      {
-        x: -800,
-        y: -200,
-      },
-    ];
 
     this.animData = null;
     switch (page) {
@@ -63,6 +45,7 @@ export default class OnEnterAnimation {
     this.h1Node = document.querySelector(`.onEnter__h1--${this.page}`);
     this.labelNode = document.querySelector(`.onEnter__label--${this.page}`);
     this.lineNode = document.querySelector(`.onEnter__line--${this.page}`);
+    this.letterNode = document.querySelector(`.onEnter__letter--${this.page}`);
     for (let i = 1; i <= this.numberOfImages; i += 1) {
       this.images.push(
         document.querySelector(`.onEnter__image--${this.page}${i}`),
@@ -81,42 +64,30 @@ export default class OnEnterAnimation {
       renderer: 'svg',
       autoplay: false,
     });
-
-    this.lottieAnimation.setSpeed(1.5);
   }
 
   generateOnEnterAnimation() {
     this.timeline = gsap
       .timeline({
         paused: true,
+        delay: 0.2,
         defaults: {
           duration: 0.4,
           ease: 'power3.out',
         },
       })
-      .fromTo(this.h1Node, { opacity: 0, y: -200 }, { opacity: 1, y: 0 })
+      .add(this.imageAnimation())
+      .from(this.letterNode, { duration: 0.75, opacity: 0 }, '>-0.15')
+      .fromTo(this.h1Node, { opacity: 0, y: 200 }, { opacity: 1, y: 0 }, '<.35')
       .fromTo(
         this.labelNode,
-        { opacity: 0, y: -200 },
-        { opacity: 1, y: 0 },
+        { opacity: 0, y: 200 },
+        {
+          opacity: 1,
+          y: 0,
+        },
         '<.15',
       )
-      .add(this.imageAnimation(), '<.15')
-      .from(this.overlayNode, { delay: 0.5, duration: 0.75, opacity: 0 })
-      .set(document.body, { overflowY: 'scroll' }, '<');
-  }
-
-  generateLineLoopAnimation() {
-    this.lineLoopTimeline = gsap
-      .timeline({
-        paused: true,
-        repeat: -1,
-        delay: 0.5,
-        defaults: {
-          duration: 1.5,
-          ease: 'power2.out',
-        },
-      })
       .fromTo(
         this.lineNode,
         { clipPath: 'inset(0 -2px 100%)' },
@@ -124,7 +95,7 @@ export default class OnEnterAnimation {
           clipPath: 'inset(0 -2px 0%)',
         },
       )
-      .to(this.lineNode, { clipPath: 'inset(100% -2px 0%)' });
+      .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 }, '<');
   }
 
   imageAnimation() {
@@ -133,20 +104,18 @@ export default class OnEnterAnimation {
         duration: 0.4,
         ease: 'back.inOut(0.5)',
       },
-      onComplete: () => this.lineLoopTimeline.play(),
     });
 
-    this.images.forEach((image, index) => {
+    this.images.forEach((image) => {
       timeline.fromTo(
         image,
         {
           scale: 3,
           opacity: 0,
-          ...this.origin[index],
+          y: -400,
         },
         {
           y: 0,
-          x: 0,
           scale: 1,
           opacity: 1,
         },
@@ -158,16 +127,13 @@ export default class OnEnterAnimation {
   }
 
   load() {
-    gsap.set(document.body, { overflowY: 'hidden' });
     this.querySelectors();
-
     this.generateWriteOnAnimation();
-    this.generateLineLoopAnimation();
     this.generateOnEnterAnimation();
-    this.lottieAnimation.addEventListener('complete', () => this.timeline.play());
   }
 
   play() {
-    setTimeout(() => this.lottieAnimation.play(), 250);
+    this.lottieAnimation.play();
+    this.timeline.play();
   }
 }
