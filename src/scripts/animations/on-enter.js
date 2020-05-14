@@ -87,7 +87,7 @@ export default class OnEnterAnimation {
     this.timeline = gsap
       .timeline({
         paused: true,
-        delay: 0.3,
+        delay: 0.2,
         defaults: {
           duration: 0.4,
           ease: 'power3.out',
@@ -102,23 +102,9 @@ export default class OnEnterAnimation {
         {
           opacity: 1,
           y: 0,
-          onComplete: () => this.lineLoopTimeline.play(),
         },
         '<.15',
       )
-      .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 });
-  }
-
-  generateLineLoopAnimation() {
-    this.lineLoopTimeline = gsap
-      .timeline({
-        paused: true,
-        repeat: -1,
-        defaults: {
-          duration: 1.5,
-          ease: 'power2.out',
-        },
-      })
       .fromTo(
         this.lineNode,
         { clipPath: 'inset(0 -2px 100%)' },
@@ -126,7 +112,16 @@ export default class OnEnterAnimation {
           clipPath: 'inset(0 -2px 0%)',
         },
       )
-      .to(this.lineNode, { clipPath: 'inset(100% -2px 0%)' });
+      .to(this.lineNode, { clipPath: 'inset(100% -2px 0%)' })
+      .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 }, '<')
+      .fromTo(
+        this.lineNode,
+        { clipPath: 'inset(0 -2px 100%)' },
+        {
+          clipPath: 'inset(0 -2px 0%)',
+        },
+        '<.25',
+      );
   }
 
   imageAnimation() {
@@ -161,12 +156,11 @@ export default class OnEnterAnimation {
   load() {
     this.querySelectors();
     this.generateWriteOnAnimation();
-    this.generateLineLoopAnimation();
     this.generateOnEnterAnimation();
-    this.timeline.play();
   }
 
   play() {
-    setTimeout(() => this.lottieAnimation.play(), 250);
+    this.lottieAnimation.play();
+    this.timeline.play();
   }
 }
