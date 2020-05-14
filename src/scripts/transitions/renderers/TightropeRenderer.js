@@ -1,9 +1,14 @@
 import ScrollRenderer from './ScrollRenderer';
-import { onLoad } from '../../animations';
+import { tightrope } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class TightropeRenderer extends ScrollRenderer {
+  onEnter() {
+    super.onEnter();
+    tightrope.load();
+  }
+
   onEnterCompleted() {
-    onLoad.tightrope();
+    tightrope.play();
   }
 }

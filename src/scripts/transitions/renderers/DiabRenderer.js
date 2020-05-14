@@ -1,9 +1,14 @@
 import ScrollRenderer from './ScrollRenderer';
-import { onLoad } from '../../animations';
+import { diab } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class DiabRenderer extends ScrollRenderer {
+  onEnter() {
+    super.onEnter();
+    diab.load();
+  }
+
   onEnterCompleted() {
-    onLoad.diab();
+    diab.play();
   }
 }
