@@ -17,6 +17,7 @@ export default class SmoothScroll {
     this.targetFPMS = 0.075;
     this.scrollY = 0;
     this.target = null;
+    this.body = null;
 
     this.boundResize = () => this.onResize();
     this.boundOnScroll = () => this.onScroll();
@@ -36,7 +37,7 @@ export default class SmoothScroll {
     const resized = this.resizeRequest;
     if (resized) {
       const height = this.target.clientHeight;
-      document.body.style.height = `${height}px`;
+      this.body.style.height = `${height}px`;
       this.viewHeight = window.innerHeight;
       this.halfViewHeight = this.viewHeight / 2;
       this.maxDistance = this.viewHeight * 2;
@@ -136,10 +137,12 @@ export default class SmoothScroll {
     window.removeEventListener('scroll', this.boundOnScroll);
   }
 
-  load(target) {
+  load(target, body) {
     this.target = target;
+    this.body = body;
     this.addItems();
     this.addEventListeners();
+    this.update();
   }
 
   leave() {

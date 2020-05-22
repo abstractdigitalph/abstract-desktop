@@ -1,14 +1,17 @@
 import DefaultRenderer from './DefaultRenderer';
-import { smoothScroll } from '../../animations';
+import { SmoothScrollAnimation } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class ScrollRenderer extends DefaultRenderer {
   onEnterCompleted() {
-    smoothScroll.load(document.querySelector('.smoothScroll__container'));
+    const smoothScroll = new SmoothScrollAnimation();
+    smoothScroll.load(
+      document.querySelector('.smoothScroll__container'),
+      document.querySelector('.smoothScroll__height'),
+    );
   }
 
   onLeaveCompleted() {
     super.onLeaveCompleted();
-    smoothScroll.leave();
   }
 }
