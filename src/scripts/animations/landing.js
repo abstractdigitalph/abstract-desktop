@@ -619,7 +619,8 @@ export default class LandingAnimation {
   }
 
   /**
-   * Cleanup
+   * Cleanup. Remove dangling styles and event listeners to prevent running
+   * functions that are not pertinent on the page
    */
   leave() {
     this.removeStyles();

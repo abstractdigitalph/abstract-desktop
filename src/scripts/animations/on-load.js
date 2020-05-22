@@ -1,40 +1,14 @@
 import lottie from 'lottie-web';
-import diabAnimData from './lottie-files/diab.json';
-import tightropeAnimData from './lottie-files/tightrope.json';
-import flashAnimData from './lottie-files/flash.json';
 import portfolioAnimData from './lottie-files/portfolio.json';
 import sprintAnimData from './lottie-files/sprint.json';
 import aboutAnimData from './lottie-files/about.json';
 
+// Temporary class until on enter animation is created for these pages
 /* eslint-disable class-methods-use-this */
 export default class OnLoadAnimations {
-  diab() {
-    lottie.loadAnimation({
-      container: document.querySelector('.lottie__hero--diab'),
-      renderer: 'svg',
-      animationData: diabAnimData,
-      autoplay: true,
-    });
-  }
-
-  tightrope() {
-    lottie.loadAnimation({
-      container: document.querySelector('.lottie__hero--tightrope'),
-      renderer: 'svg',
-      animationData: tightropeAnimData,
-      autoplay: true,
-    });
-  }
-
-  flash() {
-    lottie.loadAnimation({
-      container: document.querySelector('.lottie__hero--flash'),
-      renderer: 'svg',
-      animationData: flashAnimData,
-      autoplay: true,
-    });
-  }
-
+  /**
+   * Loads portfolio animation
+   */
   portfolio() {
     lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--portfolio'),
@@ -44,6 +18,9 @@ export default class OnLoadAnimations {
     });
   }
 
+  /**
+   * Loads sprint animation
+   */
   sprint() {
     lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--sprint'),
@@ -53,6 +30,9 @@ export default class OnLoadAnimations {
     });
   }
 
+  /**
+   * Loads about animation
+   */
   about() {
     lottie.loadAnimation({
       container: document.querySelector('.lottie__hero--about'),

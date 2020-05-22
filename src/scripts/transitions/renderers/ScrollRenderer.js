@@ -1,15 +1,14 @@
 import DefaultRenderer from './DefaultRenderer';
-import { scroll } from '../../animations';
+import { smoothScroll } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class ScrollRenderer extends DefaultRenderer {
-  onEnter() {
-    scroll.load();
-    scroll.loadShapes();
+  onEnterCompleted() {
+    smoothScroll.load(document.querySelector('.smoothScroll__container'));
   }
 
   onLeaveCompleted() {
     super.onLeaveCompleted();
-    scroll.leave();
+    smoothScroll.leave();
   }
 }
