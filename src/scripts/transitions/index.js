@@ -42,3 +42,16 @@ road.on("NAVIGATE_IN", ({ to, location }) => {
     }
   }
 });
+
+// eslint-disable-next-line
+road.on("NAVIGATE_END", ({ from, to, location }) => {
+  // Analytics
+  if (typeof gtag !== 'undefined') {
+    // eslint-disable-next-line
+    gtag("config", "UA-XXXXXXXXX-X", {
+      page_path: location.pathname,
+      page_title: to.page.title,
+      page_location: location.href,
+    });
+  }
+});
