@@ -1,7 +1,7 @@
 export default class SmoothScroll {
   constructor() {
     // Constants
-    this.ease = 0.125;
+    this.ease = 0.1;
     this.maxOffset = 600;
     this.endTreshold = 0.05;
     this.maxDepth = 20;
@@ -91,12 +91,11 @@ export default class SmoothScroll {
       item.endOffset = Math.round(
         this.maxOffset * item.depthRatio * offsetRatio,
       );
-      const itemDt = 1 - (1 - this.ease * 5) ** (elapsedMS * this.targetFPMS);
 
       if (Math.abs(item.endOffset - item.currentOffset) < this.endTreshold) {
         item.currentOffset = item.endOffset;
       } else {
-        item.currentOffset += (item.endOffset - item.currentOffset) * itemDt;
+        item.currentOffset += (item.endOffset - item.currentOffset) * dt;
       }
       item.target.style.transform = `translate3d(0px,${item.currentOffset
         * -1}px,0px)`;
@@ -181,6 +180,7 @@ export default class SmoothScroll {
     const status = this.imagesLastStatus.reduce((acc, curr) => acc && curr);
     if (status) {
       window.clearInterval(this.imageResizeId);
+      this.imageResizeId = null;
     }
   }
 
@@ -195,6 +195,7 @@ export default class SmoothScroll {
   }
 
   load(target, body) {
+    this.resetValues();
     this.target = target;
     this.body = body;
     this.addItems();
@@ -204,6 +205,12 @@ export default class SmoothScroll {
   }
 
   leave() {
+    if (this.imageResizeId) {
+      window.clearInterval(this.imageResizeId);
+    }
+    if (this.requestId) {
+      cancelAnimationFrame(this.requestId);
+    }
     this.resetValues();
     this.removeEventListeners();
   }
