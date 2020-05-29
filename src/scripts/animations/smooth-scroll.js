@@ -1,7 +1,7 @@
 export default class SmoothScroll {
   constructor() {
-    this.ease = 0.075;
-    this.maxOffset = 500;
+    this.ease = 0.125;
+    this.maxOffset = 600;
     this.endTreshold = 0.05;
     this.requestId = null;
     this.maxDepth = 20;
@@ -69,10 +69,12 @@ export default class SmoothScroll {
       item.endOffset = Math.round(
         this.maxOffset * item.depthRatio * offsetRatio,
       );
+      const itemDt = 1 - (1 - this.ease * 5) ** (elapsedMS * this.targetFPMS);
+
       if (Math.abs(item.endOffset - item.currentOffset) < this.endTreshold) {
         item.currentOffset = item.endOffset;
       } else {
-        item.currentOffset += (item.endOffset - item.currentOffset) * dt;
+        item.currentOffset += (item.endOffset - item.currentOffset) * itemDt;
       }
       item.target.style.transform = `translate3d(0px,${item.currentOffset
         * -1}px,0px)`;
@@ -132,6 +134,18 @@ export default class SmoothScroll {
     }
   }
 
+  setupImageResize() {
+    this.images = [...document.getElementsByTagName('img')].filter(
+      (image) => image.loading === 'lazy',
+    );
+    this.imagesLastStatus = this.images.map((image) => image.complete);
+
+    this.imageResizeId = window.setInterval(
+      this.boundResizeOnImageUpdate,
+      1000,
+    );
+  }
+
   resizeOnImageUpdate() {
     this.images.forEach((image, index) => {
       if (image.complete !== this.imagesLastStatus[index]) {
@@ -159,17 +173,8 @@ export default class SmoothScroll {
     this.target = target;
     this.body = body;
 
-    this.images = [...document.getElementsByTagName('img')].filter(
-      (image) => image.loading === 'lazy',
-    );
-    this.imagesLastStatus = this.images.map((image) => image.complete);
-
-    this.imageResizeId = window.setInterval(
-      this.boundResizeOnImageUpdate,
-      1000,
-    );
-
     this.addItems();
+    this.setupImageResize();
     this.addEventListeners();
     this.update();
   }
