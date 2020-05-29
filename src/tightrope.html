@@ -247,481 +247,509 @@
     </nav>
 
     <main data-router-wrapper>
-      <div id="projects" class="brand-tightrope" data-router-view="tightrope">
+      <div
+        id="projects"
+        class="brand-tightrope smoothScroll__height--tightrope"
+        data-router-view="tightrope"
+      >
         <!-- Hero -->
-        <section id="projectsLanding">
-          <h1 class="projects__h1 onEnter__h1--tightrope">
-            Tightrope Coffee
-          </h1>
-          <span class="projects__label onEnter__label--tightrope"
-            >Ecommerce / Food & Beverage</span
+        <div class="smoothScroll__wrapper">
+          <div
+            class="smoothScroll__container smoothScroll__container--tightrope"
           >
+            <section id="projectsLanding">
+              <h1 class="projects__h1 onEnter__h1--tightrope" data-depth="15">
+                Tightrope Coffee
+              </h1>
+              <span
+                class="projects__label onEnter__label--tightrope"
+                data-depth="12"
+                >Ecommerce / Food & Beverage</span
+              >
 
-          <div class="projects__images">
-            <div class="projects__imageHolder">
-              <img
-                srcset="
-                  images/projects/tightrope/hero/1.png,
-                  images/projects/tightrope/hero/1@2x.png 2x
-                "
-                src="images/projects/tightrope/hero/1@2x.png"
-                alt="Tightrope App on Tablet"
-                loading="lazy"
-                class="projects__image--tightrope1 onEnter__image--tightrope1"
-              />
-              <img
-                srcset="
-                  images/projects/tightrope/hero/2.png,
-                  images/projects/tightrope/hero/2@2x.png 2x
-                "
-                src="images/projects/tightrope/hero/2@2x.png"
-                alt="Letter T filled with a picture of making coffee"
-                loading="lazy"
-                class="projects__image--tightrope2 onEnter__letter--tightrope"
-              />
-              <img
-                srcset="
-                  images/projects/tightrope/hero/3.png,
-                  images/projects/tightrope/hero/3@2x.png 2x
-                "
-                src="images/projects/tightrope/hero/3@2x.png"
-                alt="Tightrope App on Phone"
-                loading="lazy"
-                class="projects__image--tightrope3 onEnter__image--tightrope2"
-              />
-            </div>
-            <hr class="projects__line onEnter__line--tightrope" />
-            <div class="lottie__hero--tightrope"></div>
+              <div class="projects__images">
+                <div class="projects__imageHolder">
+                  <img
+                    srcset="
+                      images/projects/tightrope/hero/1.png,
+                      images/projects/tightrope/hero/1@2x.png 2x
+                    "
+                    src="images/projects/tightrope/hero/1@2x.png"
+                    alt="Tightrope App on Tablet"
+                    loading="lazy"
+                    class="projects__image--tightrope1 onEnter__image--tightrope1"
+                    data-depth="15"
+                  />
+                  <img
+                    srcset="
+                      images/projects/tightrope/hero/2.png,
+                      images/projects/tightrope/hero/2@2x.png 2x
+                    "
+                    src="images/projects/tightrope/hero/2@2x.png"
+                    alt="Letter T filled with a picture of making coffee"
+                    loading="lazy"
+                    class="projects__image--tightrope2 onEnter__letter--tightrope"
+                    data-depth="-2"
+                  />
+                  <img
+                    srcset="
+                      images/projects/tightrope/hero/3.png,
+                      images/projects/tightrope/hero/3@2x.png 2x
+                    "
+                    src="images/projects/tightrope/hero/3@2x.png"
+                    alt="Tightrope App on Phone"
+                    loading="lazy"
+                    class="projects__image--tightrope3 onEnter__image--tightrope2"
+                    data-depth="10"
+                  />
+                </div>
+                <hr class="projects__line onEnter__line--tightrope" />
+                <div class="lottie__hero--tightrope" data-depth="-10"></div>
+              </div>
+            </section>
+
+            <article id="projectsChallenge">
+              <section class="container">
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-6">
+                    <span class="text-label text-lineBefore text-white20"
+                      >The Challenge</span
+                    >
+                    <h2 class="challenge__h2">
+                      Automating The Coffee Ordering Experience
+                    </h2>
+                    <hr class="break" />
+                    <p class="challenge__p">
+                      Relentless at innovating the coffee experience, Gabe
+                      wanted to digitally transform how customers pre-order
+                      their favorite cup. And in doing so, ensuring customers to
+                      be served their food & beverage – how they want it, when
+                      they want it.
+                    </p>
+                  </div>
+                  <div class="col-xs-offset-1 col-xs-3">
+                    <span class="text-label text-white20">
+                      Client
+                    </span>
+                    <p class="challenge__clientInfo">
+                      Tightrope Coffee
+                    </p>
+
+                    <span class="text-label text-white20">
+                      Location
+                    </span>
+                    <p class="challenge__clientInfo">
+                      Philippines
+                    </p>
+
+                    <span class="text-label text-white20">
+                      Year
+                    </span>
+                    <p class="challenge__clientInfo">
+                      2019
+                    </p>
+
+                    <span class="text-label text-white20">
+                      Services
+                    </span>
+                    <ul class="challenge__clientList">
+                      <li>Design Sprints</li>
+                      <li>UI/UX</li>
+                      <li>Development</li>
+                      <li>Branding</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="challenge__images">
+                <div class="container">
+                  <div class="row">
+                    <div
+                      class="col-xs-offset-1 col-xs-10 challenge__imageHolder"
+                    >
+                      <img
+                        srcset="
+                          images/projects/tightrope/challenge/1.png,
+                          images/projects/tightrope/challenge/1@2x.png 2x
+                        "
+                        src="images/projects/tightrope/challenge/1@2x.png"
+                        alt="Espresso Machine"
+                        loading="lazy"
+                        class="challenge__image challenge__image--tightrope1"
+                        data-depth="7"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/challenge/2.png,
+                          images/projects/tightrope/challenge/2@2x.png 2x
+                        "
+                        src="images/projects/tightrope/challenge/2@2x.png"
+                        alt="Food with menu"
+                        loading="lazy"
+                        class="challenge__image challenge__image--tightrope2"
+                        data-depth="3"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="challenge__blurb">
+                <div class="container">
+                  <div class="row">
+                    <div
+                      class="col-xs-offset-2 col-xs-8 challenge__blurbHolder"
+                    >
+                      <p class="text-body2 text-white">
+                        Hailed as the best coffeeshop in the Queen City of the
+                        South, Tightrope Coffee prides itself in serving
+                        specialty coffee with careful taste and precision.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </article>
+
+            <article id="projectsProcess">
+              <section class="container">
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-4">
+                    <span class="text-label text-lineBefore text-white20"
+                      >The Process</span
+                    >
+                    <h3 class="process__h3">
+                      Creating a digital touchpoint to engage with customers
+                    </h3>
+                    <hr class="break" />
+                  </div>
+                  <div class="col-xs-offset-1 col-xs-5">
+                    <h4 class="process__h4">
+                      Aligning a cross-functional team in building a minimum
+                      viable product
+                    </h4>
+                    <p class="text-body1 text-white">
+                      Gabe already has an idea in mind, but he also needs to
+                      consider the dependencies that affect this with his team
+                      of baristas, cooks, and cashiers.
+                    </p>
+                    <p class="text-body1 text-white">
+                      We then gathered representatives in each of the different
+                      operational parts of the business and ran a Design Sprint.
+                    </p>
+                  </div>
+                </div>
+                <div class="process__images">
+                  <img
+                    srcset="
+                      images/projects/tightrope/process/1.png,
+                      images/projects/tightrope/process/1@2x.png 2x
+                    "
+                    src="images/projects/tightrope/process/1@2x.png"
+                    alt="Team working together to identify problem"
+                    loading="lazy"
+                    class="process__image process__image"
+                    data-depth="7"
+                  />
+                  <img
+                    srcset="
+                      images/projects/tightrope/process/2.png,
+                      images/projects/tightrope/process/2@2x.png 2x
+                    "
+                    src="images/projects/tightrope/process/2@2x.png"
+                    alt="2 year goal on post-it notes"
+                    loading="lazy"
+                    class="process__image process__image--low"
+                    data-depth="5"
+                  />
+                  <img
+                    srcset="
+                      images/projects/tightrope/process/3.png,
+                      images/projects/tightrope/process/3@2x.png 2x
+                    "
+                    src="images/projects/tightrope/process/3@2x.png"
+                    alt="Wireframe of a proposed solution"
+                    loading="lazy"
+                    class="process__image process__image--lowest"
+                    data-depth="3"
+                  />
+                </div>
+              </section>
+            </article>
+
+            <article id="projectsResults">
+              <section class="container">
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-4">
+                    <span class="text-label text-lineBefore text-white20"
+                      >The Result</span
+                    >
+                    <h3 class="results__h3">
+                      An advanced ordering app for their favorite cup
+                    </h3>
+                    <hr class="break" />
+                  </div>
+                  <div class="col-xs-offset-1 col-xs-5">
+                    <h4 class="results__h4">
+                      A seamless integration results for both customers &
+                      coffeeshop operations
+                    </h4>
+                    <p class="text-body1 text-white">
+                      It’s is an out-of-the-box business spending solution that
+                      offers smart payment cards for employees.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-10 results__images">
+                    <img
+                      srcset="
+                        images/projects/tightrope/result/logo.png,
+                        images/projects/tightrope/result/logo@2x.png 2x
+                      "
+                      src="images/projects/tightrope/result/logo@2x.png"
+                      alt="Tightrope Logo"
+                      loading="lazy"
+                      class="results__image--logoTightrope"
+                    />
+                    <h5 class="results__h5">Tightrope Coffee App</h5>
+                    <div class="results__imageGroup--tightrope">
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/1.png,
+                          images/projects/tightrope/result/1@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/1@2x.png"
+                        alt="Tightrope opening screen"
+                        loading="lazy"
+                        class="results__image--tightrope1"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/2.png,
+                          images/projects/tightrope/result/2@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/2@2x.png"
+                        alt="Login Screen"
+                        loading="lazy"
+                        class="results__image--tightrope2"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/3.png,
+                          images/projects/tightrope/result/3@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/3@2x.png"
+                        alt="Menu Screen"
+                        loading="lazy"
+                        class="results__image--tightrope3"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/4.png,
+                          images/projects/tightrope/result/4@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/4@2x.png"
+                        alt="Selected product screen"
+                        loading="lazy"
+                        class="results__image--tightrope4"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/5.png,
+                          images/projects/tightrope/result/5@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/5@2x.png"
+                        alt="Order details screen"
+                        loading="lazy"
+                        class="results__image--tightrope5"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/6.png,
+                          images/projects/tightrope/result/6@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/6@2x.png"
+                        alt="Finalize Screen"
+                        loading="lazy"
+                        class="results__image--tightrope6"
+                      />
+                    </div>
+
+                    <img
+                      srcset="
+                        images/projects/tightrope/result/logoDark.png,
+                        images/projects/tightrope/result/logoDark@2x.png 2x
+                      "
+                      src="images/projects/tightrope/result/logoDark@2x.png"
+                      alt="Tightrope Logo - Dark Version"
+                      loading="lazy"
+                      class="results__image--logoTightrope"
+                    />
+                    <h5 class="results__h5">Barista iPad App</h5>
+                    <img
+                      srcset="
+                        images/projects/tightrope/result/7.png,
+                        images/projects/tightrope/result/7@2x.png 2x
+                      "
+                      src="images/projects/tightrope/result/7@2x.png"
+                      alt="Login Screen"
+                      loading="lazy"
+                      class="results__image--tightrope7"
+                    />
+                    <img
+                      srcset="
+                        images/projects/tightrope/result/8.png,
+                        images/projects/tightrope/result/8@2x.png 2x
+                      "
+                      src="images/projects/tightrope/result/8@2x.png"
+                      alt="Orders Screen"
+                      loading="lazy"
+                      class="results__image--tightrope8"
+                    />
+                    <img
+                      srcset="
+                        images/projects/tightrope/result/9.png,
+                        images/projects/tightrope/result/9@2x.png 2x
+                      "
+                      src="images/projects/tightrope/result/9@2x.png"
+                      alt="Scan QR Screen"
+                      loading="lazy"
+                      class="results__image--tightrope9"
+                    />
+
+                    <div class="results__imageGroup--tightropeFlat">
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/10.png,
+                          images/projects/tightrope/result/10@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/10@2x.png"
+                        alt="Espresso item"
+                        loading="lazy"
+                        class="results__image--tightrope10"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/11.png,
+                          images/projects/tightrope/result/11@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/11@2x.png"
+                        alt="Diet Item"
+                        loading="lazy"
+                        class="results__image--tightrope11"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/12.png,
+                          images/projects/tightrope/result/12@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/12@2x.png"
+                        alt="P,B & E Item"
+                        loading="lazy"
+                        class="results__image--tightrope12"
+                      />
+                      <img
+                        srcset="
+                          images/projects/tightrope/result/13.png,
+                          images/projects/tightrope/result/13@2x.png 2x
+                        "
+                        src="images/projects/tightrope/result/13@2x.png"
+                        alt="Tightrope Breakfast Item"
+                        loading="lazy"
+                        class="results__image--tightrope13"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </article>
+
+            <footer class="brand-abstract">
+              <section id="projectsNav">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10 nav__holder">
+                      <a
+                        href="spenmo.html"
+                        class="nav brand-spenmo button__hover"
+                      >
+                        <span class="text-brand text-label">
+                          Back to
+                        </span>
+                        <h2 class="nav__h2">Spenmo</h2>
+                        <button class="button button--white40">
+                          <svg
+                            width="31"
+                            height="12"
+                            viewBox="0 0 31 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="button__image button__image--reversed"
+                          >
+                            <path
+                              d="M1 6H30"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M24.5 1L30 6L24.5 11"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                          Check it out
+                        </button>
+                      </a>
+
+                      <a href="diab.html" class="nav brand-diab button__hover">
+                        <span class="text-brand text-label">
+                          Up Next
+                        </span>
+                        <h2 class="nav__h2">Diet In A Box</h2>
+                        <button class="button button--white40">
+                          Check it out
+                          <svg
+                            width="31"
+                            height="12"
+                            viewBox="0 0 31 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="button__image"
+                          >
+                            <path
+                              d="M1 6H30"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M24.5 1L30 6L24.5 11"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="nextStop">
+                <a href="our-process.html" class="nextStop__link">
+                  <span class="nextStop__label">Next Stop</span>
+                  <h1 class="nextStop__h1">Our Process</h1>
+                </a>
+              </section>
+            </footer>
           </div>
-        </section>
-
-        <article id="projectsChallenge">
-          <section class="container">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-6">
-                <span class="text-label text-lineBefore text-white20"
-                  >The Challenge</span
-                >
-                <h2 class="challenge__h2">
-                  Automating The Coffee Ordering Experience
-                </h2>
-                <hr class="break" />
-                <p class="challenge__p">
-                  Relentless at innovating the coffee experience, Gabe wanted to
-                  digitally transform how customers pre-order their favorite
-                  cup. And in doing so, ensuring customers to be served their
-                  food & beverage – how they want it, when they want it.
-                </p>
-              </div>
-              <div class="col-xs-offset-1 col-xs-3">
-                <span class="text-label text-white20">
-                  Client
-                </span>
-                <p class="challenge__clientInfo">
-                  Tightrope Coffee
-                </p>
-
-                <span class="text-label text-white20">
-                  Location
-                </span>
-                <p class="challenge__clientInfo">
-                  Philippines
-                </p>
-
-                <span class="text-label text-white20">
-                  Year
-                </span>
-                <p class="challenge__clientInfo">
-                  2019
-                </p>
-
-                <span class="text-label text-white20">
-                  Services
-                </span>
-                <ul class="challenge__clientList">
-                  <li>Design Sprints</li>
-                  <li>UI/UX</li>
-                  <li>Development</li>
-                  <li>Branding</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section class="challenge__images">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-offset-1 col-xs-10 challenge__imageHolder">
-                  <img
-                    srcset="
-                      images/projects/tightrope/challenge/1.png,
-                      images/projects/tightrope/challenge/1@2x.png 2x
-                    "
-                    src="images/projects/tightrope/challenge/1@2x.png"
-                    alt="Espresso Machine"
-                    loading="lazy"
-                    class="challenge__image challenge__image--tightrope1"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/challenge/2.png,
-                      images/projects/tightrope/challenge/2@2x.png 2x
-                    "
-                    src="images/projects/tightrope/challenge/2@2x.png"
-                    alt="Food with menu"
-                    loading="lazy"
-                    class="challenge__image challenge__image--tightrope2"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="challenge__blurb">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-offset-2 col-xs-8 challenge__blurbHolder">
-                  <p class="text-body2 text-white">
-                    Hailed as the best coffeeshop in the Queen City of the
-                    South, Tightrope Coffee prides itself in serving specialty
-                    coffee with careful taste and precision.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </article>
-
-        <article id="projectsProcess">
-          <section class="container">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-4">
-                <span class="text-label text-lineBefore text-white20"
-                  >The Process</span
-                >
-                <h3 class="process__h3">
-                  Creating a digital touchpoint to engage with customers
-                </h3>
-                <hr class="break" />
-              </div>
-              <div class="col-xs-offset-1 col-xs-5">
-                <h4 class="process__h4">
-                  Aligning a cross-functional team in building a minimum viable
-                  product
-                </h4>
-                <p class="text-body1 text-white">
-                  Gabe already has an idea in mind, but he also needs to
-                  consider the dependencies that affect this with his team of
-                  baristas, cooks, and cashiers.
-                </p>
-                <p class="text-body1 text-white">
-                  We then gathered representatives in each of the different
-                  operational parts of the business and ran a Design Sprint.
-                </p>
-              </div>
-            </div>
-            <div class="process__images">
-              <img
-                srcset="
-                  images/projects/tightrope/process/1.png,
-                  images/projects/tightrope/process/1@2x.png 2x
-                "
-                src="images/projects/tightrope/process/1@2x.png"
-                alt="Team working together to identify problem"
-                loading="lazy"
-                class="process__image process__image"
-              />
-              <img
-                srcset="
-                  images/projects/tightrope/process/2.png,
-                  images/projects/tightrope/process/2@2x.png 2x
-                "
-                src="images/projects/tightrope/process/2@2x.png"
-                alt="2 year goal on post-it notes"
-                loading="lazy"
-                class="process__image process__image--low"
-              />
-              <img
-                srcset="
-                  images/projects/tightrope/process/3.png,
-                  images/projects/tightrope/process/3@2x.png 2x
-                "
-                src="images/projects/tightrope/process/3@2x.png"
-                alt="Wireframe of a proposed solution"
-                loading="lazy"
-                class="process__image process__image--lowest"
-              />
-            </div>
-          </section>
-        </article>
-
-        <article id="projectsResults">
-          <section class="container">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-4">
-                <span class="text-label text-lineBefore text-white20"
-                  >The Result</span
-                >
-                <h3 class="results__h3">
-                  An advanced ordering app for their favorite cup
-                </h3>
-                <hr class="break" />
-              </div>
-              <div class="col-xs-offset-1 col-xs-5">
-                <h4 class="results__h4">
-                  A seamless integration results for both customers & coffeeshop
-                  operations
-                </h4>
-                <p class="text-body1 text-white">
-                  It’s is an out-of-the-box business spending solution that
-                  offers smart payment cards for employees.
-                </p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-10 results__images">
-                <img
-                  srcset="
-                    images/projects/tightrope/result/logo.png,
-                    images/projects/tightrope/result/logo@2x.png 2x
-                  "
-                  src="images/projects/tightrope/result/logo@2x.png"
-                  alt="Tightrope Logo"
-                  loading="lazy"
-                  class="results__image--logoTightrope"
-                />
-                <h5 class="results__h5">Tightrope Coffee App</h5>
-                <div class="results__imageGroup--tightrope">
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/1.png,
-                      images/projects/tightrope/result/1@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/1@2x.png"
-                    alt="Tightrope opening screen"
-                    loading="lazy"
-                    class="results__image--tightrope1"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/2.png,
-                      images/projects/tightrope/result/2@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/2@2x.png"
-                    alt="Login Screen"
-                    loading="lazy"
-                    class="results__image--tightrope2"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/3.png,
-                      images/projects/tightrope/result/3@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/3@2x.png"
-                    alt="Menu Screen"
-                    loading="lazy"
-                    class="results__image--tightrope3"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/4.png,
-                      images/projects/tightrope/result/4@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/4@2x.png"
-                    alt="Selected product screen"
-                    loading="lazy"
-                    class="results__image--tightrope4"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/5.png,
-                      images/projects/tightrope/result/5@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/5@2x.png"
-                    alt="Order details screen"
-                    loading="lazy"
-                    class="results__image--tightrope5"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/6.png,
-                      images/projects/tightrope/result/6@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/6@2x.png"
-                    alt="Finalize Screen"
-                    loading="lazy"
-                    class="results__image--tightrope6"
-                  />
-                </div>
-
-                <img
-                  srcset="
-                    images/projects/tightrope/result/logoDark.png,
-                    images/projects/tightrope/result/logoDark@2x.png 2x
-                  "
-                  src="images/projects/tightrope/result/logoDark@2x.png"
-                  alt="Tightrope Logo - Dark Version"
-                  loading="lazy"
-                  class="results__image--logoTightrope"
-                />
-                <h5 class="results__h5">Barista iPad App</h5>
-                <img
-                  srcset="
-                    images/projects/tightrope/result/7.png,
-                    images/projects/tightrope/result/7@2x.png 2x
-                  "
-                  src="images/projects/tightrope/result/7@2x.png"
-                  alt="Login Screen"
-                  loading="lazy"
-                  class="results__image--tightrope7"
-                />
-                <img
-                  srcset="
-                    images/projects/tightrope/result/8.png,
-                    images/projects/tightrope/result/8@2x.png 2x
-                  "
-                  src="images/projects/tightrope/result/8@2x.png"
-                  alt="Orders Screen"
-                  loading="lazy"
-                  class="results__image--tightrope8"
-                />
-                <img
-                  srcset="
-                    images/projects/tightrope/result/9.png,
-                    images/projects/tightrope/result/9@2x.png 2x
-                  "
-                  src="images/projects/tightrope/result/9@2x.png"
-                  alt="Scan QR Screen"
-                  loading="lazy"
-                  class="results__image--tightrope9"
-                />
-
-                <div class="results__imageGroup--tightropeFlat">
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/10.png,
-                      images/projects/tightrope/result/10@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/10@2x.png"
-                    alt="Espresso item"
-                    loading="lazy"
-                    class="results__image--tightrope10"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/11.png,
-                      images/projects/tightrope/result/11@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/11@2x.png"
-                    alt="Diet Item"
-                    loading="lazy"
-                    class="results__image--tightrope11"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/12.png,
-                      images/projects/tightrope/result/12@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/12@2x.png"
-                    alt="P,B & E Item"
-                    loading="lazy"
-                    class="results__image--tightrope12"
-                  />
-                  <img
-                    srcset="
-                      images/projects/tightrope/result/13.png,
-                      images/projects/tightrope/result/13@2x.png 2x
-                    "
-                    src="images/projects/tightrope/result/13@2x.png"
-                    alt="Tightrope Breakfast Item"
-                    loading="lazy"
-                    class="results__image--tightrope13"
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-        </article>
-
-        <footer class="brand-abstract">
-          <section id="projectsNav">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-offset-1 col-xs-10 nav__holder">
-                  <a href="spenmo.html" class="nav brand-spenmo button__hover">
-                    <span class="text-brand text-label">
-                      Back to
-                    </span>
-                    <h2 class="nav__h2">Spenmo</h2>
-                    <button class="button button--white40">
-                      <svg
-                        width="31"
-                        height="12"
-                        viewBox="0 0 31 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="button__image button__image--reversed"
-                      >
-                        <path
-                          d="M1 6H30"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M24.5 1L30 6L24.5 11"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      Check it out
-                    </button>
-                  </a>
-
-                  <a href="diab.html" class="nav brand-diab button__hover">
-                    <span class="text-brand text-label">
-                      Up Next
-                    </span>
-                    <h2 class="nav__h2">Diet In A Box</h2>
-                    <button class="button button--white40">
-                      Check it out
-                      <svg
-                        width="31"
-                        height="12"
-                        viewBox="0 0 31 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="button__image"
-                      >
-                        <path
-                          d="M1 6H30"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M24.5 1L30 6L24.5 11"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="nextStop">
-            <a href="our-process.html" class="nextStop__link">
-              <span class="nextStop__label">Next Stop</span>
-              <h1 class="nextStop__h1">Our Process</h1>
-            </a>
-          </section>
-        </footer>
+        </div>
       </div>
     </main>
 
