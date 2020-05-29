@@ -3,7 +3,7 @@ import { SmoothScrollAnimation } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class ScrollRenderer extends DefaultRenderer {
-  onEnterCompleted() {
+  onEnter() {
     const smoothScroll = new SmoothScrollAnimation();
     smoothScroll.load(
       document.querySelector('.smoothScroll__container'),
