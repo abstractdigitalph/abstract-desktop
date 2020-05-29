@@ -1,10 +1,15 @@
 export default class SmoothScroll {
   constructor() {
+    // Constants
     this.ease = 0.125;
     this.maxOffset = 600;
     this.endTreshold = 0.05;
-    this.requestId = null;
     this.maxDepth = 20;
+    this.maxElapsedMS = 100;
+    this.targetFPMS = 0.075;
+
+    // Initial values that will be changed
+    this.requestId = null;
     this.viewHeight = 0;
     this.halfViewHeight = 0;
     this.maxDistance = 0;
@@ -13,8 +18,6 @@ export default class SmoothScroll {
     this.scrollRequest = false;
     this.scrollItems = [];
     this.lastTime = -1;
-    this.maxElapsedMS = 100;
-    this.targetFPMS = 0.075;
     this.scrollY = 0;
     this.target = null;
     this.body = null;
@@ -22,9 +25,28 @@ export default class SmoothScroll {
     this.imagesLastStatus = [];
     this.imageResizeId = null;
 
+    // Bound functions
     this.boundResize = () => this.onResize();
     this.boundOnScroll = () => this.onScroll();
     this.boundResizeOnImageUpdate = () => this.resizeOnImageUpdate();
+  }
+
+  resetValues() {
+    this.requestId = null;
+    this.viewHeight = 0;
+    this.halfViewHeight = 0;
+    this.maxDistance = 0;
+    this.currentScroll = 0;
+    this.resizeRequest = true;
+    this.scrollRequest = false;
+    this.scrollItems = [];
+    this.lastTime = -1;
+    this.scrollY = 0;
+    this.target = null;
+    this.body = null;
+    this.images = [];
+    this.imagesLastStatus = [];
+    this.imageResizeId = null;
   }
 
   update(time) {
@@ -138,12 +160,15 @@ export default class SmoothScroll {
     this.images = [...document.getElementsByTagName('img')].filter(
       (image) => image.loading === 'lazy',
     );
-    this.imagesLastStatus = this.images.map((image) => image.complete);
 
-    this.imageResizeId = window.setInterval(
-      this.boundResizeOnImageUpdate,
-      1000,
-    );
+    if (this.images.length > 0) {
+      this.imagesLastStatus = this.images.map((image) => image.complete);
+
+      this.imageResizeId = window.setInterval(
+        this.boundResizeOnImageUpdate,
+        1000,
+      );
+    }
   }
 
   resizeOnImageUpdate() {
@@ -172,7 +197,6 @@ export default class SmoothScroll {
   load(target, body) {
     this.target = target;
     this.body = body;
-
     this.addItems();
     this.setupImageResize();
     this.addEventListeners();
@@ -180,7 +204,7 @@ export default class SmoothScroll {
   }
 
   leave() {
+    this.resetValues();
     this.removeEventListeners();
-    this.target = null;
   }
 }
