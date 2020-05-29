@@ -1,10 +1,13 @@
 import ScrollRenderer from './ScrollRenderer';
-import { diab } from '../../animations';
+import { diab, smoothScroll } from '../../animations';
 
 /* eslint-disable class-methods-use-this */
 export default class DiabRenderer extends ScrollRenderer {
   onEnter() {
-    super.onEnter();
+    smoothScroll.load(
+      document.querySelector('.smoothScroll__container--diab'),
+      document.querySelector('.smoothScroll__height--diab'),
+    );
     diab.load();
   }
 
