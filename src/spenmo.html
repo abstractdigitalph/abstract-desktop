@@ -248,428 +248,450 @@
 
     <main data-router-wrapper>
       <!-- Hero -->
-      <div id="projects" class="brand-spenmo" data-router-view="spenmo">
-        <section id="projectsLanding">
-          <h1 class="projects__h1 onEnter__h1--spenmo">
-            Spenmo
-          </h1>
-          <span class="projects__label onEnter__label--spenmo"
-            >Fintech / Startups</span
-          >
-          <div class="projects__images">
-            <div class="projects__imageHolder">
-              <img
-                srcset="
-                  images/projects/spenmo/hero/1.png,
-                  images/projects/spenmo/hero/1@2x.png 2x
-                "
-                src="images/projects/spenmo/hero/1@2x.png"
-                alt="Spenmo App on Phone"
-                loading="lazy"
-                class="projects__image--spenmo1 onEnter__image--spenmo1"
-              />
-              <img
-                srcset="
-                  images/projects/spenmo/hero/2.png,
-                  images/projects/spenmo/hero/2@2x.png 2x
-                "
-                src="images/projects/spenmo/hero/2@2x.png"
-                alt="Letter S filled with pictures of people using cards"
-                loading="lazy"
-                class="projects__image--spenmo2 onEnter__letter--spenmo"
-              />
-              <img
-                srcset="
-                  images/projects/spenmo/hero/3.png,
-                  images/projects/spenmo/hero/3@2x.png 2x
-                "
-                src="images/projects/spenmo/hero/3@2x.png"
-                alt="Speno credit card"
-                loading="lazy"
-                class="projects__image--spenmo3 onEnter__image--spenmo2"
-              />
-            </div>
-            <hr class="projects__line onEnter__line--spenmo" />
-            <div class="lottie__hero--spenmo"></div>
+      <div
+        id="projects"
+        class="brand-spenmo smoothScroll__height--spenmo"
+        data-router-view="spenmo"
+      >
+        <div class="smoothScroll__wrapper">
+          <div class="smoothScroll__container smoothScroll__container--spenmo">
+            <section id="projectsLanding">
+              <h1 class="projects__h1 onEnter__h1--spenmo" data-depth="15">
+                Spenmo
+              </h1>
+              <span
+                class="projects__label onEnter__label--spenmo"
+                data-depth="12"
+                >Fintech / Startups</span
+              >
+              <div class="projects__images">
+                <div class="projects__imageHolder">
+                  <img
+                    srcset="
+                      images/projects/spenmo/hero/1.png,
+                      images/projects/spenmo/hero/1@2x.png 2x
+                    "
+                    src="images/projects/spenmo/hero/1@2x.png"
+                    alt="Spenmo App on Phone"
+                    loading="lazy"
+                    class="projects__image--spenmo1 onEnter__image--spenmo1"
+                    data-depth="15"
+                  />
+                  <img
+                    srcset="
+                      images/projects/spenmo/hero/2.png,
+                      images/projects/spenmo/hero/2@2x.png 2x
+                    "
+                    src="images/projects/spenmo/hero/2@2x.png"
+                    alt="Letter S filled with pictures of people using cards"
+                    loading="lazy"
+                    class="projects__image--spenmo2 onEnter__letter--spenmo"
+                    data-depth="-2"
+                  />
+                  <img
+                    srcset="
+                      images/projects/spenmo/hero/3.png,
+                      images/projects/spenmo/hero/3@2x.png 2x
+                    "
+                    src="images/projects/spenmo/hero/3@2x.png"
+                    alt="Speno credit card"
+                    loading="lazy"
+                    class="projects__image--spenmo3 onEnter__image--spenmo2"
+                    data-depth="10"
+                  />
+                </div>
+                <hr class="projects__line onEnter__line--spenmo" />
+                <div class="lottie__hero--spenmo" data-depth="-12"></div>
+              </div>
+            </section>
+
+            <article id="projectsChallenge">
+              <section class="container">
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-6">
+                    <span class="text-label text-lineBefore text-white20"
+                      >The Challenge</span
+                    >
+                    <h2 class="challenge__h2">
+                      Reinventing Expense Management in South East Asia
+                    </h2>
+                    <hr class="break" />
+                    <p class="challenge__p">
+                      Spenmo is a fintech startup backed by Rocket Internet.
+                      It’s a spend management platform with smart corporate
+                      cards to help businesses gain control and visibility over
+                      spending.
+                    </p>
+                    <p class="challenge__p">
+                      It’s is an out-of-the-box business spending solution that
+                      offers smart payment cards for employees.
+                    </p>
+                  </div>
+                  <div class="col-xs-offset-1 col-xs-3">
+                    <span class="text-label text-white20">
+                      Client
+                    </span>
+                    <p class="challenge__clientInfo">
+                      Spenmo
+                    </p>
+
+                    <span class="text-label text-white20">
+                      Location
+                    </span>
+                    <p class="challenge__clientInfo">
+                      Singapore
+                    </p>
+
+                    <span class="text-label text-white20">
+                      Year
+                    </span>
+                    <p class="challenge__clientInfo">
+                      2019
+                    </p>
+
+                    <span class="text-label text-white20">
+                      Services
+                    </span>
+                    <ul class="challenge__clientList">
+                      <li>Design Sprints</li>
+                      <li>UI/UX</li>
+                      <li>Development</li>
+                      <li>Motion Graphics</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="challenge__images">
+                <div class="container">
+                  <div class="row">
+                    <div
+                      class="col-xs-offset-1 col-xs-10 challenge__imageHolder"
+                    >
+                      <video
+                        src="${require('./videos/spenmo.webm')}"
+                        class="challenge__image--spenmo"
+                        controls
+                      />
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </article>
+
+            <article id="projectsProcess">
+              <section class="container">
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-4">
+                    <span class="text-label text-lineBefore text-white20"
+                      >The Process</span
+                    >
+                    <h3 class="process__h3">
+                      Creating a roadmap for an MVP
+                    </h3>
+                    <hr class="break" />
+                  </div>
+                  <div class="col-xs-offset-1 col-xs-5">
+                    <h4 class="process__h4">
+                      Validating leap of faith assumptions and product ideas
+                    </h4>
+                    <p class="text-body1 text-white">
+                      Operating on limited time and runway, the design sprint
+                      was a perfect process to quickly identify the core problem
+                      which the founders are trying to solve.
+                    </p>
+                    <p class="text-body1 text-white">
+                      Product features are then easily built around these
+                      problems and the product roadmap is set.
+                    </p>
+                  </div>
+                </div>
+                <div class="process__images">
+                  <img
+                    srcset="
+                      images/projects/spenmo/process/1.png,
+                      images/projects/spenmo/process/1@2x.png 2x
+                    "
+                    src="images/projects/spenmo/process/1@2x.png"
+                    alt="Person contemplating the problem"
+                    loading="lazy"
+                    class="process__image"
+                    data-depth="7"
+                  />
+                  <img
+                    srcset="
+                      images/projects/spenmo/process/2.png,
+                      images/projects/spenmo/process/2@2x.png 2x
+                    "
+                    src="images/projects/spenmo/process/2@2x.png"
+                    alt="Wireframes placed on a whiteboad"
+                    loading="lazy"
+                    class="process__image process__image--lowest"
+                    data-depth="3"
+                  />
+                  <img
+                    srcset="
+                      images/projects/spenmo/process/3.png,
+                      images/projects/spenmo/process/3@2x.png 2x
+                    "
+                    src="images/projects/spenmo/process/3@2x.png"
+                    alt="Person posting post-it notes on a whiteboard"
+                    loading="lazy"
+                    class="process__image process__image--low"
+                    data-depth="5"
+                  />
+                </div>
+              </section>
+            </article>
+
+            <article id="projectsResults">
+              <section class="container">
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-4">
+                    <span class="text-label text-lineBefore text-white20"
+                      >The Result</span
+                    >
+                    <h3 class="results__h3">
+                      A tangible prototype in just 4 days
+                    </h3>
+                    <hr class="break" />
+                  </div>
+                  <div class="col-xs-offset-1 col-xs-5">
+                    <h4 class="results__h4">
+                      Prioritizing the right design solutions for the right
+                      problems – at the right time.
+                    </h4>
+                    <p class="text-body1 text-white">
+                      We validated our product assumptions at the end of the
+                      sprint and immediately gained helpful insights on what
+                      works and what doesn’t.
+                    </p>
+                    <p class="text-body1 text-white">
+                      Using these newly earned insights, we proceeded to conduct
+                      iteration sprints for a freshly poslished product.
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-offset-1 col-xs-10 results__images">
+                    <h5 class="results__h5">Manager's Dashboard</h5>
+                    <img
+                      srcset="
+                        images/projects/spenmo/result/1.png,
+                        images/projects/spenmo/result/1@2x.png 2x
+                      "
+                      src="images/projects/spenmo/result/1@2x.png"
+                      alt="Dashboard Homepage"
+                      loading="lazy"
+                      class="results__image--spenmo1"
+                    />
+                    <img
+                      srcset="
+                        images/projects/spenmo/result/2.png,
+                        images/projects/spenmo/result/2@2x.png 2x
+                      "
+                      src="images/projects/spenmo/result/2@2x.png"
+                      alt="Receipts page"
+                      loading="lazy"
+                      class="results__image--spenmo2"
+                    />
+                    <img
+                      srcset="
+                        images/projects/spenmo/result/3.png,
+                        images/projects/spenmo/result/3@2x.png 2x
+                      "
+                      src="images/projects/spenmo/result/3@2x.png"
+                      alt="Analytics Page"
+                      loading="lazy"
+                      class="results__image--spenmo3"
+                    />
+
+                    <img
+                      srcset="
+                        images/projects/spenmo/result/logo.png,
+                        images/projects/spenmo/result/logo@2x.png 2x
+                      "
+                      src="images/projects/spenmo/result/logo@2x.png"
+                      alt="Spenmo Logo"
+                      loading="lazy"
+                      class="results__image--logo"
+                    />
+                    <h5 class="results__h5">Employee Mobile App</h5>
+                    <div class="results__imageGroup--spenmo">
+                      <img
+                        srcset="
+                          images/projects/spenmo/result/4.png,
+                          images/projects/spenmo/result/4@2x.png 2x
+                        "
+                        src="images/projects/spenmo/result/4@2x.png"
+                        alt="Loading Screen"
+                        loading="lazy"
+                        class="results__image--spenmo4"
+                      />
+                      <img
+                        srcset="
+                          images/projects/spenmo/result/5.png,
+                          images/projects/spenmo/result/5@2x.png 2x
+                        "
+                        src="images/projects/spenmo/result/5@2x.png"
+                        alt="Onboarding Screen"
+                        loading="lazy"
+                        class="results__image--spenmo5"
+                      />
+                      <img
+                        srcset="
+                          images/projects/spenmo/result/6.png,
+                          images/projects/spenmo/result/6@2x.png 2x
+                        "
+                        src="images/projects/spenmo/result/6@2x.png"
+                        alt="Login Screen"
+                        loading="lazy"
+                        class="results__image--spenmo6"
+                      />
+                      <img
+                        srcset="
+                          images/projects/spenmo/result/7.png,
+                          images/projects/spenmo/result/7@2x.png 2x
+                        "
+                        src="images/projects/spenmo/result/7@2x.png"
+                        alt="App homepage"
+                        loading="lazy"
+                        class="results__image--spenmo7"
+                      />
+                      <img
+                        srcset="
+                          images/projects/spenmo/result/8.png,
+                          images/projects/spenmo/result/8@2x.png 2x
+                        "
+                        src="images/projects/spenmo/result/8@2x.png"
+                        alt="Add Reimbusement page"
+                        loading="lazy"
+                        class="results__image--spenmo8"
+                      />
+                      <img
+                        srcset="
+                          images/projects/spenmo/result/9.png,
+                          images/projects/spenmo/result/9@2x.png 2x
+                        "
+                        src="images/projects/spenmo/result/9@2x.png"
+                        alt="Screen to take a Picture of receipt"
+                        loading="lazy"
+                        class="results__image--spenmo9"
+                      />
+                    </div>
+
+                    <h5 class="results__h5">Website</h5>
+                    <img
+                      srcset="
+                        images/projects/spenmo/result/10.png,
+                        images/projects/spenmo/result/10@2x.png 2x
+                      "
+                      src="images/projects/spenmo/result/10@2x.png"
+                      alt="Website overview"
+                      loading="lazy"
+                      class="results__image--spenmo10"
+                    />
+                    <img
+                      srcset="
+                        images/projects/spenmo/result/11.png,
+                        images/projects/spenmo/result/11@2x.png 2x
+                      "
+                      src="images/projects/spenmo/result/11@2x.png"
+                      alt=""
+                      loading="lazy"
+                      class="results__image--spenmo11"
+                    />
+                  </div>
+                </div>
+              </section>
+            </article>
+
+            <footer class="brand-abstract">
+              <section id="projectsNav">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10 nav__holder">
+                      <a
+                        href="flash.html"
+                        class="nav brand-flash button__hover"
+                      >
+                        <span class="text-brand text-label">
+                          Back to
+                        </span>
+                        <h2 class="nav__h2">Flash Coffee</h2>
+                        <button class="button button--white40">
+                          <svg
+                            width="31"
+                            height="12"
+                            viewBox="0 0 31 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="button__image button__image--reversed"
+                          >
+                            <path
+                              d="M1 6H30"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M24.5 1L30 6L24.5 11"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                          Check it out
+                        </button>
+                      </a>
+
+                      <a
+                        href="tightrope.html"
+                        class="nav brand-tightrope button__hover"
+                      >
+                        <span class="text-brand text-label">
+                          Up Next
+                        </span>
+                        <h2 class="nav__h2">Tightrope Coffee</h2>
+                        <button class="button button--white40">
+                          Check it out
+                          <svg
+                            width="31"
+                            height="12"
+                            viewBox="0 0 31 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="button__image"
+                          >
+                            <path
+                              d="M1 6H30"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M24.5 1L30 6L24.5 11"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="nextStop">
+                <a href="our-process.html" class="nextStop__link">
+                  <span class="nextStop__label">Next Stop</span>
+                  <h1 class="nextStop__h1">Our Process</h1>
+                </a>
+              </section>
+            </footer>
           </div>
-        </section>
-
-        <article id="projectsChallenge">
-          <section class="container">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-6">
-                <span class="text-label text-lineBefore text-white20"
-                  >The Challenge</span
-                >
-                <h2 class="challenge__h2">
-                  Reinventing Expense Management in South East Asia
-                </h2>
-                <hr class="break" />
-                <p class="challenge__p">
-                  Spenmo is a fintech startup backed by Rocket Internet. It’s a
-                  spend management platform with smart corporate cards to help
-                  businesses gain control and visibility over spending.
-                </p>
-                <p class="challenge__p">
-                  It’s is an out-of-the-box business spending solution that
-                  offers smart payment cards for employees.
-                </p>
-              </div>
-              <div class="col-xs-offset-1 col-xs-3">
-                <span class="text-label text-white20">
-                  Client
-                </span>
-                <p class="challenge__clientInfo">
-                  Spenmo
-                </p>
-
-                <span class="text-label text-white20">
-                  Location
-                </span>
-                <p class="challenge__clientInfo">
-                  Singapore
-                </p>
-
-                <span class="text-label text-white20">
-                  Year
-                </span>
-                <p class="challenge__clientInfo">
-                  2019
-                </p>
-
-                <span class="text-label text-white20">
-                  Services
-                </span>
-                <ul class="challenge__clientList">
-                  <li>Design Sprints</li>
-                  <li>UI/UX</li>
-                  <li>Development</li>
-                  <li>Motion Graphics</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section class="challenge__images">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-offset-1 col-xs-10 challenge__imageHolder">
-                  <video
-                    src="${require('./videos/spenmo.webm')}"
-                    class="challenge__image--spenmo"
-                    controls
-                  />
-                </div>
-              </div>
-            </div>
-          </section>
-        </article>
-
-        <article id="projectsProcess">
-          <section class="container">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-4">
-                <span class="text-label text-lineBefore text-white20"
-                  >The Process</span
-                >
-                <h3 class="process__h3">
-                  Creating a roadmap for an MVP
-                </h3>
-                <hr class="break" />
-              </div>
-              <div class="col-xs-offset-1 col-xs-5">
-                <h4 class="process__h4">
-                  Validating leap of faith assumptions and product ideas
-                </h4>
-                <p class="text-body1 text-white">
-                  Operating on limited time and runway, the design sprint was a
-                  perfect process to quickly identify the core problem which the
-                  founders are trying to solve.
-                </p>
-                <p class="text-body1 text-white">
-                  Product features are then easily built around these problems
-                  and the product roadmap is set.
-                </p>
-              </div>
-            </div>
-            <div class="process__images">
-              <img
-                srcset="
-                  images/projects/spenmo/process/1.png,
-                  images/projects/spenmo/process/1@2x.png 2x
-                "
-                src="images/projects/spenmo/process/1@2x.png"
-                alt="Person contemplating the problem"
-                loading="lazy"
-                class="process__image"
-              />
-              <img
-                srcset="
-                  images/projects/spenmo/process/2.png,
-                  images/projects/spenmo/process/2@2x.png 2x
-                "
-                src="images/projects/spenmo/process/2@2x.png"
-                alt="Wireframes placed on a whiteboad"
-                loading="lazy"
-                class="process__image process__image--lowest"
-              />
-              <img
-                srcset="
-                  images/projects/spenmo/process/3.png,
-                  images/projects/spenmo/process/3@2x.png 2x
-                "
-                src="images/projects/spenmo/process/3@2x.png"
-                alt="Person posting post-it notes on a whiteboard"
-                loading="lazy"
-                class="process__image process__image--low"
-              />
-            </div>
-          </section>
-        </article>
-
-        <article id="projectsResults">
-          <section class="container">
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-4">
-                <span class="text-label text-lineBefore text-white20"
-                  >The Result</span
-                >
-                <h3 class="results__h3">
-                  A tangible prototype in just 4 days
-                </h3>
-                <hr class="break" />
-              </div>
-              <div class="col-xs-offset-1 col-xs-5">
-                <h4 class="results__h4">
-                  Prioritizing the right design solutions for the right problems
-                  – at the right time.
-                </h4>
-                <p class="text-body1 text-white">
-                  We validated our product assumptions at the end of the sprint
-                  and immediately gained helpful insights on what works and what
-                  doesn’t.
-                </p>
-                <p class="text-body1 text-white">
-                  Using these newly earned insights, we proceeded to conduct
-                  iteration sprints for a freshly poslished product.
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-offset-1 col-xs-10 results__images">
-                <h5 class="results__h5">Manager's Dashboard</h5>
-                <img
-                  srcset="
-                    images/projects/spenmo/result/1.png,
-                    images/projects/spenmo/result/1@2x.png 2x
-                  "
-                  src="images/projects/spenmo/result/1@2x.png"
-                  alt="Dashboard Homepage"
-                  loading="lazy"
-                  class="results__image--spenmo1"
-                />
-                <img
-                  srcset="
-                    images/projects/spenmo/result/2.png,
-                    images/projects/spenmo/result/2@2x.png 2x
-                  "
-                  src="images/projects/spenmo/result/2@2x.png"
-                  alt="Receipts page"
-                  loading="lazy"
-                  class="results__image--spenmo2"
-                />
-                <img
-                  srcset="
-                    images/projects/spenmo/result/3.png,
-                    images/projects/spenmo/result/3@2x.png 2x
-                  "
-                  src="images/projects/spenmo/result/3@2x.png"
-                  alt="Analytics Page"
-                  loading="lazy"
-                  class="results__image--spenmo3"
-                />
-
-                <img
-                  srcset="
-                    images/projects/spenmo/result/logo.png,
-                    images/projects/spenmo/result/logo@2x.png 2x
-                  "
-                  src="images/projects/spenmo/result/logo@2x.png"
-                  alt="Spenmo Logo"
-                  loading="lazy"
-                  class="results__image--logo"
-                />
-                <h5 class="results__h5">Employee Mobile App</h5>
-                <div class="results__imageGroup--spenmo">
-                  <img
-                    srcset="
-                      images/projects/spenmo/result/4.png,
-                      images/projects/spenmo/result/4@2x.png 2x
-                    "
-                    src="images/projects/spenmo/result/4@2x.png"
-                    alt="Loading Screen"
-                    loading="lazy"
-                    class="results__image--spenmo4"
-                  />
-                  <img
-                    srcset="
-                      images/projects/spenmo/result/5.png,
-                      images/projects/spenmo/result/5@2x.png 2x
-                    "
-                    src="images/projects/spenmo/result/5@2x.png"
-                    alt="Onboarding Screen"
-                    loading="lazy"
-                    class="results__image--spenmo5"
-                  />
-                  <img
-                    srcset="
-                      images/projects/spenmo/result/6.png,
-                      images/projects/spenmo/result/6@2x.png 2x
-                    "
-                    src="images/projects/spenmo/result/6@2x.png"
-                    alt="Login Screen"
-                    loading="lazy"
-                    class="results__image--spenmo6"
-                  />
-                  <img
-                    srcset="
-                      images/projects/spenmo/result/7.png,
-                      images/projects/spenmo/result/7@2x.png 2x
-                    "
-                    src="images/projects/spenmo/result/7@2x.png"
-                    alt="App homepage"
-                    loading="lazy"
-                    class="results__image--spenmo7"
-                  />
-                  <img
-                    srcset="
-                      images/projects/spenmo/result/8.png,
-                      images/projects/spenmo/result/8@2x.png 2x
-                    "
-                    src="images/projects/spenmo/result/8@2x.png"
-                    alt="Add Reimbusement page"
-                    loading="lazy"
-                    class="results__image--spenmo8"
-                  />
-                  <img
-                    srcset="
-                      images/projects/spenmo/result/9.png,
-                      images/projects/spenmo/result/9@2x.png 2x
-                    "
-                    src="images/projects/spenmo/result/9@2x.png"
-                    alt="Screen to take a Picture of receipt"
-                    loading="lazy"
-                    class="results__image--spenmo9"
-                  />
-                </div>
-
-                <h5 class="results__h5">Website</h5>
-                <img
-                  srcset="
-                    images/projects/spenmo/result/10.png,
-                    images/projects/spenmo/result/10@2x.png 2x
-                  "
-                  src="images/projects/spenmo/result/10@2x.png"
-                  alt="Website overview"
-                  loading="lazy"
-                  class="results__image--spenmo10"
-                />
-                <img
-                  srcset="
-                    images/projects/spenmo/result/11.png,
-                    images/projects/spenmo/result/11@2x.png 2x
-                  "
-                  src="images/projects/spenmo/result/11@2x.png"
-                  alt=""
-                  loading="lazy"
-                  class="results__image--spenmo11"
-                />
-              </div>
-            </div>
-          </section>
-        </article>
-
-        <footer class="brand-abstract">
-          <section id="projectsNav">
-            <div class="container">
-              <div class="row">
-                <div class="col-xs-offset-1 col-xs-10 nav__holder">
-                  <a href="flash.html" class="nav brand-flash button__hover">
-                    <span class="text-brand text-label">
-                      Back to
-                    </span>
-                    <h2 class="nav__h2">Flash Coffee</h2>
-                    <button class="button button--white40">
-                      <svg
-                        width="31"
-                        height="12"
-                        viewBox="0 0 31 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="button__image button__image--reversed"
-                      >
-                        <path
-                          d="M1 6H30"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M24.5 1L30 6L24.5 11"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      Check it out
-                    </button>
-                  </a>
-
-                  <a
-                    href="tightrope.html"
-                    class="nav brand-tightrope button__hover"
-                  >
-                    <span class="text-brand text-label">
-                      Up Next
-                    </span>
-                    <h2 class="nav__h2">Tightrope Coffee</h2>
-                    <button class="button button--white40">
-                      Check it out
-                      <svg
-                        width="31"
-                        height="12"
-                        viewBox="0 0 31 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="button__image"
-                      >
-                        <path
-                          d="M1 6H30"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M24.5 1L30 6L24.5 11"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="nextStop">
-            <a href="our-process.html" class="nextStop__link">
-              <span class="nextStop__label">Next Stop</span>
-              <h1 class="nextStop__h1">Our Process</h1>
-            </a>
-          </section>
-        </footer>
+        </div>
       </div>
     </main>
 

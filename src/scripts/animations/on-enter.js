@@ -41,6 +41,11 @@ export default class OnEnterAnimation {
     }
   }
 
+  /* * SETUP * */
+
+  /**
+   * Queries all selectors on load
+   */
   querySelectors() {
     this.h1Node = document.querySelector(`.onEnter__h1--${this.page}`);
     this.labelNode = document.querySelector(`.onEnter__label--${this.page}`);
@@ -57,6 +62,9 @@ export default class OnEnterAnimation {
     this.lottieNode = document.querySelector(`.lottie__hero--${this.page}`);
   }
 
+  /**
+   * Creates lottie animation depending onthe page loaded
+   */
   generateWriteOnAnimation() {
     this.lottieAnimation = lottie.loadAnimation({
       container: this.lottieNode,
@@ -66,6 +74,9 @@ export default class OnEnterAnimation {
     });
   }
 
+  /**
+   * Creates timeline animating the different elements depending on the page loaded
+   */
   generateOnEnterAnimation() {
     this.timeline = gsap
       .timeline({
@@ -98,6 +109,9 @@ export default class OnEnterAnimation {
       .from(this.overlayNode, { delay: 0.25, duration: 0.75, opacity: 0 }, '<');
   }
 
+  /**
+   * Creates the timeline that animates each image
+   */
   imageAnimation() {
     const timeline = gsap.timeline({
       defaults: {
@@ -126,12 +140,20 @@ export default class OnEnterAnimation {
     return timeline;
   }
 
+  /* * LOAD * */
+
+  /**
+   * Generates all the animations
+   */
   load() {
     this.querySelectors();
     this.generateWriteOnAnimation();
     this.generateOnEnterAnimation();
   }
 
+  /**
+   * Plays the animation when onEnterCompleted() is called
+   */
   play() {
     this.lottieAnimation.play();
     this.timeline.play();

@@ -68,7 +68,12 @@ export default class MenuAnimation {
     };
   }
 
-  // Closes the respective timeline
+  /* * ANIMATION HANDLERS * */
+
+  /**
+   * Closes the menuTimeline or the contactTimeline, depending on the passed args
+   * @param {GSAP Timeline} timeline - The timeline to close
+   */
   close(timeline) {
     timeline.reverse();
     this.removeDribbleTimeline.reverse();
@@ -84,7 +89,10 @@ export default class MenuAnimation {
     window.removeEventListener('keydown', this.preventDefault);
   }
 
-  // Opens the respective timeline
+  /**
+   * Opens the menuTimeline or the contactTimeline, depending on the passed args
+   * @param {GSAP Timeline} timeline - The timeline to close
+   */
   open(timeline, type, otherTimeline) {
     if (otherTimeline) {
       timeline.play();
@@ -106,7 +114,10 @@ export default class MenuAnimation {
     window.addEventListener('keydown', this.preventDefault);
   }
 
-  // Animates the various parts depending on the
+  /**
+   * Opens or closes the respective timeline bused on the current state of the
+   * opened menus
+   */
   menuAnimation() {
     const { active } = this.hamburgerNode.dataset;
     switch (active) {
@@ -123,6 +134,9 @@ export default class MenuAnimation {
     }
   }
 
+  /**
+   * Animates adding the scrollbar when entering the landing page
+   */
   addScrollbar() {
     gsap
       .timeline()
@@ -134,6 +148,9 @@ export default class MenuAnimation {
       );
   }
 
+  /**
+   * Removes the scrollbar when leaving the landing page
+   */
   removeScrollbar() {
     gsap
       .timeline()
@@ -145,6 +162,11 @@ export default class MenuAnimation {
       .set(this.scrollbarNode, { display: 'none' });
   }
 
+  /* * LOAD AND  CLEAN UP * */
+
+  /**
+   * Starts all the event listeners and sets necessary gsap styles
+   */
   load() {
     this.contactTriggerNode.forEach((element) => {
       if (element.dataset.fromMenu) {
@@ -157,6 +179,9 @@ export default class MenuAnimation {
     this.hamburgerNode.addEventListener('click', () => this.menuAnimation());
   }
 
+  /**
+   * Closes the menu when leaving the current page
+   */
   leave() {
     const { active } = this.hamburgerNode.dataset;
     if (typeof active !== 'undefined' && active !== 'false') {
