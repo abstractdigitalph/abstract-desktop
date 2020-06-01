@@ -5,6 +5,7 @@ import LandingAnimation from './landing';
 import DaysAnimation from './days';
 import OnLoadAnimation from './on-load';
 import OnEnterAnimation from './on-enter';
+import SmoothScrollAnimation from './smooth-scroll';
 
 // Load global animation
 const menu = new MenuAnimation();
@@ -17,6 +18,7 @@ const spenmo = new OnEnterAnimation('spenmo', 2);
 const diab = new OnEnterAnimation('diab', 3);
 const tightrope = new OnEnterAnimation('tightrope', 3);
 const flash = new OnEnterAnimation('flash', 3);
+const smoothScroll = new SmoothScrollAnimation();
 menu.load();
 
 // Export per page animation
@@ -33,4 +35,5 @@ export {
   diab,
   tightrope,
   flash,
+  smoothScroll,
 };

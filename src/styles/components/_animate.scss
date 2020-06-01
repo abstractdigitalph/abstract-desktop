@@ -1,6 +1,6 @@
 .shapes {
   width: 100%;
-  height: 200%;
+  height: 100%;
 
   background-image: url("../images/parallax-background.svg");
   background-size: 100%;
@@ -22,7 +22,7 @@
   &__container {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 200%;
     z-index: 90;
     pointer-events: none;
 
@@ -162,5 +162,27 @@ span {
       @extend .lottie__hero;
       padding-bottom: 5%;
     }
+  }
+}
+
+.smoothScroll {
+  &__wrapper {
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__container {
+    position: absolute;
+    overflow: hidden;
+    z-index: 10;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    width: 100%;
   }
 }
