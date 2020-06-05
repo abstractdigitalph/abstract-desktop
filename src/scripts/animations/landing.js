@@ -71,6 +71,18 @@ export default class LandingAnimation {
     };
 
     this.resizeFunc = debounce(() => this.fullpageResize(), 200);
+
+    this.backToTopOnEnterFunc = () => {
+      this.backToTopAnimation(true);
+    };
+
+    this.backToTopOnExitFunc = () => {
+      this.backToTopAnimation(false);
+    };
+
+    this.backToTopClickFunc = () => {
+      this.backToTopClick();
+    };
   }
 
   /* * SETUP * */
@@ -101,6 +113,11 @@ export default class LandingAnimation {
     this.logoNode = document.querySelector('.overlay__logo--landing');
     this.otherLogoNode = document.querySelector('.overlay__logo');
     this.arrowNode = document.querySelector('.hero__arrow');
+    this.scrollDown = document.querySelector('.overlay__text');
+    this.backToTop = document.querySelector('.overlay__text--backToTop');
+    this.overlayArrow = document.querySelector('.overlay__arrow');
+    this.scrollHolder = document.querySelector('.overlay__scroll');
+    this.textHolder = document.querySelector('.overlay__textHolder');
 
     this.height = this.fullpageNode.querySelector('#landingHero').clientHeight;
     this.slides = this.fullpageNode.children.length - 1;
@@ -153,6 +170,9 @@ export default class LandingAnimation {
 
     this.logoNode.addEventListener('click', () => this.logoClick());
     this.arrowNode.addEventListener('click', () => this.arrowClick());
+    this.scrollHolder.addEventListener('click', this.backToTopClickFunc);
+    this.scrollHolder.addEventListener('mouseenter', this.backToTopOnEnterFunc);
+    this.scrollHolder.addEventListener('mouseleave', this.backToTopOnExitFunc);
 
     // Resize event listener
     window.addEventListener('resize', this.resizeFunc);
@@ -292,6 +312,29 @@ export default class LandingAnimation {
   }
 
   /**
+   * Animates the arrow when hovering over the back to top button
+   */
+  backToTopAnimation(isEntering) {
+    if (this.currentSlide !== 0) {
+      if (isEntering) {
+        gsap
+          .timeline({
+            defaults: { ease: this.defaultEase, duration: 0.35 },
+          })
+          .to(this.overlayArrow, { y: -100 })
+          .to(this.textHolder, { y: 51 }, '<');
+      } else {
+        gsap
+          .timeline({
+            defaults: { ease: this.defaultEase, duration: 0.35 },
+          })
+          .to(this.overlayArrow, { y: 0 })
+          .to(this.textHolder, { y: 0 }, '<');
+      }
+    }
+  }
+
+  /**
    * Animates the individual images found in the projects part
    * @param {string[]} nameArray - The names of the images to be animated, arranged from
    *                               the bottom layer, to the top
@@ -365,6 +408,18 @@ export default class LandingAnimation {
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
+        gsap
+          .timeline({
+            defaults: {
+              ease: this.defaultEase,
+              duration: 0.35,
+            },
+          })
+          .set(this.backToTop, { display: 'block' })
+          .to(this.scrollDown, { y: -50 })
+          .to(this.backToTop, { y: 28 }, '<.5')
+          .to(this.overlayArrow, { rotate: '180deg' }, '<')
+          .set(this.scrollDown, { display: 'none' });
         break;
       case 2:
         this.imageAnimation(this.flashDirection, false, down, 0);
@@ -390,6 +445,18 @@ export default class LandingAnimation {
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
+        gsap
+          .timeline({
+            defaults: {
+              ease: this.defaultEase,
+              duration: 0.35,
+            },
+          })
+          .set(this.scrollDown, { display: 'block' })
+          .to(this.backToTop, { y: 100 })
+          .to(this.scrollDown, { y: 28 }, '<.5')
+          .to(this.overlayArrow, { rotate: '0' }, '<')
+          .set(this.backToTop, { display: 'none' });
         break;
       case 2:
         this.imageAnimation(this.flashDirection, true, down, 0);
@@ -545,6 +612,18 @@ export default class LandingAnimation {
   arrowClick() {
     if (this.currentSlide !== 1) {
       this.changeSlide(this.currentSlide, (this.currentSlide = 1));
+    }
+  }
+
+  /**
+   * Handles when the back to top button is clicked
+   */
+  backToTopClick() {
+    if (this.currentSlide !== 0) {
+      this.backToTopAnimation(false);
+      this.changeSlide(this.currentSlide, (this.currentSlide = 0));
+    } else {
+      this.changeSlide(this.currentSlide, (this.currentSlide += 1));
     }
   }
 
