@@ -127,27 +127,38 @@ export default class LandingAnimation {
    * Sets all inital styles
    */
   setStyles() {
-    gsap.set(this.shapesNode, {
-      bottom: this.layer[6] * this.slides,
-    });
-    gsap.set(this.logoNode, {
-      display: 'block',
-    });
-    gsap.set(this.otherLogoNode, {
-      display: 'none',
-    });
+    gsap
+      .timeline()
+      .set(this.shapesNode, {
+        bottom: this.layer[6] * this.slides,
+      })
+      .set(this.logoNode, {
+        display: 'block',
+      })
+      .set(this.otherLogoNode, {
+        display: 'none',
+      })
+      .set(this.scrollHolder, { cursor: 'pointer' });
   }
 
   /**
    * Removes styles on leave
    */
   removeStyles() {
-    gsap.set(this.logoNode, {
-      display: 'none',
-    });
-    gsap.set(this.otherLogoNode, {
-      display: 'block',
-    });
+    gsap
+      .timeline()
+      .set(this.logoNode, {
+        display: 'none',
+      })
+      .set(this.otherLogoNode, {
+        display: 'block',
+      })
+      .set(this.scrollHolder, { cursor: 'initial' })
+      .set(this.scrollDown, { display: 'block' })
+      .set(this.backToTop, { y: 100 })
+      .set(this.scrollDown, { y: 28 })
+      .set(this.overlayArrow, { rotate: '0' })
+      .set(this.backToTop, { display: 'none' });
   }
 
   /**
@@ -184,6 +195,15 @@ export default class LandingAnimation {
   removeListeners() {
     document.removeEventListener('keydown', this.keyDownFunc);
     window.removeEventListener('resize', this.resizeFunc);
+    this.scrollHolder.removeEventListener('click', this.backToTopClickFunc);
+    this.scrollHolder.removeEventListener(
+      'mouseenter',
+      this.backToTopOnEnterFunc,
+    );
+    this.scrollHolder.removeEventListener(
+      'mouseleave',
+      this.backToTopOnExitFunc,
+    );
   }
 
   /* * ANIMATION CREATORS * */
@@ -691,6 +711,8 @@ export default class LandingAnimation {
    * Starts all the event listeners and sets necessary gsap styles
    */
   load() {
+    this.currentSlide = 0;
+    this.currentScrollbar = 0;
     this.querySelectors();
     this.setStyles();
     this.resetScrollbar();
