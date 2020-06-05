@@ -111,6 +111,7 @@ export default class ScrollDownAnimation {
 
   load() {
     this.querySelectors();
+    this.removeStyles();
     this.addEventListeners();
   }
 
