@@ -12,6 +12,7 @@ export default class TightropeRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
+    super.onEnterCompleted();
     tightrope.play();
   }
 }

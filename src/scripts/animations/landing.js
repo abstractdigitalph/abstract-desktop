@@ -71,6 +71,18 @@ export default class LandingAnimation {
     };
 
     this.resizeFunc = debounce(() => this.fullpageResize(), 200);
+
+    this.backToTopOnEnterFunc = () => {
+      this.backToTopAnimation(true);
+    };
+
+    this.backToTopOnExitFunc = () => {
+      this.backToTopAnimation(false);
+    };
+
+    this.backToTopClickFunc = () => {
+      this.backToTopClick();
+    };
   }
 
   /* * SETUP * */
@@ -101,6 +113,11 @@ export default class LandingAnimation {
     this.logoNode = document.querySelector('.overlay__logo--landing');
     this.otherLogoNode = document.querySelector('.overlay__logo');
     this.arrowNode = document.querySelector('.hero__arrow');
+    this.scrollDown = document.querySelector('.overlay__text');
+    this.backToTop = document.querySelector('.overlay__text--backToTop');
+    this.overlayArrow = document.querySelector('.overlay__arrow');
+    this.scrollHolder = document.querySelector('.overlay__scroll');
+    this.textHolder = document.querySelector('.overlay__textHolder');
 
     this.height = this.fullpageNode.querySelector('#landingHero').clientHeight;
     this.slides = this.fullpageNode.children.length - 1;
@@ -110,27 +127,38 @@ export default class LandingAnimation {
    * Sets all inital styles
    */
   setStyles() {
-    gsap.set(this.shapesNode, {
-      bottom: this.layer[6] * this.slides,
-    });
-    gsap.set(this.logoNode, {
-      display: 'block',
-    });
-    gsap.set(this.otherLogoNode, {
-      display: 'none',
-    });
+    gsap
+      .timeline()
+      .set(this.shapesNode, {
+        bottom: this.layer[6] * this.slides,
+      })
+      .set(this.logoNode, {
+        display: 'block',
+      })
+      .set(this.otherLogoNode, {
+        display: 'none',
+      })
+      .set(this.scrollHolder, { cursor: 'pointer' });
   }
 
   /**
    * Removes styles on leave
    */
   removeStyles() {
-    gsap.set(this.logoNode, {
-      display: 'none',
-    });
-    gsap.set(this.otherLogoNode, {
-      display: 'block',
-    });
+    gsap
+      .timeline()
+      .set(this.logoNode, {
+        display: 'none',
+      })
+      .set(this.otherLogoNode, {
+        display: 'block',
+      })
+      .set(this.scrollHolder, { cursor: 'initial' })
+      .set(this.scrollDown, { display: 'block' })
+      .set(this.backToTop, { y: 100 })
+      .set(this.scrollDown, { y: 28 })
+      .set(this.overlayArrow, { rotate: '0' })
+      .set(this.backToTop, { display: 'none' });
   }
 
   /**
@@ -153,6 +181,9 @@ export default class LandingAnimation {
 
     this.logoNode.addEventListener('click', () => this.logoClick());
     this.arrowNode.addEventListener('click', () => this.arrowClick());
+    this.scrollHolder.addEventListener('click', this.backToTopClickFunc);
+    this.scrollHolder.addEventListener('mouseenter', this.backToTopOnEnterFunc);
+    this.scrollHolder.addEventListener('mouseleave', this.backToTopOnExitFunc);
 
     // Resize event listener
     window.addEventListener('resize', this.resizeFunc);
@@ -164,6 +195,15 @@ export default class LandingAnimation {
   removeListeners() {
     document.removeEventListener('keydown', this.keyDownFunc);
     window.removeEventListener('resize', this.resizeFunc);
+    this.scrollHolder.removeEventListener('click', this.backToTopClickFunc);
+    this.scrollHolder.removeEventListener(
+      'mouseenter',
+      this.backToTopOnEnterFunc,
+    );
+    this.scrollHolder.removeEventListener(
+      'mouseleave',
+      this.backToTopOnExitFunc,
+    );
   }
 
   /* * ANIMATION CREATORS * */
@@ -292,6 +332,29 @@ export default class LandingAnimation {
   }
 
   /**
+   * Animates the arrow when hovering over the back to top button
+   */
+  backToTopAnimation(isEntering) {
+    if (this.currentSlide !== 0) {
+      if (isEntering) {
+        gsap
+          .timeline({
+            defaults: { ease: this.defaultEase, duration: 0.35 },
+          })
+          .to(this.overlayArrow, { y: -100 })
+          .to(this.textHolder, { y: 51 }, '<');
+      } else {
+        gsap
+          .timeline({
+            defaults: { ease: this.defaultEase, duration: 0.35 },
+          })
+          .to(this.overlayArrow, { y: 0 })
+          .to(this.textHolder, { y: 0 }, '<');
+      }
+    }
+  }
+
+  /**
    * Animates the individual images found in the projects part
    * @param {string[]} nameArray - The names of the images to be animated, arranged from
    *                               the bottom layer, to the top
@@ -365,6 +428,18 @@ export default class LandingAnimation {
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
+        gsap
+          .timeline({
+            defaults: {
+              ease: this.defaultEase,
+              duration: 0.35,
+            },
+          })
+          .set(this.backToTop, { display: 'block' })
+          .to(this.scrollDown, { y: -50 })
+          .to(this.backToTop, { y: 28 }, '<.5')
+          .to(this.overlayArrow, { rotate: '180deg' }, '<')
+          .set(this.scrollDown, { display: 'none' });
         break;
       case 2:
         this.imageAnimation(this.flashDirection, false, down, 0);
@@ -390,6 +465,18 @@ export default class LandingAnimation {
           ease: this.defaultEase,
           duration: this.defaultDuration,
         });
+        gsap
+          .timeline({
+            defaults: {
+              ease: this.defaultEase,
+              duration: 0.35,
+            },
+          })
+          .set(this.scrollDown, { display: 'block' })
+          .to(this.backToTop, { y: 100 })
+          .to(this.scrollDown, { y: 28 }, '<.5')
+          .to(this.overlayArrow, { rotate: '0' }, '<')
+          .set(this.backToTop, { display: 'none' });
         break;
       case 2:
         this.imageAnimation(this.flashDirection, true, down, 0);
@@ -549,6 +636,18 @@ export default class LandingAnimation {
   }
 
   /**
+   * Handles when the back to top button is clicked
+   */
+  backToTopClick() {
+    if (this.currentSlide !== 0) {
+      this.backToTopAnimation(false);
+      this.changeSlide(this.currentSlide, (this.currentSlide = 0));
+    } else {
+      this.changeSlide(this.currentSlide, (this.currentSlide += 1));
+    }
+  }
+
+  /**
    * Changes the slide based on the hitbox being clicked
    * @param {string} to - The slide number that was clicked
    */
@@ -612,6 +711,8 @@ export default class LandingAnimation {
    * Starts all the event listeners and sets necessary gsap styles
    */
   load() {
+    this.currentSlide = 0;
+    this.currentScrollbar = 0;
     this.querySelectors();
     this.setStyles();
     this.resetScrollbar();

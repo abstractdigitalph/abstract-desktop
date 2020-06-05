@@ -12,6 +12,7 @@ export default class FlashRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
+    super.onEnterCompleted();
     flash.play();
   }
 }

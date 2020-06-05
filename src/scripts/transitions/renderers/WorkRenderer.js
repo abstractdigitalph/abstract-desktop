@@ -13,6 +13,7 @@ export default class WorkRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
+    super.onEnterCompleted();
     onLoad.portfolio();
   }
 }

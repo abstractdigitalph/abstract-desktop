@@ -11,6 +11,7 @@ export default class AboutRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
+    super.onEnterCompleted();
     onLoad.about();
   }
 }
