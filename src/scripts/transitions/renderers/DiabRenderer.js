@@ -12,6 +12,7 @@ export default class DiabRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
+    super.onEnterCompleted();
     diab.play();
   }
 }

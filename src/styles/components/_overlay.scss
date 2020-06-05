@@ -39,14 +39,20 @@
   &__textHolder {
     height: 0;
     padding-bottom: 100%;
+    overflow: hidden;
   }
 
   &__text {
     @extend .text-scroll;
     color: var(--color-white);
     opacity: 0.4;
-    transform: rotate(-90deg) translate(-35%, 140%);
+    transform: rotate(-90deg) translate(-37%, 140%);
     display: block;
+
+    &--backToTop {
+      @extend .overlay__text;
+      transform: rotate(-90deg) translate(-115%, 140%);
+    }
   }
 
   &__arrow {

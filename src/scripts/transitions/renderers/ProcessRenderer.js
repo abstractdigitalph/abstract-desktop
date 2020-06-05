@@ -12,6 +12,7 @@ export default class ProcessRenderer extends ScrollRenderer {
   }
 
   onEnterCompleted() {
+    super.onEnterCompleted();
     onLoad.sprint();
   }
 
