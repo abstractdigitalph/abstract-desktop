@@ -5,16 +5,29 @@
 
   .nav {
     width: calc(50% - 4.0625rem);
-
     text-decoration: none;
-    background-image: url("../images/projects/tightrope/next.png");
     background-repeat: no-repeat;
     background-position: center right;
     background-size: 50%;
-
     &__holder {
       display: flex;
       justify-content: space-between;
+    }
+
+    &.brand-tightrope {
+      background-image: url("../images/projects/tightrope/next.png");
+    }
+
+    &.brand-diab {
+      background-image: url("../images/projects/diab/next.png");
+    }
+
+    &.brand-spenmo {
+      background-image: url("../images/projects/spenmo/next.png");
+    }
+
+    &.brand-flash {
+      background-image: url("../images/projects/flash/next.png");
     }
 
     &__h2 {

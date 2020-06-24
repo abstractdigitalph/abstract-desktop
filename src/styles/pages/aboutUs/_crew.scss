@@ -22,9 +22,12 @@
     &__indi {
       width: 100%;
       display: flex;
-      align-items: center;
+      align-items: flex-center;
       justify-content: flex-start;
       flex-direction: column;
+      @include breakpoint(lg) {
+        align-items: center;
+      }
     }
 
     &__image {
