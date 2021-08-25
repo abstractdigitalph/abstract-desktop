@@ -243,7 +243,7 @@ export default class LandingAnimation {
       .to(
         this.activeScrollbarNode,
         {
-          y: vhToPx((32 / 9) * to),
+          y: vhToPx((32 / 10) * to),
           ease: this.defaultEase,
           duration,
         },
