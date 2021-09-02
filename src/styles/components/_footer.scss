@@ -10,6 +10,9 @@
   &__half {
     width: 50%;
 
+    display: flex;
+    flex-direction: column;
+
     &--left {
       @extend .footer__half;
       border-right: solid 0.0625rem var(--color-border);
@@ -31,6 +34,8 @@
       width: 50%;
       padding: 2.5rem;
       margin: auto 0;
+
+      border-right: solid 0.0625rem var(--color-border);
     }
   }
 
@@ -46,7 +51,6 @@
 
   &__rightTop {
     padding: 2.5rem;
-    border-left: solid 0.0625rem var(--color-border);
     height: 100%;
 
     display: flex;
@@ -59,13 +63,15 @@
   }
 
   &__rightBottom {
+    height: 100%;
+
     border-top: solid 0.0625rem var(--color-border);
-    border-left: solid 0.0625rem var(--color-border);
     padding: 2.5rem;
     display: none;
 
     @include breakpoint("xl") {
       display: flex;
+      align-items: center;
       justify-content: space-between;
     }
   }
